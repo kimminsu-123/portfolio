@@ -802,6 +802,121 @@
             color: var(--text-secondary);
             line-height: 1.7;
         }
+        /* Activities Section */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-primary);
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+
+        .activity-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .activity-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .activity-category {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent-primary);
+            border-radius: 6px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        .activity-category.competition {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+            border-color: rgba(255, 193, 7, 0.2);
+        }
+
+        .activity-category.instructor {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            border-color: rgba(76, 175, 80, 0.2);
+        }
+
+        .activity-category.academy {
+            background: rgba(156, 39, 176, 0.1);
+            color: #9c27b0;
+            border-color: rgba(156, 39, 176, 0.2);
+        }
+
+        .activity-period {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .activity-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .activity-organization {
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .activity-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .activity-achievements {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .achievement-item::before {
+            content: '✓';
+            color: var(--accent-primary);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
 
         .education-grid {
             display: grid;
@@ -1003,17 +1118,26 @@
         <div class="container">
             <div class="hero-wrapper">
                 <div class="hero-image">
-			<img src="profile_img.jpg" alt="Profile" class="profile-image">
+                    <img src="profile_img.jpg" alt="Profile" class="profile-image">
                 </div>
                 <div class="hero-content">
                     <div class="hero-label">Unity Client Developer</div>
-                    <h1 class="hero-title">게임을 만드는<br>클라이언트 프로그래머</h1>
+                    <h1 class="hero-title">
+                        설계와 협업으로
+                        게임의 완성도를 높이는
+                        <br>개발자 김민수
+                    </h1>
                     <p class="hero-description">
-                        Unity 엔진을 활용하여 몰입감 있는 게임 경험을 만듭니다. 
-                        최적화된 코드와 창의적인 문제 해결로 플레이어에게 즐거움을 전달합니다.
+                        기능 구현보다 시스템 설계와 구조를 중시합니다.
+                        문제를 예측하고, 설득력 있는 커뮤니케이션으로 팀을 이끕니다.
+                        완성도 높은 게임을 만드는 것이 저의 개발 철학입니다.
                     </p>
                     <div class="hero-cta">
                         <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+                        <a href="김민수_이력서 및 경력 기술서.pdf" class="btn btn-secondary" download>
+                            <span style="margin-right: 0.5rem;">📄</span>
+                            이력서 다운로드
+                        </a>
                         <a href="#contact" class="btn btn-secondary">연락하기</a>
                     </div>
                 </div>
@@ -1106,18 +1230,22 @@
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">C#</span>
-                            <span class="skill-level">전문</span>
+                            <span class="skill-level">고급</span>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">Unity Engine</span>
-                            <span class="skill-level">전문</span>
+                            <span class="skill-name">Computer Science</span>
+                            <span class="skill-level">중급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Network Programming</span>
+                            <span class="skill-level">중급</span>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">C++</span>
-                            <span class="skill-level">숙련</span>
+                            <span class="skill-level">중급</span>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">Python</span>
+                            <span class="skill-name">VB6</span>
                             <span class="skill-level">중급</span>
                         </div>
                     </div>
@@ -1130,20 +1258,20 @@
                     </h3>
                     <div class="skill-list">
                         <div class="skill-item">
-                            <span class="skill-name">Gameplay Programming</span>
-                            <span class="skill-level">전문</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">UI/UX Implementation</span>
-                            <span class="skill-level">전문</span>
+                            <span class="skill-name">Unity Engine</span>
+                            <span class="skill-level">고급</span>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Performance Optimization</span>
-                            <span class="skill-level">숙련</span>
+                            <span class="skill-level">중급</span>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">Physics & Animation</span>
-                            <span class="skill-level">숙련</span>
+                            <span class="skill-name">Gameplay Programming</span>
+                            <span class="skill-level">중급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">UI/UX Implementation</span>
+                            <span class="skill-level">중급</span>
                         </div>
                     </div>
                 </div>
@@ -1155,20 +1283,57 @@
                     </h3>
                     <div class="skill-list">
                         <div class="skill-item">
-                            <span class="skill-name">Git / GitHub</span>
-                            <span class="skill-level">전문</span>
+                            <span class="skill-name">Git</span>
+                            <span class="skill-level">고급</span>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">JIRA / Confluence</span>
-                            <span class="skill-level">숙련</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Photon / Mirror</span>
-                            <span class="skill-level">숙련</span>
+                            <span class="skill-name">Slack / Jandi</span>
+                            <span class="skill-level">고급</span>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Addressables</span>
                             <span class="skill-level">중급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Dotween</span>
+                            <span class="skill-level">중급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Spine</span>
+                            <span class="skill-level">중급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">DOTS</span>
+                            <span class="skill-level">초급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">AWS</span>
+                            <span class="skill-level">초급</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3 class="skill-category-title">
+                        <span class="skill-category-icon">📁</span>
+                        데이터베이스
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">MSSQL</span>
+                            <span class="skill-level">고급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">MYSQL</span>
+                            <span class="skill-level">고급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQLite</span>
+                            <span class="skill-level">중급</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Redis</span>
+                            <span class="skill-level">초급</span>
                         </div>
                     </div>
                 </div>
@@ -1189,12 +1354,12 @@
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-period">2023.03 - 현재</div>
-                        <h3 class="timeline-title">Unity 클라이언트 개발자</h3>
-                        <div class="timeline-company">게임 회사명</div>
+                        <div class="timeline-period">2022.05 - 2023.12</div>
+                        <h3 class="timeline-title">Unity 클라이언트 개발자 (프리랜서)</h3>
+                        <div class="timeline-company">Tenacities</div>
                         <p class="timeline-description">
-                            모바일 RPG 게임의 클라이언트 개발을 담당하고 있습니다. 
-                            전투 시스템, UI/UX 구현, 성능 최적화 등의 업무를 수행했습니다.
+                            모바일 메타버스 ToAny 클라이언트 개발 및 VR 클라이언트 개발을 담당했습니다.
+                            성능 최적화, 네트워크 연동, VR 컨텐츠 개발 등의 업무를 수행하였습니다.
                         </p>
                     </div>
                 </div>
@@ -1202,15 +1367,80 @@
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-period">2021.06 - 2023.02</div>
-                        <h3 class="timeline-title">주니어 게임 프로그래머</h3>
-                        <div class="timeline-company">이전 회사명</div>
+                        <div class="timeline-period">2020.08 - 2022.05</div>
+                        <h3 class="timeline-title">애플리케이션 개발자 (사원_산업기능요원)</h3>
+                        <div class="timeline-company">IMTSOFT</div>
                         <p class="timeline-description">
-                            인디 게임 스튜디오에서 Unity 기반의 모바일 게임을 개발했습니다. 
-                            게임플레이 로직 구현과 버그 수정을 주로 담당했습니다.
+                            C# 과 VB6 을 이용한 POS/KIOSK 솔루션을 개발하였습니다.
+                            외부 결제 수단 기능 개발 (Kakao, 자체 결제 모듈 등), 프린터기 연동 기능 및 API 연결 등의 업무를 수행하였습니다.
+                            MSSQL, MYSQL, MariaDB 등 데이터베이스 관리 업무를 수행하였습니다.
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section (대회, 강사, 아카데미 경험) -->
+    <section id="activities">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Activities</div>
+                <h2 class="section-title">기타 활동</h2>
+                <p class="section-description">
+                    대회, 강사, 아카데미 등 다양한 활동 경험입니다.
+                </p>
+            </div>
+            <div class="activities-grid">
+                <!-- 대회 경험 예시 -->
+                <div class="activity-card fade-in">
+                    <span class="activity-category competition">대회</span>
+                    <div class="activity-period">2024.03</div>
+                    <h3 class="activity-title">게임 개발 해커톤</h3>
+                    <div class="activity-organization">주최: OO 게임 개발자 협회</div>
+                    <p class="activity-description">
+                        48시간 동안 팀원들과 함께 게임을 기획하고 개발하는 해커톤에 참가했습니다.
+                    </p>
+                    <div class="activity-achievements">
+                        <div class="achievement-item">우수상 수상 (3위)</div>
+                        <div class="achievement-item">Unity 클라이언트 개발 담당</div>
+                        <div class="achievement-item">짧은 시간 내 프로토타입 완성</div>
+                    </div>
+                </div>
+
+                <!-- 강사 경험 예시 -->
+                <div class="activity-card fade-in">
+                    <span class="activity-category instructor">강사</span>
+                    <div class="activity-period">2023.09 - 2023.12</div>
+                    <h3 class="activity-title">Unity 기초 강의</h3>
+                    <div class="activity-organization">OO 교육원</div>
+                    <p class="activity-description">
+                        게임 개발에 관심있는 학생들을 대상으로 Unity 기초 강의를 진행했습니다.
+                    </p>
+                    <div class="activity-achievements">
+                        <div class="achievement-item">총 20명의 수강생 교육</div>
+                        <div class="achievement-item">C# 프로그래밍 및 Unity 기초 커리큘럼 구성</div>
+                        <div class="achievement-item">실습 프로젝트 지도 및 피드백</div>
+                    </div>
+                </div>
+
+                <!-- 아카데미 경험 예시 -->
+                <div class="activity-card fade-in">
+                    <span class="activity-category academy">아카데미</span>
+                    <div class="activity-period">2023.01 - 2023.06</div>
+                    <h3 class="activity-title">게임 개발 전문가 과정</h3>
+                    <div class="activity-organization">OO 게임 아카데미</div>
+                    <p class="activity-description">
+                        실무 중심의 게임 개발 교육 과정을 이수했습니다.
+                    </p>
+                    <div class="activity-achievements">
+                        <div class="achievement-item">Unity 고급 기술 학습</div>
+                        <div class="achievement-item">팀 프로젝트 완성 및 발표</div>
+                        <div class="achievement-item">최우수 수료생 선정</div>
+                    </div>
+                </div>
+
+                <!-- 추가 활동은 이 형식으로 계속 추가 가능 -->
             </div>
         </div>
     </section>
@@ -1222,6 +1452,13 @@
                 <h2 class="section-title">학력</h2>
             </div>
             <div class="education-grid">
+                <div class="education-card fade-in">
+                    <div class="education-icon">🎓</div>
+                    <h3 class="education-degree">차세대 게임 콘텐츠학과 (전공심화_학사학위)</h3>
+                    <div class="education-school">청강 문화 산업 대학교</div>
+                    <div class="education-period">2026-2027</div>
+                </div>
+
                 <div class="education-card fade-in">
                     <div class="education-icon">🎓</div>
                     <h3 class="education-degree">게임과-프로그래밍 전공</h3>
@@ -1288,11 +1525,11 @@
     <div class="modal-overlay" id="projectModal">
         <div class="modal-content">
             <div class="modal-close" onclick="closeProjectModal()">✕</div>
-            
+
             <div class="modal-header">
                 <h2 class="modal-title" id="modalTitle">프로젝트 제목</h2>
                 <p class="modal-subtitle" id="modalSubtitle">프로젝트 한 줄 소개</p>
-                
+
                 <div class="modal-meta">
                     <div class="meta-item">
                         <span class="meta-label">기간</span>
@@ -1325,330 +1562,330 @@
     </footer>
 
     <script>
-// Continue in next message due to length...
-const projectData = {
-    project1: {
-        title: "멀티플레이어 액션 게임",
-        subtitle: "Unity 기반 실시간 PvP 액션 게임으로 최적화와 네트워크 동기화에 집중한 프로젝트",
-        period: "2024.01 - 2024.06",
-        platform: "PC / Mobile",
-        team: "4명 (기획 1, 클라이언트 2, 서버 1)",
-        role: "Unity Client Developer",
-        media: [
-            { type: 'placeholder', icon: '🖼️', text: '게임 스크린샷을 추가하세요' },
-            { type: 'placeholder', icon: '🎬', text: '게임플레이 영상을 추가하세요' }
-        ],
-        responsibilities: [
-            {
-                title: "전투 시스템 구현",
-                description: "캐릭터 스킬, 콤보 시스템, 히트박스 처리 등 핵심 전투 메커니즘을 구현했습니다. 프레임 단위의 정확한 타이밍과 부드러운 애니메이션 전환을 위해 State Machine을 활용했습니다."
+        // Continue in next message due to length...
+        const projectData = {
+            project1: {
+                title: "멀티플레이어 액션 게임",
+                subtitle: "Unity 기반 실시간 PvP 액션 게임으로 최적화와 네트워크 동기화에 집중한 프로젝트",
+                period: "2024.01 - 2024.06",
+                platform: "PC / Mobile",
+                team: "4명 (기획 1, 클라이언트 2, 서버 1)",
+                role: "Unity Client Developer",
+                media: [
+                    { type: 'placeholder', icon: '🖼️', text: '게임 스크린샷을 추가하세요' },
+                    { type: 'placeholder', icon: '🎬', text: '게임플레이 영상을 추가하세요' }
+                ],
+                responsibilities: [
+                    {
+                        title: "전투 시스템 구현",
+                        description: "캐릭터 스킬, 콤보 시스템, 히트박스 처리 등 핵심 전투 메커니즘을 구현했습니다. 프레임 단위의 정확한 타이밍과 부드러운 애니메이션 전환을 위해 State Machine을 활용했습니다."
+                    },
+                    {
+                        title: "네트워크 동기화 최적화",
+                        description: "Photon을 사용한 멀티플레이어 구현에서 발생하는 지연과 동기화 문제를 해결했습니다. Client-side prediction과 Server reconciliation을 적용하여 네트워크 지연 환경에서도 부드러운 플레이 경험을 제공했습니다."
+                    },
+                    {
+                        title: "성능 최적화",
+                        description: "프로파일러를 활용한 병목 지점 파악 및 개선을 통해 모바일 환경에서 60fps 안정화를 달성했습니다. Object Pooling, LOD, Occlusion Culling 등의 기법을 적용했습니다."
+                    }
+                ],
+                features: [
+                    {
+                        icon: "⚔️",
+                        title: "실시간 PvP",
+                        description: "최대 4명이 동시에 플레이하는 실시간 배틀 시스템"
+                    },
+                    {
+                        icon: "🎮",
+                        title: "다양한 스킬",
+                        description: "캐릭터별 고유 스킬과 콤보 시스템"
+                    },
+                    {
+                        icon: "🏆",
+                        title: "랭킹 시스템",
+                        description: "실시간 업데이트되는 글로벌 랭킹"
+                    },
+                    {
+                        icon: "📱",
+                        title: "크로스 플랫폼",
+                        description: "PC와 모바일 간 크로스 플레이 지원"
+                    }
+                ],
+                techStack: ["Unity 2022 LTS", "C#", "Photon PUN2", "DOTween", "Addressables", "Git"],
+                challenges: [
+                    {
+                        question: "네트워크 지연 환경에서 부드러운 게임플레이를 어떻게 구현했나요?",
+                        answer: "Client-side prediction을 통해 플레이어의 입력을 즉시 반영하고, 서버로부터 권위있는 상태를 받으면 reconciliation을 수행하는 방식으로 구현했습니다. 또한 interpolation을 통해 다른 플레이어의 움직임을 부드럽게 표현했습니다."
+                    },
+                    {
+                        question: "모바일에서 60fps를 어떻게 달성했나요?",
+                        answer: "Unity Profiler로 CPU와 GPU 병목 지점을 파악하고, Draw Call 감소를 위한 Batching, Object Pooling으로 GC 부하 감소, Shader 최적화, 그리고 불필요한 Physics 연산을 제거하는 등 다각도로 접근했습니다."
+                    }
+                ],
+                links: [
+                    { text: "GitHub 저장소", url: "#", type: "primary" },
+                    { text: "플레이 영상", url: "#", type: "secondary" },
+                    { text: "기술 블로그", url: "#", type: "secondary" }
+                ]
             },
-            {
-                title: "네트워크 동기화 최적화",
-                description: "Photon을 사용한 멀티플레이어 구현에서 발생하는 지연과 동기화 문제를 해결했습니다. Client-side prediction과 Server reconciliation을 적용하여 네트워크 지연 환경에서도 부드러운 플레이 경험을 제공했습니다."
+            project2: {
+                title: "오픈월드 RPG 게임",
+                subtitle: "대규모 맵과 AI 시스템을 갖춘 싱글플레이어 RPG",
+                period: "2023.06 - 2023.12",
+                platform: "PC",
+                team: "6명 (기획 2, 클라이언트 3, 아트 1)",
+                role: "Client Developer (AI & Quest)",
+                media: [
+                    { type: 'placeholder', icon: '🗺️', text: '게임 스크린샷을 추가하세요' }
+                ],
+                responsibilities: [
+                    {
+                        title: "AI 시스템 구현",
+                        description: "Behavior Tree를 활용한 NPC AI 시스템을 구축했습니다. 적 AI의 전투 패턴, 순찰, 추적 등의 행동을 모듈화하여 디자이너가 쉽게 조합할 수 있도록 했습니다."
+                    },
+                    {
+                        title: "퀘스트 시스템",
+                        description: "데이터 기반의 확장 가능한 퀘스트 시스템을 설계 및 구현했습니다. ScriptableObject를 활용하여 비프로그래머도 퀘스트를 생성할 수 있는 에디터 툴을 제작했습니다."
+                    }
+                ],
+                features: [
+                    {
+                        icon: "🗺️",
+                        title: "오픈월드",
+                        description: "자유롭게 탐험 가능한 대규모 맵"
+                    },
+                    {
+                        icon: "🤖",
+                        title: "스마트 AI",
+                        description: "Behavior Tree 기반 적응형 AI"
+                    },
+                    {
+                        icon: "📜",
+                        title: "퀘스트",
+                        description: "100개 이상의 메인/서브 퀘스트"
+                    },
+                    {
+                        icon: "⚡",
+                        title: "실시간 전투",
+                        description: "액션 기반 전투 시스템"
+                    }
+                ],
+                techStack: ["Unity 2021 LTS", "C#", "Behavior Designer", "Cinemachine", "TextMeshPro"],
+                challenges: [
+                    {
+                        question: "대규모 맵에서 성능을 어떻게 유지했나요?",
+                        answer: "씬을 여러 구역으로 분할하고 Addressables를 활용한 비동기 로딩으로 메모리 사용량을 최적화했습니다. 또한 Occlusion Culling과 LOD를 적극 활용했습니다."
+                    }
+                ],
+                links: [
+                    { text: "GitHub 저장소", url: "#", type: "primary" },
+                    { text: "개발 일지", url: "#", type: "secondary" }
+                ]
             },
-            {
-                title: "성능 최적화",
-                description: "프로파일러를 활용한 병목 지점 파악 및 개선을 통해 모바일 환경에서 60fps 안정화를 달성했습니다. Object Pooling, LOD, Occlusion Culling 등의 기법을 적용했습니다."
+            project3: {
+                title: "모바일 러너 게임",
+                subtitle: "터치 기반의 캐주얼 러닝 게임",
+                period: "2023.01 - 2023.05",
+                platform: "Android / iOS",
+                team: "3명 (기획 1, 개발 1, 아트 1)",
+                role: "Solo Client Developer",
+                media: [
+                    { type: 'placeholder', icon: '🏃', text: '게임 스크린샷을 추가하세요' }
+                ],
+                responsibilities: [
+                    {
+                        title: "전체 클라이언트 개발",
+                        description: "게임플레이 로직부터 UI, 이펙트, 최적화까지 클라이언트 전반을 혼자 담당했습니다."
+                    },
+                    {
+                        title: "절차적 레벨 생성",
+                        description: "무한 러너 방식의 레벨을 절차적으로 생성하는 시스템을 구현했습니다. 난이도 곡선을 고려한 장애물 배치 알고리즘을 설계했습니다."
+                    }
+                ],
+                features: [
+                    {
+                        icon: "🏃",
+                        title: "무한 러너",
+                        description: "끝없이 이어지는 절차적 레벨"
+                    },
+                    {
+                        icon: "💎",
+                        title: "수집 요소",
+                        description: "다양한 캐릭터와 스킨 해금"
+                    },
+                    {
+                        icon: "🎯",
+                        title: "일일 미션",
+                        description: "매일 새로운 도전 과제"
+                    },
+                    {
+                        icon: "🌟",
+                        title: "파워업",
+                        description: "게임을 더 재미있게 만드는 아이템"
+                    }
+                ],
+                techStack: ["Unity 2020 LTS", "C#", "DOTween", "TextMeshPro", "Firebase"],
+                challenges: [
+                    {
+                        question: "무한 러너를 어떻게 구현했나요?",
+                        answer: "Object Pooling을 활용하여 맵 타일과 장애물을 재사용하고, 플레이어가 일정 거리를 진행하면 뒤의 타일을 앞으로 재배치하는 방식으로 구현했습니다."
+                    }
+                ],
+                links: [
+                    { text: "GitHub 저장소", url: "#", type: "primary" }
+                ]
             }
-        ],
-        features: [
-            {
-                icon: "⚔️",
-                title: "실시간 PvP",
-                description: "최대 4명이 동시에 플레이하는 실시간 배틀 시스템"
-            },
-            {
-                icon: "🎮",
-                title: "다양한 스킬",
-                description: "캐릭터별 고유 스킬과 콤보 시스템"
-            },
-            {
-                icon: "🏆",
-                title: "랭킹 시스템",
-                description: "실시간 업데이트되는 글로벌 랭킹"
-            },
-            {
-                icon: "📱",
-                title: "크로스 플랫폼",
-                description: "PC와 모바일 간 크로스 플레이 지원"
-            }
-        ],
-        techStack: ["Unity 2022 LTS", "C#", "Photon PUN2", "DOTween", "Addressables", "Git"],
-        challenges: [
-            {
-                question: "네트워크 지연 환경에서 부드러운 게임플레이를 어떻게 구현했나요?",
-                answer: "Client-side prediction을 통해 플레이어의 입력을 즉시 반영하고, 서버로부터 권위있는 상태를 받으면 reconciliation을 수행하는 방식으로 구현했습니다. 또한 interpolation을 통해 다른 플레이어의 움직임을 부드럽게 표현했습니다."
-            },
-            {
-                question: "모바일에서 60fps를 어떻게 달성했나요?",
-                answer: "Unity Profiler로 CPU와 GPU 병목 지점을 파악하고, Draw Call 감소를 위한 Batching, Object Pooling으로 GC 부하 감소, Shader 최적화, 그리고 불필요한 Physics 연산을 제거하는 등 다각도로 접근했습니다."
-            }
-        ],
-        links: [
-            { text: "GitHub 저장소", url: "#", type: "primary" },
-            { text: "플레이 영상", url: "#", type: "secondary" },
-            { text: "기술 블로그", url: "#", type: "secondary" }
-        ]
-    },
-    project2: {
-        title: "오픈월드 RPG 게임",
-        subtitle: "대규모 맵과 AI 시스템을 갖춘 싱글플레이어 RPG",
-        period: "2023.06 - 2023.12",
-        platform: "PC",
-        team: "6명 (기획 2, 클라이언트 3, 아트 1)",
-        role: "Client Developer (AI & Quest)",
-        media: [
-            { type: 'placeholder', icon: '🗺️', text: '게임 스크린샷을 추가하세요' }
-        ],
-        responsibilities: [
-            {
-                title: "AI 시스템 구현",
-                description: "Behavior Tree를 활용한 NPC AI 시스템을 구축했습니다. 적 AI의 전투 패턴, 순찰, 추적 등의 행동을 모듈화하여 디자이너가 쉽게 조합할 수 있도록 했습니다."
-            },
-            {
-                title: "퀘스트 시스템",
-                description: "데이터 기반의 확장 가능한 퀘스트 시스템을 설계 및 구현했습니다. ScriptableObject를 활용하여 비프로그래머도 퀘스트를 생성할 수 있는 에디터 툴을 제작했습니다."
-            }
-        ],
-        features: [
-            {
-                icon: "🗺️",
-                title: "오픈월드",
-                description: "자유롭게 탐험 가능한 대규모 맵"
-            },
-            {
-                icon: "🤖",
-                title: "스마트 AI",
-                description: "Behavior Tree 기반 적응형 AI"
-            },
-            {
-                icon: "📜",
-                title: "퀘스트",
-                description: "100개 이상의 메인/서브 퀘스트"
-            },
-            {
-                icon: "⚡",
-                title: "실시간 전투",
-                description: "액션 기반 전투 시스템"
-            }
-        ],
-        techStack: ["Unity 2021 LTS", "C#", "Behavior Designer", "Cinemachine", "TextMeshPro"],
-        challenges: [
-            {
-                question: "대규모 맵에서 성능을 어떻게 유지했나요?",
-                answer: "씬을 여러 구역으로 분할하고 Addressables를 활용한 비동기 로딩으로 메모리 사용량을 최적화했습니다. 또한 Occlusion Culling과 LOD를 적극 활용했습니다."
-            }
-        ],
-        links: [
-            { text: "GitHub 저장소", url: "#", type: "primary" },
-            { text: "개발 일지", url: "#", type: "secondary" }
-        ]
-    },
-    project3: {
-        title: "모바일 러너 게임",
-        subtitle: "터치 기반의 캐주얼 러닝 게임",
-        period: "2023.01 - 2023.05",
-        platform: "Android / iOS",
-        team: "3명 (기획 1, 개발 1, 아트 1)",
-        role: "Solo Client Developer",
-        media: [
-            { type: 'placeholder', icon: '🏃', text: '게임 스크린샷을 추가하세요' }
-        ],
-        responsibilities: [
-            {
-                title: "전체 클라이언트 개발",
-                description: "게임플레이 로직부터 UI, 이펙트, 최적화까지 클라이언트 전반을 혼자 담당했습니다."
-            },
-            {
-                title: "절차적 레벨 생성",
-                description: "무한 러너 방식의 레벨을 절차적으로 생성하는 시스템을 구현했습니다. 난이도 곡선을 고려한 장애물 배치 알고리즘을 설계했습니다."
-            }
-        ],
-        features: [
-            {
-                icon: "🏃",
-                title: "무한 러너",
-                description: "끝없이 이어지는 절차적 레벨"
-            },
-            {
-                icon: "💎",
-                title: "수집 요소",
-                description: "다양한 캐릭터와 스킨 해금"
-            },
-            {
-                icon: "🎯",
-                title: "일일 미션",
-                description: "매일 새로운 도전 과제"
-            },
-            {
-                icon: "🌟",
-                title: "파워업",
-                description: "게임을 더 재미있게 만드는 아이템"
-            }
-        ],
-        techStack: ["Unity 2020 LTS", "C#", "DOTween", "TextMeshPro", "Firebase"],
-        challenges: [
-            {
-                question: "무한 러너를 어떻게 구현했나요?",
-                answer: "Object Pooling을 활용하여 맵 타일과 장애물을 재사용하고, 플레이어가 일정 거리를 진행하면 뒤의 타일을 앞으로 재배치하는 방식으로 구현했습니다."
-            }
-        ],
-        links: [
-            { text: "GitHub 저장소", url: "#", type: "primary" }
-        ]
-    }
-};
+        };
 
-function openProjectModal(projectId) {
-    const modal = document.getElementById('projectModal');
-    const project = projectData[projectId];
-    
-    if (!project) return;
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const project = projectData[projectId];
 
-    document.getElementById('modalTitle').textContent = project.title;
-    document.getElementById('modalSubtitle').textContent = project.subtitle;
-    document.getElementById('modalPeriod').textContent = project.period;
-    document.getElementById('modalPlatform').textContent = project.platform;
-    document.getElementById('modalTeam').textContent = project.team;
-    document.getElementById('modalRole').textContent = project.role;
+            if (!project) return;
 
-    const modalBody = document.getElementById('modalBody');
-    let bodyHTML = '';
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalSubtitle').textContent = project.subtitle;
+            document.getElementById('modalPeriod').textContent = project.period;
+            document.getElementById('modalPlatform').textContent = project.platform;
+            document.getElementById('modalTeam').textContent = project.team;
+            document.getElementById('modalRole').textContent = project.role;
 
-    if (project.media && project.media.length > 0) {
-        bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">🖼️</span>미디어</h3><div class="media-gallery">';
-        
-        project.media.forEach(media => {
-            if (media.type === 'placeholder') {
-                bodyHTML += `<div class="media-item"><div class="media-placeholder"><div style="text-align:center;"><div style="font-size:4rem;margin-bottom:1rem;">${media.icon}</div><div style="font-size:1rem;color:var(--text-secondary);">${media.text}</div></div></div></div>`;
+            const modalBody = document.getElementById('modalBody');
+            let bodyHTML = '';
+
+            if (project.media && project.media.length > 0) {
+                bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">🖼️</span>미디어</h3><div class="media-gallery">';
+
+                project.media.forEach(media => {
+                    if (media.type === 'placeholder') {
+                        bodyHTML += `<div class="media-item"><div class="media-placeholder"><div style="text-align:center;"><div style="font-size:4rem;margin-bottom:1rem;">${media.icon}</div><div style="font-size:1rem;color:var(--text-secondary);">${media.text}</div></div></div></div>`;
+                    }
+                });
+
+                bodyHTML += '</div><p style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">💡 팁: 이미지/영상 파일을 추가하려면 projectData에서 미디어 타입을 수정하세요</p></div>';
+            }
+
+            if (project.responsibilities && project.responsibilities.length > 0) {
+                bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">👨‍💻</span>담당 업무 및 기여</h3><div class="responsibility-list">';
+
+                project.responsibilities.forEach(resp => {
+                    bodyHTML += `<div class="responsibility-item"><div class="responsibility-title">${resp.title}</div><div class="responsibility-description">${resp.description}</div></div>`;
+                });
+
+                bodyHTML += '</div></div>';
+            }
+
+            if (project.features && project.features.length > 0) {
+                bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">⭐</span>주요 기능</h3><div class="features-grid">';
+
+                project.features.forEach(feature => {
+                    bodyHTML += `<div class="feature-item"><div class="feature-icon">${feature.icon}</div><div class="feature-title">${feature.title}</div><div class="feature-description">${feature.description}</div></div>`;
+                });
+
+                bodyHTML += '</div></div>';
+            }
+
+            if (project.techStack && project.techStack.length > 0) {
+                bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">🔧</span>기술 스택</h3><div class="tech-stack-list">';
+
+                project.techStack.forEach(tech => {
+                    bodyHTML += `<span class="tech-item">${tech}</span>`;
+                });
+
+                bodyHTML += '</div></div>';
+            }
+
+            if (project.challenges && project.challenges.length > 0) {
+                bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">💡</span>기술적 도전과 해결</h3>';
+
+                project.challenges.forEach(challenge => {
+                    bodyHTML += `<div class="challenge-item"><div class="challenge-question"><span>Q.</span><span>${challenge.question}</span></div><div class="challenge-answer">${challenge.answer}</div></div>`;
+                });
+
+                bodyHTML += '</div>';
+            }
+
+            if (project.links && project.links.length > 0) {
+                bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">🔗</span>링크</h3><div class="modal-links">';
+
+                project.links.forEach(link => {
+                    const btnClass = link.type === 'primary' ? 'modal-btn-primary' : 'modal-btn-secondary';
+                    bodyHTML += `<a href="${link.url}" class="modal-btn ${btnClass}" target="_blank" onclick="event.stopPropagation();">${link.text}<span>→</span></a>`;
+                });
+
+                bodyHTML += '</div></div>';
+            }
+
+            modalBody.innerHTML = bodyHTML;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('projectModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeProjectModal();
             }
         });
-        
-        bodyHTML += '</div><p style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">💡 팁: 이미지/영상 파일을 추가하려면 projectData에서 미디어 타입을 수정하세요</p></div>';
-    }
 
-    if (project.responsibilities && project.responsibilities.length > 0) {
-        bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">👨‍💻</span>담당 업무 및 기여</h3><div class="responsibility-list">';
-        
-        project.responsibilities.forEach(resp => {
-            bodyHTML += `<div class="responsibility-item"><div class="responsibility-title">${resp.title}</div><div class="responsibility-description">${resp.description}</div></div>`;
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
         });
-        
-        bodyHTML += '</div></div>';
-    }
 
-    if (project.features && project.features.length > 0) {
-        bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">⭐</span>주요 기능</h3><div class="features-grid">';
-        
-        project.features.forEach(feature => {
-            bodyHTML += `<div class="feature-item"><div class="feature-icon">${feature.icon}</div><div class="feature-title">${feature.title}</div><div class="feature-description">${feature.description}</div></div>`;
-        });
-        
-        bodyHTML += '</div></div>';
-    }
-
-    if (project.techStack && project.techStack.length > 0) {
-        bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">🔧</span>기술 스택</h3><div class="tech-stack-list">';
-        
-        project.techStack.forEach(tech => {
-            bodyHTML += `<span class="tech-item">${tech}</span>`;
-        });
-        
-        bodyHTML += '</div></div>';
-    }
-
-    if (project.challenges && project.challenges.length > 0) {
-        bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">💡</span>기술적 도전과 해결</h3>';
-        
-        project.challenges.forEach(challenge => {
-            bodyHTML += `<div class="challenge-item"><div class="challenge-question"><span>Q.</span><span>${challenge.question}</span></div><div class="challenge-answer">${challenge.answer}</div></div>`;
-        });
-        
-        bodyHTML += '</div>';
-    }
-
-    if (project.links && project.links.length > 0) {
-        bodyHTML += '<div class="modal-section"><h3 class="modal-section-title"><span class="section-icon">🔗</span>링크</h3><div class="modal-links">';
-        
-        project.links.forEach(link => {
-            const btnClass = link.type === 'primary' ? 'modal-btn-primary' : 'modal-btn-secondary';
-            bodyHTML += `<a href="${link.url}" class="modal-btn ${btnClass}" target="_blank" onclick="event.stopPropagation();">${link.text}<span>→</span></a>`;
-        });
-        
-        bodyHTML += '</div></div>';
-    }
-
-    modalBody.innerHTML = bodyHTML;
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeProjectModal() {
-    const modal = document.getElementById('projectModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-
-document.getElementById('projectModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeProjectModal();
-    }
-});
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeProjectModal();
-    }
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
-        }
-    });
-});
+        });
 
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-});
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
 
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollY = window.pageYOffset;
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
 
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLink?.classList.add('active');
-        } else {
-            navLink?.classList.remove('active');
-        }
-    });
-});
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLink?.classList.add('active');
+                } else {
+                    navLink?.classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
