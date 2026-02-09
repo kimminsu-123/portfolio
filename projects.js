@@ -208,9 +208,6 @@ const distoriaContent = {
                     <span>→</span>
                 </a>
             </div>
-            <p style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">
-                💡 소스 코드는 추후 업로드 예정입니다
-            </p>
         </div>
     `
 };
