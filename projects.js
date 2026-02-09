@@ -203,7 +203,7 @@ const distoriaContent = {
                     🎬 YouTube 플레이 영상
                     <span>→</span>
                 </a>
-                <a href="#" class="modal-btn modal-btn-code" target="_blank" onclick="event.stopPropagation();">
+                <a href="Distoria Source Codes.zip" class="modal-btn modal-btn-code" target="_blank" onclick="event.stopPropagation();">
                     💾 소스 코드 다운로드
                     <span>→</span>
                 </a>
