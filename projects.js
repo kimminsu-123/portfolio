@@ -212,6 +212,422 @@ const distoriaContent = {
     `
 };
 
+// 디더깅 프로젝트 데이터 (2024.09.01~2024.12.06)
+const didduckingContent = {
+    meta: {
+        title: "디더깅",
+        subtitle: "패링과 무공으로 납치된 부모님을 구출하는 2D 액션 게임",
+        period: "2024.09.01 - 2024.12.06",
+        platform: "PC",
+        team: "11명",
+        role: "Unity Client Developer / 리드 프로그래머 / TD"
+    },
+    html: `
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🎮</span>
+                게임 플레이 영상
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item" style="width:100%;">
+                    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid var(--accent-primary); border-radius: 12px;"
+                            src="https://www.youtube.com/embed/UQihDznK2fs" 
+                            title="디더깅 게임플레이" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📖</span>
+                프로젝트 개요
+            </h3>
+            <div class="overview-content">
+                <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
+                    거대한 농장으로 막대한 부를 얻은 주인공 가족. 
+                    챔피언십 만화를 보며 챔피언의 꿈을 키우던 주인공 '더깅'.
+                </p>
+                <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
+                    보석에 집착하던 까마귀가 농장의 허수아비를 조종하여 부모님을 납치하는 사건이 발생한다.
+                    주인공 더깅은 그동안 갈고 닦았던 패링 실력과 무공으로 부모님을 되찾기 위해 모험을 떠난다.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">👨‍💻</span>
+                담당 업무 및 기여
+            </h3>
+            <div class="responsibility-list">
+                <div class="responsibility-item">
+                    <div class="responsibility-title">핵심 시스템 설계 및 구현</div>
+                    <div class="responsibility-description">
+                        FSM 모듈 코드 설계 및 구현, Scriptable Object 기반 Object Pool 시스템 개발, 
+                        다중 씬 관리 시스템, 모듈형 Utilities 코드 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">전투 시스템 개발</div>
+                    <div class="responsibility-description">
+                        패링과 그로기 시스템 구현. 타이밍 기반의 정교한 전투 메커니즘으로 
+                        플레이어가 적의 공격을 패링하고 반격할 수 있는 시스템 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">캐릭터 개발</div>
+                    <div class="responsibility-description">
+                        플레이어, 일반 몬스터, 보스 몬스터의 전투 로직과 애니메이션 시스템 구현
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">개발 툴 제작</div>
+                    <div class="responsibility-description">
+                        Custom Editor를 활용한 애니메이션 이벤트 연결 툴 개발. 
+                        기획자와 아트 디자이너가 코드 수정 없이 공격 타이밍과 사운드를 조절할 수 있도록 지원
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">팀 교육 및 문서화</div>
+                    <div class="responsibility-description">
+                        Unity와 Git을 처음 접하는 팀원들을 위해 직접 매뉴얼을 제작하고 교육. 
+                        모든 팀원이 원활하게 협업할 수 있도록 지속적인 지원 제공
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⭐</span>
+                주요 기능
+            </h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⚔️</div>
+                    <div class="feature-title">패링 시스템</div>
+                    <div class="feature-description">타이밍 기반의 정교한 패링으로 적의 공격을 무력화</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💫</div>
+                    <div class="feature-title">그로기 시스템</div>
+                    <div class="feature-description">적을 제압하고 강력한 반격 기회 획득</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎬</div>
+                    <div class="feature-title">Timeline 연출</div>
+                    <div class="feature-description">몰입감 있는 컷씬과 보스전 연출</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">Spine 애니메이션</div>
+                    <div class="feature-description">부드럽고 생동감 있는 2D 애니메이션</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏃</div>
+                    <div class="feature-title">액션 중심 전투</div>
+                    <div class="feature-description">무공을 활용한 다양한 액션 조합</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👹</div>
+                    <div class="feature-title">다양한 적</div>
+                    <div class="feature-description">일반 몬스터부터 강력한 보스까지</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔧</span>
+                기술 스택
+            </h3>
+            <div class="tech-stack-list">
+                <span class="tech-item">Unity</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Github</span>
+                <span class="tech-item">Tilemap</span>
+                <span class="tech-item">Cinemachine</span>
+                <span class="tech-item">Timeline</span>
+                <span class="tech-item">Spine URP</span>
+                <span class="tech-item">DOTween</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>Spine 애니메이션에 이벤트를 연결하는 문제를 어떻게 해결했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    아트 디자이너가 Spine Event를 직접 심는 방법을 몰라서 발생한 문제였습니다. 
+                    Custom Inspector를 활용해 애니메이션의 Normalized 시간과 이벤트를 연결할 수 있는 에디터 툴을 제작했습니다. 
+                    사운드 변경과 애니메이션 Preview 기능도 추가하여 기획자도 쉽게 조절할 수 있게 만들었습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>Unity와 Git 경험이 없는 팀원들과 어떻게 협업했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    Unity와 Git 사용 매뉴얼을 직접 제작하여 제공하고, 궁금한 점은 즉시 답변할 수 있는 체계를 만들었습니다. 
+                    덕분에 모든 팀원이 빠르게 학습하여 일정에 차질 없이 개발을 진행할 수 있었습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>Object Pool을 Scriptable Object로 구현한 이유는?</span>
+                </div>
+                <div class="challenge-answer">
+                    Scriptable Object를 활용하면 Pool 설정을 데이터로 관리할 수 있고, 
+                    인스펙터에서 직관적으로 설정을 변경할 수 있어 유지보수가 편리합니다. 
+                    또한 런타임에 동적으로 Pool 크기를 조절할 수 있는 유연성도 확보했습니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔗</span>
+                링크 및 다운로드
+            </h3>
+            <div class="modal-links">
+                <a href="https://spiny-curve-75f.notion.site/246135ce59d38046a012d3f234151774?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
+                    📄 Notion 페이지
+                    <span>→</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=UQihDznK2fs" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
+                    🎬 YouTube 플레이 영상
+                    <span>→</span>
+                </a>
+                <a href="Deducking Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
+                    💾 소스 코드 다운로드
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    `
+};
+
+// 탈(TAL) 프로젝트 데이터 (2024.07.15~2024.07.19)
+const talContent = {
+    meta: {
+        title: "탈(TAL)",
+        subtitle: "도깨비 탈에 잠식당한 주인공의 공포 탈출기 - 5일 게임잼 작품",
+        period: "2024.07.15 - 2024.07.19",
+        platform: "PC",
+        team: "4명",
+        role: "Unity Client Developer / 리드 프로그래머"
+    },
+    html: `
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🎮</span>
+                게임 플레이 영상
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item" style="width:100%;">
+                    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid var(--accent-primary); border-radius: 12px;"
+                            src="https://www.youtube.com/embed/RI5yqaG5vKE" 
+                            title="탈(TAL) 게임플레이" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📖</span>
+                프로젝트 개요
+            </h3>
+            <div class="overview-content">
+                <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
+                    도깨비 불을 따라 들어간 집에서 주인공이 무심코 가면을 쓰게 되고, 
+                    평소 보이지 않던 기이한 것들이 보이기 시작한다.
+                </p>
+                <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
+                    공포에 떨며 집안 곳곳을 탐색하던 주인공은 탈출 직전 탈에 완전히 잠식당하고, 
+                    결국 새로운 도깨비불이 되어 또 다른 희생자를 찾아 나서게 된다.
+                </p>
+                <p style="line-height: 1.8; color: var(--text-muted); font-style: italic;">
+                    ⏱️ 5일간의 게임잼에서 제작된 쯔꾸르풍 공포 게임
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">👨‍💻</span>
+                담당 업무 및 기여
+            </h3>
+            <div class="responsibility-list">
+                <div class="responsibility-item">
+                    <div class="responsibility-title">몬스터 AI 시스템 개발</div>
+                    <div class="responsibility-description">
+                        두억시니, 지네, 보스 지네 등 다양한 몬스터의 AI와 행동 패턴을 구현. 
+                        2D 환경에 맞는 4방향 길찾기 알고리즘을 적용하여 쯔꾸르 특유의 느낌을 살림
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">아이템 & 인벤토리 시스템</div>
+                    <div class="responsibility-description">
+                        아이템 수집, 인벤토리 관리, 아이템 사용 등 플레이어의 생존에 필요한 
+                        전체 아이템 시스템을 설계하고 구현
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">재사용 가능한 상호작용 시스템</div>
+                    <div class="responsibility-description">
+                        컴포넌트 기반의 모듈형 상호작용 시스템 개발. 
+                        대화 + 아이템 + 이벤트를 자유롭게 조합하여 다양한 퍼즐과 상호작용을 
+                        빠르게 구현할 수 있는 구조 설계
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">비동기 씬 이동 시스템</div>
+                    <div class="responsibility-description">
+                        부드러운 씬 전환을 위한 비동기 로딩 시스템 구현
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⭐</span>
+                주요 기능
+            </h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">👻</div>
+                    <div class="feature-title">공포 분위기</div>
+                    <div class="feature-description">쯔꾸르풍 그래픽으로 표현한 섬뜩한 공포 연출</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎭</div>
+                    <div class="feature-title">탈 시스템</div>
+                    <div class="feature-description">탈 착용 시 보이는 특별한 요소들</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-title">탐험 & 퍼즐</div>
+                    <div class="feature-description">집 곳곳을 탐험하며 탈출 방법 찾기</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🧩</div>
+                    <div class="feature-title">모듈형 상호작용</div>
+                    <div class="feature-description">컴포넌트 조합으로 다양한 퍼즐 구현</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-title">몬스터 AI</div>
+                    <div class="feature-description">4방향 길찾기 알고리즘 기반 AI</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎒</div>
+                    <div class="feature-title">인벤토리</div>
+                    <div class="feature-description">아이템 수집 및 관리 시스템</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔧</span>
+                기술 스택
+            </h3>
+            <div class="tech-stack-list">
+                <span class="tech-item">Unity</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Github</span>
+                <span class="tech-item">Tilemap</span>
+                <span class="tech-item">DOTween</span>
+                <span class="tech-item">A* Pathfinding</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>2D 환경에서 길찾기 알고리즘을 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    NavMesh는 2D에서 사용할 수 없어, 짧은 게임잼 기간을 고려해 A* 알고리즘이 구현된 에셋을 활용했습니다. 
+                    이후 코드를 수정하여 8방향이 아닌 4방향으로 변경해 쯔꾸르 특유의 느낌을 살렸습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>다양한 상호작용 시스템을 짧은 기간에 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    각각의 상호작용을 개별적으로 만드는 대신, 재사용 가능한 컴포넌트 기반 시스템을 설계했습니다. 
+                    '열쇠가 필요한 문'을 '특정 아이템이 필요한 상호작용'으로 추상화하고, 
+                    대화 + 아이템 + 이벤트를 자유롭게 조합할 수 있게 만들어 개발 시간을 크게 단축했습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>게임잼 5일이라는 짧은 기간 동안 어떻게 완성했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    모듈형 시스템 설계로 재사용성을 극대화하고, 
+                    검증된 에셋을 활용하되 프로젝트에 맞게 커스터마이징하는 전략을 사용했습니다. 
+                    또한 상호작용 컴포넌트를 조합하는 방식으로 기획자가 원하는 다양한 퍼즐을 
+                    빠르게 구현할 수 있었습니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔗</span>
+                링크 및 다운로드
+            </h3>
+            <div class="modal-links">
+                <a href="https://spiny-curve-75f.notion.site/d7ba6891b7a34e6181e21b91c929eaaf?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
+                    📄 Notion 페이지
+                    <span>→</span>
+                </a>
+                <a href="https://youtu.be/RI5yqaG5vKE" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
+                    🎬 YouTube 플레이 영상
+                    <span>→</span>
+                </a>
+                <a href="TAL Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
+                    💾 소스 코드 다운로드
+                    <span>⬇</span>
+                </a>
+            </div>
+        </div>
+    `
+};
+
 // 회사 프로젝트 - IMTSOFT
 const imtsoft_gwangmyeong_posContent = {
     meta: {
@@ -1021,6 +1437,8 @@ const project3Content = {
 const projectsData = {
     // 개인/팀 프로젝트
     distoria: distoriaContent,
+    didducking: didduckingContent,
+    tal: talContent,
     
     // 기존 예시 프로젝트들 (나중에 실제 프로젝트로 교체 예정)
     project1: project1Content,
