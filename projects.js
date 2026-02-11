@@ -1924,9 +1924,6 @@ const tenacities_toanyContent = {
                     <img src="toany_img3.png" alt="ToAny 스크린샷 3" style="width:100%;height:auto;display:block;">
                 </div>
             </div>
-            <p style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">
-                💡 ToAny 프로젝트 스크린샷을 추가하세요
-            </p>
         </div>
 
         <div class="modal-section">
@@ -2134,35 +2131,116 @@ const tenacities_toanyContent = {
 const tenacities_duettaeboContent = {
     meta: {
         title: "DuetTaebo",
-        subtitle: "(빈약!채움필수!)",
-        period: "(빈약!채움필수!)",
-        platform: "(빈약!채움필수!)",
-        team: "(빈약!채움필수!)",
-        role: "(빈약!채움필수!)"
+        subtitle: "VR 리듬 게임 - NFT 디지털 트윈 로비 맵",
+        period: "2023.05.23 - 2023.08.10",
+        platform: "VR (Oculus)",
+        team: "1명 (개인 개발)",
+        role: "Unity Client Developer"
     },
     html: `
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🖼️</span>
+                프로젝트 이미지
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item">
+                    <img src="duettaebo_img1.png" alt="DuetTaebo 스크린샷 1" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="media-item">
+                    <img src="duettaebo_img2.png" alt="DuetTaebo 스크린샷 2" style="width:100%;height:auto;display:block;">
+                </div>
+            </div>
+        </div>
+
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
-                Tenacities에서 진행한 DuetTaebo 프로젝트입니다.<br>
-                (빈약!채움필수!)
+                NFT 유행 시기에 시작된 리듬 게임 서브 프로젝트입니다. 
+                홍보에 필요한 공간을 3D 디지털 트윈화하여 NFT에 등록하고, 
+                리듬 게임의 로비 맵으로 사용할 수 있도록 개발했습니다.
             </p>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1rem;">
+                개발 중인 프로젝트에 투입되어 한 명이 빠진 후 혼자서 이어서 개발한 프로젝트입니다.
+            </p>
+            <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:8px;border-left:3px solid var(--accent-primary);">
+                <strong style="color:var(--text-primary);">📱 출시 현황</strong><br>
+                <span style="color:var(--text-secondary);">Beta 버전 - Oculus Store 출시</span>
+            </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">👨‍💻</span>
-                담당 업무
+                담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
                 <div class="responsibility-item">
-                    <div class="responsibility-title">(빈약!채움필수!)</div>
+                    <div class="responsibility-title">UI 최적화</div>
                     <div class="responsibility-description">
-                        (빈약!채움필수!)
+                        Scroll View Pooling 기법을 활용하여 수천~수만 개의 음악 리스트를 
+                        효율적으로 표시하는 UI 최적화 구현
                     </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">리소스 관리</div>
+                    <div class="responsibility-description">
+                        Addressable을 활용하여 음악 데이터 및 음악 리스트 동적 로딩 시스템 구현
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">Steam API 연동</div>
+                    <div class="responsibility-description">
+                        채팅, 음성 채팅, 친구 초대 및 관리 시스템 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">멀티플레이 시스템</div>
+                    <div class="responsibility-description">
+                        Photon을 활용하여 Room 기능 및 멀티플레이 개발
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⭐</span>
+                주요 기능
+            </h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎵</div>
+                    <div class="feature-title">리듬 게임</div>
+                    <div class="feature-description">리듬에 맞춰 노드 타격</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👾</div>
+                    <div class="feature-title">보스전</div>
+                    <div class="feature-description">보스에게 대미지 입히기</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏛️</div>
+                    <div class="feature-title">NFT 로비</div>
+                    <div class="feature-description">디지털 트윈 로비 맵</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-title">멀티플레이</div>
+                    <div class="feature-description">Photon 기반 협동 플레이</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <div class="feature-title">소셜 기능</div>
+                    <div class="feature-description">Steam 채팅 & 음성채팅</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📋</div>
+                    <div class="feature-title">음악 리스트</div>
+                    <div class="feature-description">최적화된 대용량 리스트</div>
                 </div>
             </div>
         </div>
@@ -2173,7 +2251,71 @@ const tenacities_duettaeboContent = {
                 기술 스택
             </h3>
             <div class="tech-stack-list">
-                <span class="tech-item">(빈약!채움필수!)</span>
+                <span class="tech-item">Unity</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Rider</span>
+                <span class="tech-item">Git</span>
+                <span class="tech-item">DOTween</span>
+                <span class="tech-item">Cinemachine</span>
+                <span class="tech-item">Photon</span>
+                <span class="tech-item">Steam API</span>
+                <span class="tech-item">AWS S3</span>
+                <span class="tech-item">Addressable</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>수천~수만 개의 음악 리스트를 어떻게 최적화했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    Music List가 수천~수만 개를 넘어가면서 하나하나 Element를 생성하기에는 
+                    성능상 무리가 있었습니다. Element를 미리 생성해 둔 뒤, 
+                    스크롤할 때 Pooling 기법을 사용하여 재사용하는 방식으로 해결했습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>혼자서 프로젝트를 이어받았을 때 어떤 어려움이 있었나요?</span>
+                </div>
+                <div class="challenge-answer">
+			인수 인계과정이 전혀 없었어서 해당 코드를 파악하는데 어려움이 있었습니다.
+			특히 해당 코드가 외부 라이브러리를 사용한 경우 라이브러리 문서와 코드를 번갈아 가면서 확인하는 것이 제일 시간이 길게 걸렸던 것 같습니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📚</span>
+                프로젝트 결과
+            </h3>
+            <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid #ef4444;">
+                <p style="color:var(--text-secondary);line-height:1.8;">
+                    회사가 이 시점부터 어려워지기 시작했습니다. 
+                    NFT로 제작된 Lobby Model을 외부 업체 요청에 의해 적용했지만, 
+                    자금 문제로 프로젝트가 무산되었습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔗</span>
+                링크
+            </h3>
+            <div class="modal-links">
+                <a href="https://spiny-curve-75f.notion.site/DuetTaebo-ef46aeb29dce4daeb4fc7ae3e8b30db0?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
+                    📄 Notion 페이지
+                    <span>→</span>
+                </a>
             </div>
         </div>
     `
@@ -2182,35 +2324,115 @@ const tenacities_duettaeboContent = {
 const tenacities_cryptobuddiesContent = {
     meta: {
         title: "Crypto Buddies",
-        subtitle: "(빈약!채움필수!)",
-        period: "(빈약!채움필수!)",
-        platform: "(빈약!채움필수!)",
-        team: "(빈약!채움필수!)",
-        role: "(빈약!채움필수!)"
+        subtitle: "VR 펫 육성 시뮬레이션 - Narae House 연계 프로젝트",
+        period: "2023.12.18 - 2024.01.10",
+        platform: "VR (Oculus Quest)",
+        team: "1명 (개인 개발)",
+        role: "Unity Client Developer"
     },
     html: `
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🖼️</span>
+                프로젝트 이미지
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item">
+                    <img src="cryptobuddies_img1.png" alt="Crypto Buddies 스크린샷 1" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="media-item">
+                    <img src="cryptobuddies_img2.png" alt="Crypto Buddies 스크린샷 2" style="width:100%;height:auto;display:block;">
+                </div>
+            </div>
+        </div>
+
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
-                Tenacities에서 진행한 Crypto Buddies 프로젝트입니다.<br>
-                (빈약!채움필수!)
+                Narae House 프로젝트에 탑재된 VR 시뮬레이션 게임입니다. 
+                NaraeHouse 앱을 사용하면서 생기는 궁금증과 불편한 점을 펫을 통해 해소하고, 
+                애완동물 육성 시뮬레이션 게임을 제공합니다.
             </p>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1rem;">
+                유저들이 펫을 키우며 자연스럽게 Narae House 사용법 튜토리얼을 익힐 수 있도록 설계되었습니다.
+            </p>
+            <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:8px;border-left:3px solid var(--accent-primary);">
+                <strong style="color:var(--text-primary);">📱 출시 현황</strong><br>
+                <span style="color:var(--text-secondary);">Beta 버전 - Oculus Store 출시</span>
+            </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">👨‍💻</span>
-                담당 업무
+                담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
                 <div class="responsibility-item">
-                    <div class="responsibility-title">(빈약!채움필수!)</div>
+                    <div class="responsibility-title">오큘러스 퀘스트 연동</div>
                     <div class="responsibility-description">
-                        (빈약!채움필수!)
+                        VR 환경에 최적화된 인터페이스 및 컨트롤러 입력 시스템 구현
                     </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">펫 상호작용 시스템</div>
+                    <div class="responsibility-description">
+                        펫과의 상호작용, 펫의 기분 및 상태 시스템 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">튜토리얼 시스템</div>
+                    <div class="responsibility-description">
+                        NaraeHouse 사용법을 자연스럽게 익힐 수 있는 튜토리얼 시스템 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">유저 분석</div>
+                    <div class="responsibility-description">
+                        Unity Analytics Service를 활용한 유저 패턴 분석 시스템 구현
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⭐</span>
+                주요 기능
+            </h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🐾</div>
+                    <div class="feature-title">펫 육성</div>
+                    <div class="feature-description">애완동물 육성 시뮬레이션</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <div class="feature-title">펫 상호작용</div>
+                    <div class="feature-description">펫과의 다양한 인터랙션</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">😊</div>
+                    <div class="feature-title">펫 상태 관리</div>
+                    <div class="feature-description">기분 및 상태 시스템</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <div class="feature-title">튜토리얼</div>
+                    <div class="feature-description">Narae House 사용법 학습</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">유저 분석</div>
+                    <div class="feature-description">Unity Analytics 기반 통계</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🥽</div>
+                    <div class="feature-title">VR 최적화</div>
+                    <div class="feature-description">오큘러스 퀘스트 전용</div>
                 </div>
             </div>
         </div>
@@ -2221,7 +2443,59 @@ const tenacities_cryptobuddiesContent = {
                 기술 스택
             </h3>
             <div class="tech-stack-list">
-                <span class="tech-item">(빈약!채움필수!)</span>
+                <span class="tech-item">Unity</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Rider</span>
+                <span class="tech-item">Git</span>
+                <span class="tech-item">DOTween</span>
+                <span class="tech-item">AWS S3</span>
+                <span class="tech-item">Addressable</span>
+                <span class="tech-item">Unity Analytics</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>자체 서버 없이 유저 패턴 분석을 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    VR 속에서 펫을 키우며 어떤 튜토리얼에 사람들이 접근했는지 통계 자료가 필요했지만, 
+                    자체 서버를 구동할 여력이 없었습니다. 
+                    Unity에서 제공하는 Analytics Service를 활용하여 
+                    특정 진입이나 행동 시 로그를 남겨 통계화를 진행했습니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📚</span>
+                프로젝트 결과
+            </h3>
+            <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid #ef4444;">
+                <p style="color:var(--text-secondary);line-height:1.8;">
+                    Narae House 프로젝트가 무산되면서 
+                    Crypto Buddies 프로젝트도 자연스럽게 중단되었습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔗</span>
+                링크
+            </h3>
+            <div class="modal-links">
+                <a href="https://spiny-curve-75f.notion.site/Cryto-Buddies-7d59e43d9fb44fbc91d70c2c5a07e081?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
+                    📄 Notion 페이지
+                    <span>→</span>
+                </a>
             </div>
         </div>
     `
@@ -2230,35 +2504,115 @@ const tenacities_cryptobuddiesContent = {
 const tenacities_19rouletteContent = {
     meta: {
         title: "19 Roulette",
-        subtitle: "(빈약!채움필수!)",
-        period: "(빈약!채움필수!)",
-        platform: "(빈약!채움필수!)",
-        team: "(빈약!채움필수!)",
-        role: "(빈약!채움필수!)"
+        subtitle: "술자리 파티 게임 - 룰렛 기반 술 게임 앱",
+        period: "2024.03.03 - 2024.03.07",
+        platform: "Android",
+        team: "1명 (개인 개발 - 외주)",
+        role: "Unity Client Developer"
     },
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
+                <span class="section-icon">🖼️</span>
+                프로젝트 이미지
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item">
+                    <img src="19roulette_img1.png" alt="19 Roulette 스크린샷 1" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="media-item">
+                    <img src="19roulette_img2.png" alt="19 Roulette 스크린샷 2" style="width:100%;height:auto;display:block;">
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
                 <span class="section-icon">🏢</span>
-                회사 프로젝트
+                외주 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
-                Tenacities에서 진행한 19 Roulette 프로젝트입니다.<br>
-                (빈약!채움필수!)
+                술을 마시면서 일행들과 간단하게 시간을 때우기 위한 술 게임 앱입니다. 
+                룰렛을 돌려 상태와 행동 옵션을 뽑고, 그에 맞는 행동을 하는 파티 게임입니다.
             </p>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1rem;">
+                회사에서 외주를 받아 진행한 프로젝트로, 단 5일 만에 완성했습니다.
+            </p>
+            <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:8px;border-left:3px solid var(--accent-primary);">
+                <strong style="color:var(--text-primary);">📱 출시 현황</strong><br>
+                <span style="color:var(--text-secondary);">CBT (Closed Beta Test) - Google Play Store<br>
+                특정 사용자들만 접근 가능한 제한된 버전</span>
+            </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">👨‍💻</span>
-                담당 업무
+                담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
                 <div class="responsibility-item">
-                    <div class="responsibility-title">(빈약!채움필수!)</div>
+                    <div class="responsibility-title">AWS DynamoDB 연동</div>
                     <div class="responsibility-description">
-                        (빈약!채움필수!)
+                        게임 데이터 저장 및 관리를 위한 AWS DynamoDB 연동 구현
                     </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">광고 시스템</div>
+                    <div class="responsibility-description">
+                        Google AdMob 연동을 통한 광고 시스템 구현
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">IAP 결제</div>
+                    <div class="responsibility-description">
+                        In-App Purchase를 통한 광고 제거 기능 구현
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">랜덤 시스템</div>
+                    <div class="responsibility-description">
+                        룰렛 기반 랜덤 추첨 시스템 개발
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⭐</span>
+                주요 기능
+            </h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎡</div>
+                    <div class="feature-title">룰렛 시스템</div>
+                    <div class="feature-description">행동과 옵션 랜덤 추첨</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🍺</div>
+                    <div class="feature-title">술 게임</div>
+                    <div class="feature-description">벌칙 및 미션 수행</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">데이터 관리</div>
+                    <div class="feature-description">AWS DynamoDB 연동</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📺</div>
+                    <div class="feature-title">광고</div>
+                    <div class="feature-description">Google AdMob</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">결제</div>
+                    <div class="feature-description">IAP 광고 제거</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-title">제한 접근</div>
+                    <div class="feature-description">특정 사용자 전용</div>
                 </div>
             </div>
         </div>
@@ -2269,7 +2623,56 @@ const tenacities_19rouletteContent = {
                 기술 스택
             </h3>
             <div class="tech-stack-list">
-                <span class="tech-item">(빈약!채움필수!)</span>
+                <span class="tech-item">Unity</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Rider</span>
+                <span class="tech-item">Git</span>
+                <span class="tech-item">AWS DynamoDB</span>
+                <span class="tech-item">IAP</span>
+                <span class="tech-item">Google AdMob</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⚡</span>
+                빠른 개발
+            </h3>
+            <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid var(--accent-primary);">
+                <p style="color:var(--text-secondary);line-height:1.8;">
+                    <strong style="color:var(--text-primary);">5일 완성 프로젝트</strong><br>
+                    외주 프로젝트로 단 5일(2024.03.03 - 2024.03.07) 만에 
+                    기획부터 개발, 테스트까지 모든 과정을 완료했습니다. 
+                    AWS 서비스와 Google 플랫폼을 빠르게 통합하여 
+                    안정적인 앱을 단기간에 완성했습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📚</span>
+                프로젝트 결과
+            </h3>
+            <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid var(--accent-success);">
+                <p style="color:var(--text-secondary);line-height:1.8;">
+                    외주 프로젝트로 성공적으로 완수했으며, 
+                    Google Play Store에 CBT(Closed Beta Test) 버전으로 출시되었습니다. 
+                    특정 사용자들끼리만 플레이할 수 있도록 제한된 형태로 운영되었습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔗</span>
+                링크
+            </h3>
+            <div class="modal-links">
+                <a href="https://spiny-curve-75f.notion.site/19-Roulette-925216e68ba34a20a92cab05a3714bda?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
+                    📄 Notion 페이지
+                    <span>→</span>
+                </a>
             </div>
         </div>
     `
