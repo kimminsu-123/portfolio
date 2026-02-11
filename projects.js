@@ -1185,15 +1185,194 @@ const hungrySquirrelContent = {
     `
 };
 
+// 레일로드 프로젝트 데이터 (2018.07~2018.11)
+const railroadContent = {
+    meta: {
+        title: "레일로드",
+        subtitle: "열차 안에서 발생한 몬스터 출몰 사건을 해결하는 2D 로그라이크 게임",
+        period: "2018.07 - 2018.11",
+        platform: "PC, Android",
+        team: "4명",
+        role: "Unity Client Developer / 리드 프로그래머"
+    },
+    html: `
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🖼️</span>
+                미디어
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item">
+                    <img src="railroad_img.png" alt="레일로드 게임 스크린샷" style="width:100%;height:auto;display:block;">
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📖</span>
+                프로젝트 개요
+            </h3>
+            <div class="overview-content">
+                <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
+                    열차 안에서 발생한 몬스터 출몰 사건을 해결하기 위해 경관이 나섭니다. 
+                    맵에서 일정 확률로 얻어지는 아이템을 사용하여 맵 끝에 존재하는 보스를 물리치는 것이 목표입니다.
+                </p>
+                <p style="line-height: 1.8; color: var(--text-muted); font-style: italic;">
+                    🚂 다양한 무기와 아이템으로 전략적 전투를 즐기는 로그라이크
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">👨‍💻</span>
+                담당 업무 및 기여
+            </h3>
+            <div class="responsibility-list">
+                <div class="responsibility-item">
+                    <div class="responsibility-title">무기 시스템 개발</div>
+                    <div class="responsibility-description">
+                        다양한 무기의 특성과 공격 패턴을 구현하여 전략적 전투가 가능하도록 설계했습니다.
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">플레이어 시스템 개발</div>
+                    <div class="responsibility-description">
+                        플레이어의 이동, 공격, 아이템 사용 등 핵심 게임플레이 로직을 구현했습니다.
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">아이템 시스템 개발</div>
+                    <div class="responsibility-description">
+                        아이템 획득, 관리, 사용 시스템을 개발하여 로그라이크 요소를 강화했습니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⭐</span>
+                주요 기능
+            </h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⚔️</div>
+                    <div class="feature-title">다양한 무기</div>
+                    <div class="feature-description">무기별 다른 전투 방식</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎒</div>
+                    <div class="feature-title">아이템 시스템</div>
+                    <div class="feature-description">전략적 아이템 활용</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎲</div>
+                    <div class="feature-title">로그라이크</div>
+                    <div class="feature-description">랜덤 요소와 리플레이성</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👾</div>
+                    <div class="feature-title">보스전</div>
+                    <div class="feature-description">강력한 보스 몬스터</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚂</div>
+                    <div class="feature-title">열차 배경</div>
+                    <div class="feature-description">독특한 열차 안 전투</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">멀티 플랫폼</div>
+                    <div class="feature-description">PC & Android 지원</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔧</span>
+                기술 스택
+            </h3>
+            <div class="tech-stack-list">
+                <span class="tech-item">Unity</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">GitLab</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>무기가 마우스/조이스틱 방향으로 자연스럽게 회전하게 하려면?</span>
+                </div>
+                <div class="challenge-answer">
+                    Atan2 공식을 활용하여 마우스 포인터 또는 ScreenJoystick이 가리키는 방향으로 무기가 회전하도록 구현했습니다. 
+                    캐릭터가 바라보는 방향에 따라 무기가 Flip되도록 만들어 어느 방향을 봐도 자연스럽게 작동하도록 했습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>다양한 무기와 아이템을 확장 가능하게 만들려면?</span>
+                </div>
+                <div class="challenge-answer">
+                    초기에는 객체 지향에 대한 지식 부족으로 추상화 개념이 잘 잡혀있지 않았습니다. 
+                    이를 개선하기 위해 객체 지향 특징을 공부하여 캡슐화와 추상화 개념을 적용했습니다. 
+                    상속을 통해 새로운 무기와 아이템을 쉽게 추가할 수 있는 구조로 발전시켰습니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📚</span>
+                프로젝트를 통한 성장
+            </h3>
+            <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid var(--accent-primary);">
+                <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1rem;">
+                    <strong style="color:var(--text-primary);">객체 지향 프로그래밍 이해</strong><br>
+                    처음으로 객체 지향의 캡슐화, 추상화, 상속 개념을 실전에 적용하며 
+                    확장 가능하고 유지보수가 쉬운 코드 구조의 중요성을 깨달았습니다.
+                </p>
+                <p style="color:var(--text-secondary);line-height:1.8;">
+                    <strong style="color:var(--text-primary);">게임 시스템 설계</strong><br>
+                    무기, 플레이어, 아이템 시스템을 처음부터 설계하고 구현하며 
+                    게임 개발의 전반적인 흐름을 이해하게 되었습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔗</span>
+                링크
+            </h3>
+            <div class="modal-links">
+                <a href="https://spiny-curve-75f.notion.site/26d0e0a40f96442f8f922961e34f6359?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
+                    📄 Notion 페이지
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    `
+};
+
 // 회사 프로젝트 - IMTSOFT
 const imtsoft_gwangmyeong_posContent = {
     meta: {
         title: "광명동굴 POS 시스템",
-        subtitle: "(빈약!채움필수!)",
-        period: "(빈약!채움필수!)",
-        platform: "(빈약!채움필수!)",
-        team: "(빈약!채움필수!)",
-        role: "(빈약!채움필수!)"
+        subtitle: "광명동굴 관광지 티켓 발권 시스템",
+        period: "2020.08 - 2022.05",
+        platform: "Windows",
+        team: "IMTSOFT",
+        role: "애플리케이션 개발자"
     },
     html: `
         <div class="modal-section">
@@ -1202,21 +1381,40 @@ const imtsoft_gwangmyeong_posContent = {
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
-                IMTSOFT에서 진행한 광명동굴 POS 시스템 프로젝트입니다.<br>
-                (빈약!채움필수!)
+                IMTSOFT에서 진행한 광명동굴 관광지 티켓 발권 POS 시스템 개발 및 유지보수 프로젝트입니다.
             </p>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">👨‍💻</span>
-                담당 업무
+                담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
                 <div class="responsibility-item">
-                    <div class="responsibility-title">(빈약!채움필수!)</div>
+                    <div class="responsibility-title">티켓 출력 시스템 개발</div>
                     <div class="responsibility-description">
-                        (빈약!채움필수!)
+                        여러 종류의 티켓 프린터 (빅솔론, 토시바) 호환을 위한 
+                        프린터별 출력 기능 개발 및 수정
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">온라인 티켓 연동</div>
+                    <div class="responsibility-description">
+                        PlaceM 온라인 티켓 연동 기능 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">통계 및 데이터 관리</div>
+                    <div class="responsibility-description">
+                        티켓 통계 생성 및 초기화 프로그램 개발, 
+                        티켓 통계 쿼리 및 데이터 검증 쿼리 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">버그 수정</div>
+                    <div class="responsibility-description">
+                        결제 관련 버그, 티켓 출력 관련 버그 수정
                     </div>
                 </div>
             </div>
@@ -1228,7 +1426,36 @@ const imtsoft_gwangmyeong_posContent = {
                 기술 스택
             </h3>
             <div class="tech-stack-list">
-                <span class="tech-item">(빈약!채움필수!)</span>
+                <span class="tech-item">VB6</span>
+                <span class="tech-item">MSSQL</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>서로 다른 티켓 프린터 (빅솔론, 토시바)를 어떻게 호환했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			POS 옵션설정에서 프린터기 종류를 선택할 수 있도록 하였습니다.
+			VB6 모듈을 분리하여 프린터기 종류마다 모듈을 선택하여 출력하도록 구현하였습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>PlaceM 온라인 티켓 연동은 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			PlaceM 회사에서 제공하는 API 를 이용하여 연동하였습니다.
+			기본적으로 PlaceM 에서 구매가 되면 Pos 기에서 티켓 번호를 통해서 
+			조회,사용,사용취소 하는 등의 방식으로 진행했습니다.
+                </div>
             </div>
         </div>
     `
@@ -1237,11 +1464,11 @@ const imtsoft_gwangmyeong_posContent = {
 const imtsoft_subway_posContent = {
     meta: {
         title: "Subway POS 시스템",
-        subtitle: "(빈약!채움필수!)",
-        period: "(빈약!채움필수!)",
-        platform: "(빈약!채움필수!)",
-        team: "(빈약!채움필수!)",
-        role: "(빈약!채움필수!)"
+        subtitle: "써브웨이 매장용 POS 시스템 개발 및 유지보수",
+        period: "2020.08 - 2022.05",
+        platform: "Windows",
+        team: "IMTSOFT",
+        role: "애플리케이션 개발자"
     },
     html: `
         <div class="modal-section">
@@ -1250,21 +1477,40 @@ const imtsoft_subway_posContent = {
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
-                IMTSOFT에서 진행한 Subway POS 시스템 프로젝트입니다.<br>
-                (빈약!채움필수!)
+                IMTSOFT에서 진행한 써브웨이 매장 POS 시스템 개발 및 유지보수 프로젝트입니다.
             </p>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">👨‍💻</span>
-                담당 업무
+                담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
                 <div class="responsibility-item">
-                    <div class="responsibility-title">(빈약!채움필수!)</div>
+                    <div class="responsibility-title">배달 시스템 개발 및 개선</div>
                     <div class="responsibility-description">
-                        (빈약!채움필수!)
+                        배달 주문 품목코드 오류 자동 수정 기능 개발, 배달용 POS 개발, 
+                        배달 및 선주문 시스템 소요 시간 변경 기능 추가 (API 연동)
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">키오스크 시스템 개발</div>
+                    <div class="responsibility-description">
+                        써브웨이 키오스크 관리 프로그램 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">외부 시스템 연동</div>
+                    <div class="responsibility-description">
+                        리슨스 교환권 와일리와 연동 기능 개발, Drive Thru POS 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">데이터 검증 및 안정성</div>
+                    <div class="responsibility-description">
+                        판매 데이터 검증 쿼리 개발, 각종 Daemon 프로그램 버그 수정 
+                        (배달 수신, 주방 출력)
                     </div>
                 </div>
             </div>
@@ -1276,7 +1522,46 @@ const imtsoft_subway_posContent = {
                 기술 스택
             </h3>
             <div class="tech-stack-list">
-                <span class="tech-item">(빈약!채움필수!)</span>
+                <span class="tech-item">VB6</span>
+                <span class="tech-item">MSSQL</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>배달 주문 품목코드 오류를 어떻게 자동으로 수정했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			주문 품목 코드 오류는 자주 발생하던 문제는 아니었습니다. 주문 배달 업체 API 를 통해서 POS 에 받아오는데
+			POS Master 데이터와 배달 업체의 Master 데이터가 차이가 나서 발생하던 문제였고 이는 주로 배달 업체측에서 수정이 들어갔습니다.
+			하지만 당장 장사를 해야하기 때문에 POS 를 Hotfix 업데이트를 진행하여 특정 품목 코드에 경우 강제로 DB 업데이트 되도록 본사와 협의하에 진행하였습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>Drive Thru 메뉴 추가 시 발생한 누락 버그는 무엇이었나요?</span>
+                </div>
+                <div class="challenge-answer">
+			메뉴 버튼을 클릭했을 때 최종까지 가서 특정 분류의 메뉴들이 누락되는 현상이었습니다.
+			코드 로직상에 문제가 있었고 제가 발견하여 해당 부분을 수정하여 빠르게 매장에서 사용할 수 있었습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>리슨스 교환권 와일리 연동은 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			와일리 회사의 API 를 받아 사용했습니다. 와일리에서 발급한 쿠폰을 
+			포스에서 사용/조회/사용취소 (환불) 등을 API 요청으로 구현하였습니다. 
+                </div>
             </div>
         </div>
     `
@@ -1285,11 +1570,11 @@ const imtsoft_subway_posContent = {
 const imtsoft_callisco_posContent = {
     meta: {
         title: "캘리스코 POS 시스템",
-        subtitle: "(빈약!채움필수!)",
-        period: "(빈약!채움필수!)",
-        platform: "(빈약!채움필수!)",
-        team: "(빈약!채움필수!)",
-        role: "(빈약!채움필수!)"
+        subtitle: "캘리스코 매장용 POS 시스템 개발 및 유지보수",
+        period: "2020.08 - 2022.05",
+        platform: "Windows",
+        team: "IMTSOFT",
+        role: "애플리케이션 개발자"
     },
     html: `
         <div class="modal-section">
@@ -1298,21 +1583,46 @@ const imtsoft_callisco_posContent = {
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
-                IMTSOFT에서 진행한 캘리스코 POS 시스템 프로젝트입니다.<br>
-                (빈약!채움필수!)
+                IMTSOFT에서 진행한 캘리스코 매장 POS 시스템 개발 및 유지보수 프로젝트입니다.
             </p>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">👨‍💻</span>
-                담당 업무
+                담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
                 <div class="responsibility-item">
-                    <div class="responsibility-title">(빈약!채움필수!)</div>
+                    <div class="responsibility-title">결제 시스템 연동</div>
                     <div class="responsibility-description">
-                        (빈약!채움필수!)
+                        자사 시스템의 고객사 및 고객 데이터 연동하여 자사 RF 결제 추가, 
+                        A1 포인트 결제 추가 (아워홈과 연동)
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">멤버십 시스템 개발</div>
+                    <div class="responsibility-description">
+                        캘리 랜드 멤버십 관련 간편 회원가입 기능 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">QR 오더 및 주방 시스템</div>
+                    <div class="responsibility-description">
+                        QR 오더 주문 수신 이후 주방 프린터 출력 기능 개발 및 수정
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">데이터베이스 연동</div>
+                    <div class="responsibility-description">
+                        MySQL 서버와 MSSQL 서버 간 데이터 연동 프로그램 개발 및 수정, 
+                        Transaction 데이터 서버 전송 이슈 해결
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">UI 컨트롤 개발</div>
+                    <div class="responsibility-description">
+                        듀얼 모니터 영상 출력 컨트롤 버그 해결을 위한 새로운 컨트롤 개발 및 적용
                     </div>
                 </div>
             </div>
@@ -1324,20 +1634,48 @@ const imtsoft_callisco_posContent = {
                 기술 스택
             </h3>
             <div class="tech-stack-list">
-                <span class="tech-item">(빈약!채움필수!)</span>
+                <span class="tech-item">VB6</span>
+                <span class="tech-item">MSSQL</span>
+                <span class="tech-item">MySQL</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>MySQL과 MSSQL 간 데이터 연동은 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			캘리스코 본사 메인 DB는 Mysql 로 구현이 되어있으며 포스기나 각 기기, 서버 PC 에서는 MySql 로 개발이 되어있었습니다.
+			각 기기는 서버 PC 에 데몬 프로그램으로 데이터를 전송하게 되는데, 서버 PC 에서는 일정 주기별로 스케쥴러를 사용하여 Batch 파일을 만들어 메인 DB에 연결하여 메인 DB에 맞는 데이터를 Select 하여 Insert 하도록 하였습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>듀얼 모니터 영상 출력 컨트롤 버그는 어떻게 해결했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			VB6 에서 컨트롤을 사용할 때 DLL 로 연결하여 사용하였습니다. 하지만 포스 기기 윈도우 업데이트가 진행됨에 따라 작동이 안되는 이슈가 발생했고, 이를 해결하기 위해 해당 윈도우 버전에서도 비디오 재생 작동이 되는 로직을 찾아 해당 로직으로 컨트롤을 만들어 대체하도록 하였습니다.
+                </div>
             </div>
         </div>
     `
 };
 
-const imtsoft_meal_systemContent = {
+const imtsoft_package_systemContent = {
     meta: {
-        title: "IMT 자체 급식 시스템",
-        subtitle: "POS / KIOSK / DID / DIT / Server Computer",
-        period: "(빈약!채움필수!)",
-        platform: "(빈약!채움필수!)",
-        team: "(빈약!채움필수!)",
-        role: "(빈약!채움필수!)"
+        title: "자체 패키지 시스템",
+        subtitle: "POS / KIOSK / DID / DIT / MIS 통합 시스템",
+        period: "2020.08 - 2022.05",
+        platform: "Windows",
+        team: "IMTSOFT",
+        role: "애플리케이션 개발자"
     },
     html: `
         <div class="modal-section">
@@ -1346,22 +1684,52 @@ const imtsoft_meal_systemContent = {
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
-                IMTSOFT에서 진행한 자체 급식 시스템 프로젝트입니다.<br>
-                POS, KIOSK, DID, DIT, Server Computer를 포함한 통합 시스템<br>
-                (빈약!채움필수!)
+                IMTSOFT 자체 개발 통합 패키지 시스템 (POS, KIOSK, DID, DIT, MIS) 개발 및 유지보수 프로젝트입니다.
             </p>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">👨‍💻</span>
-                담당 업무
+                담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
                 <div class="responsibility-item">
-                    <div class="responsibility-title">(빈약!채움필수!)</div>
+                    <div class="responsibility-title">결제 시스템 개발</div>
                     <div class="responsibility-description">
-                        (빈약!채움필수!)
+                        신용카드 결제 개발 (자체 VCat 사용), 자사 앱 연동 온라인 RF 결제 개발, 
+                        VCat 결제 오류 수정
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">티켓팅 시스템 개발</div>
+                    <div class="responsibility-description">
+                        애견 테마 파크 띠지 출력 개발, 대전 월드컵 온라인 티켓 기능 연동 및 판매 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">멤버십 시스템 개발</div>
+                    <div class="responsibility-description">
+                        회원 적립, 할인 등 멤버십 기능 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">주문 및 배달 시스템</div>
+                    <div class="responsibility-description">
+                        자사 배달 앱 연동 온라인 주문 처리 기능 개발, 
+                        바로고 도시 주방 서비스 API 연동 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">테이블 서비스 시스템</div>
+                    <div class="responsibility-description">
+                        후불제(테이블 서비스)와 KDS(Kitchen Display System) 연동 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">데이터 관리</div>
+                    <div class="responsibility-description">
+                        데이터 검증 쿼리 개발, 고객 충전 및 사용/잔액 데이터 검증 쿼리 개발
                     </div>
                 </div>
             </div>
@@ -1373,7 +1741,157 @@ const imtsoft_meal_systemContent = {
                 기술 스택
             </h3>
             <div class="tech-stack-list">
-                <span class="tech-item">(빈약!채움필수!)</span>
+                <span class="tech-item">VB6</span>
+                <span class="tech-item">MSSQL</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>자체 VCat 신용카드 결제는 어떻게 개발했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			C# Winform 으로 구현했으며 Van 사와 연결하여 DLL 연결을 통해서 통신을 하도록 하였습니다.
+			VCat 에서 Van 사를 설정을 통해서 설정할 수 있으며 해당 Van 사를 통해 결제가 되도록 하였습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>바로고 도시 주방 서비스 API 연동은 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			바로고측에서 API 를 전달해주었습니다. 데몬 프로그램을 통해서 API 통신을 통해 예약이 들어올 경우 DB 에 넣고 POS 에서는 DB 에 새로운 데이터가 삽입되면 화면에 띄우도록 구현했습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>후불제 테이블 서비스와 KDS 연동은 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			후불제 테이블 서비스가 추가됨에 따라 주방 디스플레이 시스템에도 띄워야했습니다. 따라서 결제가 되는 시점이 아닌 주문이 되는 시점으로 하여금 데이터를 띄울 수 있도록 하였으며 주문이 되면 Order Table 에 데이터가 삽입되면서 주문이 취소될 경우 데이터 삭제가 아닌 Flag 변경의 방식으로 하여 데이터를 숨길 수 있도록 하였습니다.
+                </div>
+            </div>
+        </div>
+    `
+};
+
+// 아워홈 급식 시스템
+const imtsoft_ourhome_mealContent = {
+    meta: {
+        title: "아워홈 급식 시스템",
+        subtitle: "POS / KIOSK / DIT / MIS 통합 급식 시스템",
+        period: "2020.08 - 2022.05",
+        platform: "Windows",
+        team: "IMTSOFT",
+        role: "애플리케이션 개발자"
+    },
+    html: `
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🏢</span>
+                회사 프로젝트
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                IMTSOFT에서 진행한 아워홈 급식 시스템 개발 및 유지보수 프로젝트입니다.
+            </p>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">👨‍💻</span>
+                담당 업무 및 기여
+            </h3>
+            <div class="responsibility-list">
+                <div class="responsibility-item">
+                    <div class="responsibility-title">결제 시스템 개발</div>
+                    <div class="responsibility-description">
+                        농협 상품권 결제 기능 개발, 카카오페이 결제 기능 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">DIT 시스템 개발</div>
+                    <div class="responsibility-description">
+                        운영 정보 데이터 관리 개발, 사원 등록 기능 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">안면인식 시스템 연동</div>
+                    <div class="responsibility-description">
+                        POS에서 안면인식기 기기 사용 기능 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">데이터베이스 최적화</div>
+                    <div class="responsibility-description">
+                        DB 접근, 사용 관련 오류 해결 (Object Pool 기법 개발 및 사용)
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">메모리 최적화</div>
+                    <div class="responsibility-description">
+                        메모리 최적화 및 GC 처리 로직 수정 (Dispose 패턴 적용)
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">데이터 검증</div>
+                    <div class="responsibility-description">
+                        데이터 검증 쿼리 개발
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔧</span>
+                기술 스택
+            </h3>
+            <div class="tech-stack-list">
+                <span class="tech-item">C# Winform</span>
+                <span class="tech-item">MariaDB</span>
+                <span class="tech-item">MySQL</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>DB 접근 오류를 Object Pool로 어떻게 해결했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    기존에 로직은 Connection 을 사용할때마다 연결해서 사용하는 방식이었으며 이에 따른 최대 연결 개수를 넘을 경우 연결이 안되는 이슈가 발생하였습니다. 따라서 기존 Connection 을 몇개 연결하여 Pooling 하는 방식으로 사용하여 해결했습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>메모리 최적화를 위해 Dispose 패턴을 어떻게 적용했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			객체에 대해 계속 new 를 하고 기존 객체는 GC 에게 전담하는 로직을 발견했으며 해당 로직에서 일정 부분 랙이 발생하는 증상이 발견되었습니다. 따라서 저는 사용이 완료되면 IDisposable 를 상속받은 객체에게 Dispose 함수를 호출시켜 내부적으로 정리 및 바로 GC 대상이 될 수 있도록 관리하였습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>안면인식기 연동은 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+			안면인식기를 통해서 데이터를 읽으면 Pos 기에 특정 암호화 문자열이 넘어옵니다. 해당 문자열과 DB의 암호화된 문자열을 비교하는 방식으로 구현했습니다.
+                </div>
             </div>
         </div>
     `
@@ -1999,6 +2517,7 @@ const projectsData = {
     racingCar: racingCarContent,
     simpleChat: simpleChatContent,
     hungrySquirrel: hungrySquirrelContent,
+    railroad: railroadContent,
     
     // 기존 예시 프로젝트들 (나중에 실제 프로젝트로 교체 예정)
     project1: project1Content,
@@ -2009,7 +2528,8 @@ const projectsData = {
     imtsoft_gwangmyeong_pos: imtsoft_gwangmyeong_posContent,
     imtsoft_subway_pos: imtsoft_subway_posContent,
     imtsoft_callisco_pos: imtsoft_callisco_posContent,
-    imtsoft_meal_system: imtsoft_meal_systemContent,
+    imtsoft_package_system: imtsoft_package_systemContent,
+    imtsoft_ourhome_meal: imtsoft_ourhome_mealContent,
     
     // 회사 프로젝트 - Tenacities
     tenacities_toany: tenacities_toanyContent,
