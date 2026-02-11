@@ -1901,35 +1901,137 @@ const imtsoft_ourhome_mealContent = {
 const tenacities_toanyContent = {
     meta: {
         title: "ToAny",
-        subtitle: "(빈약!채움필수!)",
-        period: "(빈약!채움필수!)",
-        platform: "(빈약!채움필수!)",
-        team: "(빈약!채움필수!)",
-        role: "(빈약!채움필수!)"
+        subtitle: "고려대 배경 소셜 메타버스 서비스",
+        period: "2022.05.22 - 2022.08.05",
+        platform: "PC, Mobile (iOS/Android)",
+        team: "6명",
+        role: "Unity Client Developer"
     },
     html: `
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🖼️</span>
+                프로젝트 이미지
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item">
+                    <img src="toany_img1.png" alt="ToAny 스크린샷 1" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="media-item">
+                    <img src="toany_img2.png" alt="ToAny 스크린샷 2" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="media-item">
+                    <img src="toany_img3.png" alt="ToAny 스크린샷 3" style="width:100%;height:auto;display:block;">
+                </div>
+            </div>
+            <p style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">
+                💡 ToAny 프로젝트 스크린샷을 추가하세요
+            </p>
+        </div>
+
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
-                Tenacities에서 진행한 ToAny 프로젝트입니다.<br>
-                (빈약!채움필수!)
+                코로나 시대로 인해 집에만 있는 사람들을 위한 고려대 배경 소셜 메타버스 서비스입니다. 
+                맵에 배치된 테이블에 앉아서 다른 사람들과 모션을 공유하고 배달 음식을 시켜먹으면서 대화를 나눌 수 있습니다.
             </p>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1rem;">
+                개인 대화 공간인 Anygora를 사용하여 나만의 대화 컨셉을 설정할 수 있으며, 
+                Flutter와의 연계로 모바일 기기에 상관없이 플레이 가능합니다.
+            </p>
+            <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:8px;border-left:3px solid var(--accent-primary);">
+                <strong style="color:var(--text-primary);">📱 출시 현황</strong><br>
+                <span style="color:var(--text-secondary);">Alpha 버전 - Google Play Store, App Store 출시</span>
+            </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">👨‍💻</span>
-                담당 업무
+                담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
                 <div class="responsibility-item">
-                    <div class="responsibility-title">(빈약!채움필수!)</div>
+                    <div class="responsibility-title">AR 기반 라이브 렌더링</div>
                     <div class="responsibility-description">
-                        (빈약!채움필수!)
+                        ARFoundation을 이용한 플레이어 머리 트래킹 구현, 
+                        Google Mediapipe와 ARFoundation을 조합하여 머리와 손 동작 동기화
                     </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">캐릭터 커스터마이징 시스템</div>
+                    <div class="responsibility-description">
+                        Flutter와 연동하여 플레이어 옷 및 캐릭터 커스터마이징 기능 개발, 
+                        AnimationSyncer 클래스를 제작하여 다양한 모델 간 애니메이션 싱크 보장
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">음성 채팅 시스템</div>
+                    <div class="responsibility-description">
+                        Vivox에서 Agora로 통합 전환 작업 수행, 
+                        Agora를 이용한 안정적인 음성 채팅 구현
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">소셜 기능 개발</div>
+                    <div class="responsibility-description">
+                        캐릭터 감정 표현 및 이모지 기능 개발, 
+                        로컬 및 월드 채팅 시스템 개발
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">리소스 관리 시스템</div>
+                    <div class="responsibility-description">
+                        AWS S3 및 Addressable을 연결하여 리소스를 서버에서 다운로드 받아 사용하도록 구현
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">기타 기능 개발</div>
+                    <div class="responsibility-description">
+                        모바일 권한 설정을 통한 화면 캡처 기능 개발, UI 구현 및 연결
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⭐</span>
+                주요 기능
+            </h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">라이브 렌더링</div>
+                    <div class="feature-description">모바일 카메라로 머리, 손 조작</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎭</div>
+                    <div class="feature-title">Anygora</div>
+                    <div class="feature-description">로컬 채팅 룸 개설 및 음성/텍스트 채팅</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-title">Flutter 연동</div>
+                    <div class="feature-description">크로스 플랫폼 지원</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👔</div>
+                    <div class="feature-title">커스터마이징</div>
+                    <div class="feature-description">캐릭터 꾸미기 기능</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🗣️</div>
+                    <div class="feature-title">음성 채팅</div>
+                    <div class="feature-description">Agora 기반 실시간 음성</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">😊</div>
+                    <div class="feature-title">감정 표현</div>
+                    <div class="feature-description">이모지 및 감정 애니메이션</div>
                 </div>
             </div>
         </div>
@@ -1940,7 +2042,90 @@ const tenacities_toanyContent = {
                 기술 스택
             </h3>
             <div class="tech-stack-list">
-                <span class="tech-item">(빈약!채움필수!)</span>
+                <span class="tech-item">Unity</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Rider</span>
+                <span class="tech-item">Git</span>
+                <span class="tech-item">XCode</span>
+                <span class="tech-item">Android Studio</span>
+                <span class="tech-item">Timeline</span>
+                <span class="tech-item">Cinemachine</span>
+                <span class="tech-item">Protobuf</span>
+                <span class="tech-item">DOTween</span>
+                <span class="tech-item">Google Mediapipe</span>
+                <span class="tech-item">Agora</span>
+                <span class="tech-item">Socket IO</span>
+                <span class="tech-item">AWS S3</span>
+                <span class="tech-item">ARFoundation</span>
+                <span class="tech-item">Addressable</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">💡</span>
+                기술적 도전과 해결
+            </h3>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>Vivox 음성 채팅이 자주 끊기는 문제를 어떻게 해결했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    Anygora의 특성 상 지역 음성 채팅이 자주 변경되어야 했는데, 
+                    Vivox를 통해 연결 시 지연 및 끊김이 발생했습니다. 
+                    공식 사이트 문의로도 해결되지 않아 Agora로 전환하여 문제를 해결했습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>라이브 렌더링에서 캐릭터 머리 트래킹은 어떻게 구현했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    Google Mediapipe만으로는 머리 트래킹이 어려웠습니다. 
+                    손은 Mediapipe로, 머리는 ARFoundation을 별도로 사용하여 
+                    두 기술을 조합하는 방식으로 구현했습니다.
+                </div>
+            </div>
+            <div class="challenge-item">
+                <div class="challenge-question">
+                    <span>Q.</span>
+                    <span>커스터마이징 시 애니메이션 싱크 문제는 어떻게 해결했나요?</span>
+                </div>
+                <div class="challenge-answer">
+                    Skeleton이 아니기 때문에 별도 모델들의 애니메이션 싱크가 맞지 않았습니다. 
+                    AnimationSyncer 클래스를 별도로 제작하여 
+                    플레이어의 Animator를 수집하고 애니메이션 싱크가 맞도록 구현했습니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📚</span>
+                실패를 통해 배운 점
+            </h3>
+            <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid #ef4444;">
+                <p style="color:var(--text-secondary);line-height:1.8;">
+                    <strong style="color:var(--text-primary);">프로토타이핑의 중요성</strong><br>
+                    시장 니즈를 파악하지 못하고 개발에만 몰두하여 실패를 경험했습니다. 
+                    이를 통해 시장을 충분히 이해하고 니즈를 파악한 뒤, 
+                    프로토타입을 통해 검증한 후 개발하는 것의 중요성을 깨닫게 되었습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔗</span>
+                링크
+            </h3>
+            <div class="modal-links">
+                <a href="https://spiny-curve-75f.notion.site/ToAny-213561d55f0a4a028db73e3bd9e80198?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
+                    📄 Notion 페이지
+                    <span>→</span>
+                </a>
             </div>
         </div>
     `
