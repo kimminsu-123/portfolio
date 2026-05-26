@@ -12,6 +12,27 @@ const distoriaContent = {
         <div class="modal-section">
             <h3 class="modal-section-title">
                 <span class="section-icon">🎮</span>
+                게임 홍보 영상
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item" style="width:100%;">
+                    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid var(--accent-primary); border-radius: 12px;"
+                            src="https://www.youtube.com/embed/C_0VMI0NAVs?si=3Ej5BkIb3ebTLkG6" 
+                            title="Distoria 홍보 영상" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🎮</span>
                 게임 플레이 영상
             </h3>
             <div class="media-gallery">
