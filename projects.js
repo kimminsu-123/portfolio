@@ -1,4 +1,4 @@
-﻿// Distoria 프로젝트 데이터 (2025.03.01~2025.11.10)
+// Distoria 프로젝트 데이터 (2025.03.01~2025.11.10)
 const distoriaContent = {
     meta: {
         title: "Distoria",
@@ -3117,9 +3117,152 @@ const project3Content = {
     `
 };
 
+// Scene Note 프로젝트 데이터 (에디터 툴)
+const sceneNoteContent = {
+    meta: {
+        title: "Scene Note",
+        subtitle: "Unity 씬(Scene) 위에 직접 노트를 남겨 소통할 수 있는 레벨 디자인 협업 에셋 툴",
+        period: "개인 프로젝트",
+        platform: "Unity Editor",
+        team: "1명 (개인 프로젝트)",
+        role: "Unity Tool Developer"
+    },
+    html: `
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🖼️</span>
+                미디어
+            </h3>
+            <div class="media-gallery">
+                <div class="media-item">
+                    <iframe width="100%" height="500" src="https://www.youtube.com/embed/91g_tZHtUWI?si=wuUS1Rzfr8nMfYrY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: block;"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">📖</span>
+                프로젝트 개요
+            </h3>
+            <div class="overview-content">
+                <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
+                    기존의 레퍼런스 에셋들은 실제 씬 뷰에 GameObject 오브젝트를 설치하고 컴포넌트를 부착하여 노트를 렌더링하는 방식이었습니다.
+                    이 방식은 노트를 많이 설치할수록 씬이 무거워지며, 2명 이상의 작업자가 노트를 수정하거나 씬을 변경할 경우 병합 충돌이 발생해 작업 내역이 유실될 위험이 있었습니다.
+                </p>
+                <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
+                    이를 해결하기 위해 <strong>Scriptable Object</strong> 기반의 데이터와 <strong>Editor Rendering</strong>을 분리하여 씬의 무게와 충돌 문제를 근본적으로 해결한 협업용 에디터 툴을 개발했습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">👨‍💻</span>
+                핵심 개발 로직 및 해결
+            </h3>
+            <div class="responsibility-list">
+                <div class="responsibility-item">
+                    <div class="responsibility-title">1. 데이터 및 렌더링 분리 (SO 기반)</div>
+                    <div class="responsibility-description">
+                        GameObject에 컴포넌트를 붙이는 방식 대신, 데이터를 담은 Scriptable Object와 현재 활성화된 씬의 노트를 그려주는 중앙 Renderer 클래스(MVP 패턴 구조)로 로직을 완전히 분리했습니다.
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">2. AssetPostprocessor 기반 이벤트 관리</div>
+                    <div class="responsibility-description">
+                        렌더링 시 씬을 기준으로 SO를 찾기 위해 에셋의 생성/변경/삭제 순간을 포착해야 했습니다. <code>AssetPostprocessor</code>를 상속받아 참조 씬이 변경되는 것을 감지하고 Hash 값을 비교하여 렌더링 타겟을 효율적으로 관리하도록 구현했습니다.
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">3. 성능 최적화 (프루스텀 컬링)</div>
+                    <div class="responsibility-description">
+                        노트가 씬 뷰 카메라 프루스텀(시야)에 보이지 않을 경우 렌더링 명령을 내리지 않도록 <code>GeometryUtility.CalculateFrustumPlanes</code> 및 AABB 테스트를 적용하여 에디터 렌더링 오버헤드를 대폭 줄였습니다.
+                    </div>
+                </div>
+                <div class="responsibility-item">
+                    <div class="responsibility-title">4. 직관적인 상호작용 및 UI/UX 개선</div>
+                    <div class="responsibility-description">
+                        기본 <code>Handles.PositionHandle</code> 등과 커스텀 GUI를 결합하여 노트 밖을 클릭 시 선택 해제하거나, 툴에 따라 이동/회전 핸들을 분리하여 보여주도록 설계했습니다. 또한 전용 Note Edit Window 및 Overlay 시스템을 개발했습니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">⭐</span>
+                주요 기능
+            </h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <div class="feature-title">씬 노트 렌더링</div>
+                    <div class="feature-description">오브젝트 없이 씬 뷰 내 텍스트/마커 렌더링</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💾</div>
+                    <div class="feature-title">데이터 격리</div>
+                    <div class="feature-description">씬이 아닌 외부 SO 자산에 데이터 보관</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-title">프루스텀 컬링</div>
+                    <div class="feature-description">보이지 않는 노트는 렌더링 패스 제외</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛠️</div>
+                    <div class="feature-title">전용 수정 윈도우</div>
+                    <div class="feature-description">에디터 윈도우를 통한 직관적 수정 및 Undo 지원</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <div class="feature-title">전용 로거 & 오버레이</div>
+                    <div class="feature-description">SceneView 오버레이를 통해 기능 온/오프 및 로깅 제어</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">커스텀 핸들 로직</div>
+                    <div class="feature-description">마우스 피킹, 노트 삭제 기능 등 GUI/Handle 처리</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔧</span>
+                기술 스택
+            </h3>
+            <div class="tech-stack-list">
+                <span class="tech-item">Unity Editor Scripting</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">ScriptableObject</span>
+                <span class="tech-item">AssetPostprocessor</span>
+                <span class="tech-item">Handles / GUI</span>
+                <span class="tech-item">GeometryUtility (Frustum Culling)</span>
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h3 class="modal-section-title">
+                <span class="section-icon">🔗</span>
+                링크
+            </h3>
+            <div class="modal-links">
+                <!-- 이미지/영상이 있는 경우 여기에 추가해주세요 -->
+                <a href="https://spiny-curve-75f.notion.site/3-Tool-Scene-Note-33b135ce59d3808f8417e349c55aa872" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
+                    📄 Notion 상세 페이지
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    `
+};
+
 // 프로젝트 데이터 맵 (기간 순서대로 내림차순)
 const projectsData = {
     // 개인/팀 프로젝트
+    sceneNote: sceneNoteContent,
     distoria: distoriaContent,
     didducking: didduckingContent,
     tal: talContent,
