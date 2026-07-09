@@ -1,0 +1,85 @@
+:root {
+  --bg-primary: #0a0e14;
+  --bg-card: #1a1f2b;
+  --accent-primary: #00d9ff;
+  --text-primary: #e6e9f0;
+  --text-secondary: #99a0b5;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Outfit', Arial, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+#user-area {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.badge {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+#user-email {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+#logout-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+#logout-btn:hover {
+  border-color: var(--accent-primary);
+}
+
+main {
+  max-width: 720px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+main h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+main p {
+  color: var(--text-secondary);
+}
