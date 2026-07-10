@@ -33,7 +33,13 @@ async function handleCredentialResponse(response) {
     return;
   }
 
-  setSession({ email: data.email, isAdmin: data.isAdmin, idToken: idToken });
+  setSession({
+    email: data.email,
+    isAdmin: data.isAdmin,
+    isStudent: data.isStudent,
+    name: data.name,
+    idToken: idToken,
+  });
   renderApp();
 }
 

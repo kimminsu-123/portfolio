@@ -14,13 +14,19 @@ function doPost(e) {
     case 'verifyLogin':
       return handleVerifyLogin(body.idToken);
     case 'listLectures':
-      return handleListLectures();
+      return handleListLectures(body.idToken);
     case 'getLecturePreview':
-      return handleGetLecturePreview(body.lectureId);
+      return handleGetLecturePreview(body.lectureId, body.idToken);
     case 'uploadLecture':
       return handleUploadLecture(body);
     case 'deleteLecture':
       return handleDeleteLecture(body);
+    case 'addStudent':
+      return handleAddStudent(body);
+    case 'removeStudent':
+      return handleRemoveStudent(body);
+    case 'listStudents':
+      return handleListStudents(body);
     default:
       return jsonResponse({ ok: false, error: 'unknown action' });
   }
@@ -32,8 +38,16 @@ function handleVerifyLogin(idToken) {
     return jsonResponse({ ok: false, error: 'invalid token' });
   }
 
-  const adminEmail = getConfig().adminEmail;
-  return jsonResponse({ ok: true, email: email, isAdmin: email === adminEmail });
+  const isAdmin = email === getConfig().adminEmail;
+  const student = isAdmin ? null : findStudent(email);
+
+  return jsonResponse({
+    ok: true,
+    email: email,
+    isAdmin: isAdmin,
+    isStudent: !!student,
+    name: student ? student.name : null,
+  });
 }
 
 function verifyGoogleIdToken(idToken) {
@@ -58,6 +72,20 @@ function requireAdmin(idToken) {
   return { ok: true, email: email };
 }
 
+function requireStudentOrAdmin(idToken) {
+  const email = verifyGoogleIdToken(idToken);
+  if (!email) return { ok: false, error: 'invalid token' };
+  if (email === getConfig().adminEmail) return { ok: true, email: email, isAdmin: true };
+
+  const student = findStudent(email);
+  if (!student) return { ok: false, error: 'forbidden: registered students only' };
+  return { ok: true, email: email, isAdmin: false, name: student.name };
+}
+
+function findStudent(email) {
+  return readSheetRows('Students').filter(function (r) { return r.email === email; })[0] || null;
+}
+
 function getConfig() {
   const props = PropertiesService.getScriptProperties();
   return {
@@ -69,18 +97,24 @@ function getConfig() {
   };
 }
 
-function handleListLectures() {
-  const rows = readLecturesSheet();
+function handleListLectures(idToken) {
+  const auth = requireStudentOrAdmin(idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  const rows = readSheetRows('Lectures');
   const list = rows.map(function (r) {
     return { id: r.id, title: r.title, week: r.week, fileType: r.fileType, uploadedAt: r.uploadedAt };
   });
   return jsonResponse({ ok: true, lectures: list });
 }
 
-function handleGetLecturePreview(lectureId) {
+function handleGetLecturePreview(lectureId, idToken) {
+  const auth = requireStudentOrAdmin(idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
   if (!lectureId) return jsonResponse({ ok: false, error: 'lectureId required' });
 
-  const rows = readLecturesSheet();
+  const rows = readSheetRows('Lectures');
   const lecture = rows.filter(function (r) { return String(r.id) === String(lectureId); })[0];
   if (!lecture) return jsonResponse({ ok: false, error: 'lecture not found' });
 
@@ -208,6 +242,58 @@ function handleDeleteLecture(body) {
   return jsonResponse({ ok: true, deletedId: body.lectureId });
 }
 
+function handleAddStudent(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  if (!body.email || !body.name) return jsonResponse({ ok: false, error: 'email, name required' });
+
+  const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Students');
+  const values = sheet.getDataRange().getValues();
+  const headers = values[0];
+  const emailColIdx = headers.indexOf('email');
+  const nameColIdx = headers.indexOf('name');
+
+  for (let i = 1; i < values.length; i++) {
+    if (values[i][emailColIdx] === body.email) {
+      sheet.getRange(i + 1, nameColIdx + 1).setValue(body.name);
+      return jsonResponse({ ok: true, student: { email: body.email, name: body.name } });
+    }
+  }
+
+  sheet.appendRow([body.email, body.name, new Date().toISOString()]);
+  return jsonResponse({ ok: true, student: { email: body.email, name: body.name } });
+}
+
+function handleRemoveStudent(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  if (!body.email) return jsonResponse({ ok: false, error: 'email required' });
+
+  const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Students');
+  const values = sheet.getDataRange().getValues();
+  const headers = values[0];
+  const emailColIdx = headers.indexOf('email');
+
+  for (let i = 1; i < values.length; i++) {
+    if (values[i][emailColIdx] === body.email) {
+      sheet.deleteRow(i + 1);
+      return jsonResponse({ ok: true, deletedEmail: body.email });
+    }
+  }
+
+  return jsonResponse({ ok: false, error: 'student not found' });
+}
+
+function handleListStudents(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  const rows = readSheetRows('Students');
+  return jsonResponse({ ok: true, students: rows });
+}
+
 function detectFileType(fileName) {
   const lower = String(fileName).toLowerCase();
   if (lower.endsWith('.ppt') || lower.endsWith('.pptx')) return 'ppt';
@@ -247,9 +333,9 @@ function trashFileIfExists(fileId) {
   }
 }
 
-function readLecturesSheet() {
+function readSheetRows(sheetName) {
   const spreadsheetId = getConfig().spreadsheetId;
-  const sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName('Lectures');
+  const sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(sheetName);
   if (!sheet) return [];
 
   const values = sheet.getDataRange().getValues();
@@ -309,6 +395,20 @@ function setupLectureFolder() {
 
   Logger.log('강의자료 폴더 생성 완료: ' + folder.getId());
   Logger.log('URL: ' + folder.getUrl());
+}
+
+// doGet/doPost에서는 호출하지 않음 — Apps Script 에디터에서 수동으로 한 번만 실행
+function setupStudentsSheet() {
+  const ss = SpreadsheetApp.openById(getConfig().spreadsheetId);
+  if (ss.getSheetByName('Students')) {
+    Logger.log('Students 탭이 이미 있습니다.');
+    return;
+  }
+
+  const sheet = ss.insertSheet('Students');
+  sheet.getRange(1, 1, 1, 3).setValues([['email', 'name', 'registeredAt']]);
+
+  Logger.log('Students 탭 생성 완료');
 }
 
 // doGet/doPost에서는 호출하지 않음 — seedTestLectures()가 남긴 테스트 데이터(test-html-1, test-ppt-1 행 +

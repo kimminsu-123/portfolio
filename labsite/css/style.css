@@ -299,7 +299,7 @@ main p {
   margin-bottom: 1rem;
 }
 
-#upload-form {
+.admin-form {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -310,30 +310,29 @@ main p {
   padding: 1.25rem;
 }
 
-#upload-form input[type="text"] {
+.admin-form input[type="text"],
+.admin-form input[type="email"] {
   background: var(--bg-primary);
   border: 1px solid var(--border);
   color: var(--text-primary);
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   font-size: 0.9rem;
-}
-
-#upload-title {
   flex: 1;
-  min-width: 200px;
+  min-width: 160px;
 }
 
 #upload-week {
+  flex: none;
   width: 100px;
 }
 
-#upload-form input[type="file"] {
+.admin-form input[type="file"] {
   color: var(--text-secondary);
   font-size: 0.85rem;
 }
 
-#upload-submit-btn {
+.admin-form button[type="submit"] {
   background: var(--accent-primary);
   color: var(--bg-primary);
   border: none;
@@ -344,12 +343,12 @@ main p {
   font-size: 0.9rem;
 }
 
-#upload-submit-btn:disabled {
+.admin-form button[type="submit"]:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-#upload-status {
+.admin-form-status {
   color: var(--text-secondary);
   font-size: 0.85rem;
   width: 100%;

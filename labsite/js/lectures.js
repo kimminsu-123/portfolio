@@ -5,17 +5,19 @@ function escapeHtml(str) {
 }
 
 async function fetchLectures() {
+  const session = getSession();
   const res = await fetch(CONFIG.EXEC_URL, {
     method: 'POST',
-    body: JSON.stringify({ action: 'listLectures' }),
+    body: JSON.stringify({ action: 'listLectures', idToken: session ? session.idToken : null }),
   });
   return res.json();
 }
 
 async function fetchLecturePreview(lectureId) {
+  const session = getSession();
   const res = await fetch(CONFIG.EXEC_URL, {
     method: 'POST',
-    body: JSON.stringify({ action: 'getLecturePreview', lectureId: lectureId }),
+    body: JSON.stringify({ action: 'getLecturePreview', lectureId: lectureId, idToken: session ? session.idToken : null }),
   });
   return res.json();
 }

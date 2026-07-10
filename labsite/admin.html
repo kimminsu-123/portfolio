@@ -35,13 +35,26 @@
 
     <section id="admin-panel" class="upload-section" style="display:none;">
       <h2>강의자료 업로드</h2>
-      <form id="upload-form">
+      <form id="upload-form" class="admin-form">
         <input id="upload-title" type="text" placeholder="제목" required>
         <input id="upload-week" type="text" placeholder="주차">
         <input id="upload-file" type="file" accept=".pptx,.ppt,.html,.htm" required>
         <button id="upload-submit-btn" type="submit">업로드</button>
-        <span id="upload-status"></span>
+        <span id="upload-status" class="admin-form-status"></span>
       </form>
+    </section>
+
+    <section id="students-panel" class="upload-section" style="display:none;">
+      <h2>수강생 관리</h2>
+      <form id="student-form" class="admin-form">
+        <input id="student-email" type="email" placeholder="이메일" required>
+        <input id="student-name" type="text" placeholder="이름" required>
+        <button id="student-submit-btn" type="submit">등록</button>
+        <span id="student-status" class="admin-form-status"></span>
+      </form>
+      <div id="students-list" class="lectures-list">
+        <p class="lectures-empty">불러오는 중...</p>
+      </div>
     </section>
   </main>
 
@@ -66,6 +79,7 @@
   <script src="./js/auth.js"></script>
   <script src="./js/lectures.js"></script>
   <script src="./js/upload.js"></script>
+  <script src="./js/students.js"></script>
   <script src="./js/admin.js"></script>
 </body>
 </html>
