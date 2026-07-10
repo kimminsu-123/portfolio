@@ -6,18 +6,14 @@ function renderApp() {
   const userArea = document.getElementById('user-area');
   const loggedOutView = document.getElementById('logged-out-view');
   const notRegisteredView = document.getElementById('not-registered-view');
-  const loggedInView = document.getElementById('logged-in-view');
-  const lecturesSection = document.getElementById('lectures-section');
-  const assignmentsSection = document.getElementById('assignments-section');
+  const memberLayout = document.getElementById('member-layout');
 
   if (!session) {
     loginArea.style.display = 'block';
     userArea.style.display = 'none';
     loggedOutView.style.display = 'block';
     notRegisteredView.style.display = 'none';
-    loggedInView.style.display = 'none';
-    lecturesSection.style.display = 'none';
-    assignmentsSection.style.display = 'none';
+    memberLayout.style.display = 'none';
     return;
   }
 
@@ -31,21 +27,29 @@ function renderApp() {
 
   loggedOutView.style.display = 'none';
   notRegisteredView.style.display = canViewContent ? 'none' : 'block';
-  loggedInView.style.display = canViewContent ? 'block' : 'none';
-  lecturesSection.style.display = canViewContent ? 'block' : 'none';
-  assignmentsSection.style.display = canViewContent ? 'block' : 'none';
+  memberLayout.style.display = canViewContent ? 'flex' : 'none';
 
   if (canViewContent) {
-    document.getElementById('welcome-message').textContent = session.isAdmin
-      ? '관리자로 로그인되었습니다.'
-      : '수강생으로 로그인되었습니다.';
     loadLectures();
     loadAssignments();
   }
 }
 
+function initSideNav() {
+  const items = document.querySelectorAll('.side-nav-item');
+  items.forEach(function (item) {
+    item.addEventListener('click', function () {
+      items.forEach(function (i) { i.classList.toggle('active', i === item); });
+      document.querySelectorAll('.member-content .lectures-section').forEach(function (section) {
+        section.style.display = section.id === item.dataset.target ? 'block' : 'none';
+      });
+    });
+  });
+}
+
 window.addEventListener('load', async () => {
   initGoogleLogin();
+  initSideNav();
   await refreshSession();
   renderApp();
   document.getElementById('logout-btn').addEventListener('click', logout);

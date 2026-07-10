@@ -2,10 +2,13 @@
   --bg-primary: #0a0e14;
   --bg-card: #1a1f2b;
   --accent-primary: #00d9ff;
+  --accent-soft: rgba(0, 217, 255, 0.1);
   --text-primary: #e6e9f0;
   --text-secondary: #99a0b5;
   --border: rgba(255, 255, 255, 0.08);
   --danger: #ff5470;
+  --radius: 12px;
+  color-scheme: dark;
 }
 
 * {
@@ -16,10 +19,14 @@
 
 body {
   font-family: 'Segoe UI', 'Outfit', Arial, sans-serif;
-  background: var(--bg-primary);
+  background-color: var(--bg-primary);
+  background-image: radial-gradient(900px 320px at 50% -120px, rgba(0, 217, 255, 0.08), transparent 70%);
+  background-repeat: no-repeat;
   color: var(--text-primary);
   min-height: 100vh;
 }
+
+/* ---------- 로딩 오버레이 ---------- */
 
 .loading-overlay {
   position: fixed;
@@ -44,18 +51,27 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* ---------- 헤더 ---------- */
+
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  background: rgba(10, 14, 20, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 
 .site-title {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--accent-primary);
+  letter-spacing: 0.02em;
 }
 
 #user-area {
@@ -65,59 +81,147 @@ body {
 }
 
 .badge {
-  background: var(--accent-primary);
-  color: var(--bg-primary);
-  padding: 0.2rem 0.6rem;
+  background: var(--accent-soft);
+  color: var(--accent-primary);
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  padding: 0.25rem 0.7rem;
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
 }
 
 #user-email {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 600;
 }
 
 .header-btn {
   background: transparent;
   border: 1px solid var(--border);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   padding: 0.4rem 0.9rem;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 0.85rem;
+  transition: border-color 0.15s, color 0.15s;
 }
 
 .header-btn:hover {
   border-color: var(--accent-primary);
+  color: var(--text-primary);
 }
+
+/* ---------- 본문 공통 ---------- */
 
 main {
-  max-width: 720px;
-  margin: 4rem auto;
+  max-width: 960px;
+  margin: 2rem auto;
   padding: 0 2rem;
+}
+
+.notice-view {
   text-align: center;
+  padding: 6rem 1rem;
 }
 
-main h1 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+.notice-view h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.9rem;
 }
 
-main p {
+.notice-view p {
   color: var(--text-secondary);
 }
 
 .lectures-section {
   max-width: 960px;
-  margin: 0 auto 4rem;
+  margin: 0 auto 3.5rem;
   padding: 0 2rem;
 }
 
-.lectures-section h2 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+/* ---------- 사이드바 레이아웃 (index) ---------- */
+
+.member-layout {
+  display: flex;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  gap: 2rem;
+  align-items: flex-start;
 }
+
+.side-nav {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: sticky;
+  top: 5.5rem;
+}
+
+.side-nav-item {
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.15s, background 0.15s;
+}
+
+.side-nav-item:hover {
+  color: var(--text-primary);
+}
+
+.side-nav-item.active {
+  color: var(--accent-primary);
+  background: var(--accent-soft);
+  font-weight: 700;
+}
+
+.member-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.member-content .lectures-section {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .member-layout {
+    flex-direction: column;
+  }
+  .side-nav {
+    position: static;
+    width: 100%;
+    flex-direction: row;
+  }
+}
+
+.lectures-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.lectures-section h2::before {
+  content: '';
+  width: 4px;
+  height: 1.05em;
+  background: var(--accent-primary);
+  border-radius: 2px;
+}
+
+/* ---------- 리스트/카드 ---------- */
 
 .lectures-list {
   display: flex;
@@ -137,8 +241,13 @@ main p {
   gap: 1rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius);
   padding: 1rem 1.25rem;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.lecture-card:hover {
+  border-color: rgba(0, 217, 255, 0.3);
 }
 
 .lecture-info {
@@ -164,26 +273,13 @@ main p {
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .lecture-type-ppt {
   color: var(--accent-primary);
-  border-color: var(--accent-primary);
-}
-
-.lecture-preview-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  padding: 0.4rem 0.9rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  white-space: nowrap;
-}
-
-.lecture-preview-btn:hover {
-  border-color: var(--accent-primary);
+  border-color: rgba(0, 217, 255, 0.4);
+  background: var(--accent-soft);
 }
 
 .lecture-actions {
@@ -191,6 +287,84 @@ main p {
   gap: 0.5rem;
   flex-shrink: 0;
 }
+
+.lecture-preview-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.lecture-preview-btn:hover {
+  border-color: var(--accent-primary);
+  background: var(--accent-soft);
+}
+
+.lecture-delete-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--danger);
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition: border-color 0.15s;
+}
+
+.lecture-delete-btn:hover {
+  border-color: var(--danger);
+}
+
+/* ---------- 강의자료 그리드 (index 전용) ---------- */
+
+.lectures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.lectures-grid .lecture-card {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.9rem;
+  padding: 1.4rem 1.25rem;
+}
+
+.lectures-grid .lecture-card:hover {
+  transform: translateY(-3px);
+}
+
+.lectures-grid .lecture-info {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.lectures-grid .lecture-week:empty {
+  display: none;
+}
+
+.lectures-grid .lecture-title {
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.lectures-grid .lecture-actions {
+  margin-top: auto;
+}
+
+.lectures-grid .lecture-preview-btn {
+  width: 100%;
+  padding: 0.55rem;
+}
+
+/* ---------- 과제 카드 (학생) / 제출 현황 ---------- */
 
 .lecture-card-stacked {
   flex-direction: column;
@@ -219,6 +393,8 @@ main p {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
 }
 
 .submission-form input[type="file"] {
@@ -232,12 +408,17 @@ main p {
   background: var(--accent-primary);
   color: var(--bg-primary);
   border: none;
-  padding: 0.4rem 1rem;
-  border-radius: 6px;
+  padding: 0.45rem 1.1rem;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 700;
   font-size: 0.85rem;
   white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.submission-form button[type="submit"]:hover {
+  opacity: 0.9;
 }
 
 .submission-form button[type="submit"]:disabled {
@@ -250,20 +431,165 @@ main p {
   font-size: 0.85rem;
 }
 
-.lecture-delete-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--danger);
-  padding: 0.4rem 0.9rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  white-space: nowrap;
+/* ---------- 과제별 제출물 (관리자) ---------- */
+
+.assignment-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
 
-.lecture-delete-btn:hover {
-  border-color: var(--danger);
+.assignment-submissions {
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
+
+.submission-row {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.submission-row strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.submission-empty {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* ---------- 관리자 탭 ---------- */
+
+.admin-tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.75rem;
+  overflow-x: auto;
+}
+
+.admin-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.8rem 1.15rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.admin-tab:hover {
+  color: var(--text-primary);
+}
+
+.admin-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.admin-tab-panel > .admin-form {
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- 관리자 폼 ---------- */
+
+.admin-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="email"],
+.admin-form input[type="date"] {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  flex: 1;
+  min-width: 160px;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+  outline: none;
+  border-color: rgba(0, 217, 255, 0.5);
+}
+
+.admin-form textarea {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  flex: 1 1 100%;
+  min-width: 200px;
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+#upload-week {
+  flex: none;
+  width: 100px;
+}
+
+#assignment-due-date {
+  flex: none;
+  width: 150px;
+}
+
+.admin-form input[type="file"] {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.admin-form button[type="submit"] {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: opacity 0.15s;
+}
+
+.admin-form button[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+.admin-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-form-status {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+/* ---------- 미리보기 (전체화면) ---------- */
 
 .preview-overlay {
   position: fixed;
@@ -347,7 +673,7 @@ main p {
   color: var(--text-primary);
   width: 2rem;
   height: 2rem;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
 }
@@ -367,90 +693,4 @@ main p {
   flex: 1;
   border: none;
   background: #fff;
-}
-
-.upload-section {
-  max-width: 960px;
-  margin: 3rem auto 0;
-  padding: 0 2rem;
-}
-
-.upload-section h2 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-
-.admin-form {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.25rem;
-}
-
-.admin-form input[type="text"],
-.admin-form input[type="email"],
-.admin-form input[type="date"] {
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  flex: 1;
-  min-width: 160px;
-}
-
-.admin-form textarea {
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-family: inherit;
-  flex: 1 1 100%;
-  min-width: 200px;
-  min-height: 4.5rem;
-  resize: vertical;
-}
-
-#upload-week {
-  flex: none;
-  width: 100px;
-}
-
-#assignment-due-date {
-  flex: none;
-  width: 140px;
-}
-
-.admin-form input[type="file"] {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-}
-
-.admin-form button[type="submit"] {
-  background: var(--accent-primary);
-  color: var(--bg-primary);
-  border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.admin-form button[type="submit"]:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.admin-form-status {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  width: 100%;
 }

@@ -27,68 +27,62 @@
   </header>
 
   <main>
-    <div id="logged-out-view">
+    <div id="logged-out-view" class="notice-view">
       <h1>관리자 로그인이 필요합니다</h1>
       <p>구글 계정으로 로그인해주세요.</p>
     </div>
 
-    <div id="not-admin-view" style="display:none;">
+    <div id="not-admin-view" class="notice-view" style="display:none;">
       <h1>관리자 계정이 아닙니다</h1>
       <p>이 페이지는 관리자 계정으로 로그인해야 사용할 수 있습니다.</p>
     </div>
 
-    <section id="admin-panel" class="upload-section" style="display:none;">
-      <h2>강의자료 업로드</h2>
-      <form id="upload-form" class="admin-form">
-        <input id="upload-title" type="text" placeholder="제목" required>
-        <input id="upload-week" type="text" placeholder="주차">
-        <input id="upload-file" type="file" accept=".pptx,.ppt,.html,.htm" required>
-        <button id="upload-submit-btn" type="submit">업로드</button>
-        <span id="upload-status" class="admin-form-status"></span>
-      </form>
-    </section>
+    <div id="admin-content" style="display:none;">
+      <nav class="admin-tabs">
+        <button class="admin-tab active" data-tab="tab-lectures">강의자료</button>
+        <button class="admin-tab" data-tab="tab-students">수강생</button>
+        <button class="admin-tab" data-tab="tab-assignments">과제</button>
+      </nav>
 
-    <section id="students-panel" class="upload-section" style="display:none;">
-      <h2>수강생 관리</h2>
-      <form id="student-form" class="admin-form">
-        <input id="student-email" type="email" placeholder="이메일" required>
-        <input id="student-name" type="text" placeholder="이름" required>
-        <button id="student-submit-btn" type="submit">등록</button>
-        <span id="student-status" class="admin-form-status"></span>
-      </form>
-      <div id="students-list" class="lectures-list">
-        <p class="lectures-empty">불러오는 중...</p>
+      <div id="tab-lectures" class="admin-tab-panel">
+        <form id="upload-form" class="admin-form">
+          <input id="upload-title" type="text" placeholder="제목" required>
+          <input id="upload-week" type="text" placeholder="주차">
+          <input id="upload-file" type="file" accept=".pptx,.ppt,.html,.htm" required>
+          <button id="upload-submit-btn" type="submit">업로드</button>
+          <span id="upload-status" class="admin-form-status"></span>
+        </form>
+        <div id="lectures-list" class="lectures-list">
+          <p class="lectures-empty">불러오는 중...</p>
+        </div>
       </div>
-    </section>
 
-    <section id="assignments-panel" class="upload-section" style="display:none;">
-      <h2>과제 관리</h2>
-      <form id="assignment-form" class="admin-form">
-        <input id="assignment-title" type="text" placeholder="제목" required>
-        <input id="assignment-due-date" type="date">
-        <textarea id="assignment-description" placeholder="설명"></textarea>
-        <button id="assignment-submit-btn" type="submit">생성</button>
-        <span id="assignment-status" class="admin-form-status"></span>
-      </form>
-      <div id="assignments-list" class="lectures-list">
-        <p class="lectures-empty">불러오는 중...</p>
+      <div id="tab-students" class="admin-tab-panel" style="display:none;">
+        <form id="student-form" class="admin-form">
+          <input id="student-email" type="email" placeholder="이메일" required>
+          <input id="student-name" type="text" placeholder="이름" required>
+          <button id="student-submit-btn" type="submit">등록</button>
+          <span id="student-status" class="admin-form-status"></span>
+        </form>
+        <div id="students-list" class="lectures-list">
+          <p class="lectures-empty">불러오는 중...</p>
+        </div>
       </div>
-    </section>
 
-    <section id="submissions-panel" class="upload-section" style="display:none;">
-      <h2>제출 현황</h2>
-      <div id="submissions-list" class="lectures-list">
-        <p class="lectures-empty">불러오는 중...</p>
+      <div id="tab-assignments" class="admin-tab-panel" style="display:none;">
+        <form id="assignment-form" class="admin-form">
+          <input id="assignment-title" type="text" placeholder="제목" required>
+          <input id="assignment-due-date" type="date">
+          <textarea id="assignment-description" placeholder="설명"></textarea>
+          <button id="assignment-submit-btn" type="submit">생성</button>
+          <span id="assignment-status" class="admin-form-status"></span>
+        </form>
+        <div id="assignments-list" class="lectures-list">
+          <p class="lectures-empty">불러오는 중...</p>
+        </div>
       </div>
-    </section>
-  </main>
-
-  <section class="lectures-section">
-    <h2>강의자료 관리</h2>
-    <div id="lectures-list" class="lectures-list">
-      <p class="lectures-empty">불러오는 중...</p>
     </div>
-  </section>
+  </main>
 
   <div id="preview-overlay" class="preview-overlay" style="display:none;">
     <div class="preview-modal">
@@ -106,7 +100,6 @@
   <script src="./js/upload.js"></script>
   <script src="./js/students.js"></script>
   <script src="./js/assignments.js"></script>
-  <script src="./js/submissions.js"></script>
   <script src="./js/admin.js"></script>
 </body>
 </html>

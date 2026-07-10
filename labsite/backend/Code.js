@@ -432,6 +432,7 @@ function handleListSubmissions(body) {
 
   const submissions = readSheetRows('Submissions').map(function (s) {
     return {
+      assignmentId: s.assignmentId,
       assignmentTitle: titleById[s.assignmentId] || '(삭제된 과제)',
       studentName: s.studentName,
       studentEmail: s.studentEmail,

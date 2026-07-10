@@ -6,20 +6,14 @@ function renderApp() {
   const userArea = document.getElementById('user-area');
   const loggedOutView = document.getElementById('logged-out-view');
   const notAdminView = document.getElementById('not-admin-view');
-  const adminPanel = document.getElementById('admin-panel');
-  const studentsPanel = document.getElementById('students-panel');
-  const assignmentsPanel = document.getElementById('assignments-panel');
-  const submissionsPanel = document.getElementById('submissions-panel');
+  const adminContent = document.getElementById('admin-content');
 
   if (!session) {
     loginArea.style.display = 'block';
     userArea.style.display = 'none';
     loggedOutView.style.display = 'block';
     notAdminView.style.display = 'none';
-    adminPanel.style.display = 'none';
-    studentsPanel.style.display = 'none';
-    assignmentsPanel.style.display = 'none';
-    submissionsPanel.style.display = 'none';
+    adminContent.style.display = 'none';
     return;
   }
 
@@ -30,21 +24,30 @@ function renderApp() {
 
   loggedOutView.style.display = 'none';
   notAdminView.style.display = session.isAdmin ? 'none' : 'block';
-  adminPanel.style.display = session.isAdmin ? 'block' : 'none';
-  studentsPanel.style.display = session.isAdmin ? 'block' : 'none';
-  assignmentsPanel.style.display = session.isAdmin ? 'block' : 'none';
-  submissionsPanel.style.display = session.isAdmin ? 'block' : 'none';
+  adminContent.style.display = session.isAdmin ? 'block' : 'none';
 
   if (session.isAdmin) {
     loadLectures({ showDeleteButton: true });
     loadStudents();
-    loadAssignments({ showDeleteButton: true });
-    loadSubmissions();
+    loadAdminAssignments();
   }
+}
+
+function initAdminTabs() {
+  const tabs = document.querySelectorAll('.admin-tab');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+      document.querySelectorAll('.admin-tab-panel').forEach(function (panel) {
+        panel.style.display = panel.id === tab.dataset.tab ? 'block' : 'none';
+      });
+    });
+  });
 }
 
 window.addEventListener('load', async () => {
   initGoogleLogin();
+  initAdminTabs();
   await refreshSession();
   renderApp();
   document.getElementById('logout-btn').addEventListener('click', logout);

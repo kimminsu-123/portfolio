@@ -6,6 +6,14 @@ async function fetchAssignments(idToken) {
   return res.json();
 }
 
+async function fetchSubmissions(idToken) {
+  const res = await fetch(CONFIG.EXEC_URL, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'listSubmissions', idToken: idToken }),
+  });
+  return res.json();
+}
+
 async function fetchCreateAssignment(title, description, dueDate, idToken) {
   const res = await fetch(CONFIG.EXEC_URL, {
     method: 'POST',
@@ -37,8 +45,7 @@ async function fetchSubmitAssignment(assignmentId, fileName, mimeType, fileBase6
   return res.json();
 }
 
-function renderAssignmentList(assignments, options) {
-  const showDeleteButton = !!(options && options.showDeleteButton);
+function renderAdminAssignmentList(assignments, submissions) {
   const container = document.getElementById('assignments-list');
 
   if (assignments.length === 0) {
@@ -48,26 +55,58 @@ function renderAssignmentList(assignments, options) {
 
   container.innerHTML = assignments.map(function (a) {
     const dueLabel = a.dueDate ? escapeHtml(a.dueDate) + '까지 제출 가능' : '';
-    const deleteBtn = showDeleteButton
-      ? '<button class="lecture-delete-btn" data-id="' + escapeHtml(a.id) + '">삭제</button>'
-      : '';
+    const mySubmissions = submissions.filter(function (s) { return String(s.assignmentId) === String(a.id); });
+
+    const submissionRows = mySubmissions.length === 0
+      ? '<p class="submission-empty">아직 제출된 과제물이 없습니다.</p>'
+      : mySubmissions.map(function (s) {
+          return (
+            '<div class="submission-row">' +
+              '<strong>' + escapeHtml(s.studentName) + '</strong>' +
+              ' · ' + escapeHtml(s.fileName) +
+              ' · 최초 제출: ' + escapeHtml(s.firstSubmittedAt) +
+              ' · 최종 수정: ' + escapeHtml(s.lastUpdatedAt) +
+            '</div>'
+          );
+        }).join('');
+
     return (
-      '<div class="lecture-card">' +
-        '<div class="lecture-info">' +
-          '<span class="lecture-title">' + escapeHtml(a.title) + '</span>' +
-          '<span class="lecture-week">' + dueLabel + '</span>' +
+      '<div class="lecture-card lecture-card-stacked">' +
+        '<div class="assignment-admin-header">' +
+          '<div class="lecture-info">' +
+            '<span class="lecture-title">' + escapeHtml(a.title) + '</span>' +
+            '<span class="lecture-week">' + dueLabel + '</span>' +
+          '</div>' +
+          '<div class="lecture-actions">' +
+            '<button class="lecture-delete-btn" data-id="' + escapeHtml(a.id) + '">삭제</button>' +
+          '</div>' +
         '</div>' +
-        '<div class="lecture-actions">' +
-          deleteBtn +
-        '</div>' +
+        '<div class="assignment-submissions">' + submissionRows + '</div>' +
       '</div>'
     );
   }).join('');
 
-  if (showDeleteButton) {
-    container.querySelectorAll('.lecture-delete-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () { handleDeleteAssignmentClick(btn.dataset.id, btn); });
-    });
+  container.querySelectorAll('.lecture-delete-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { handleDeleteAssignmentClick(btn.dataset.id, btn); });
+  });
+}
+
+async function loadAdminAssignments() {
+  const container = document.getElementById('assignments-list');
+  const session = getSession();
+  if (!session) return;
+
+  try {
+    const results = await Promise.all([fetchAssignments(session.idToken), fetchSubmissions(session.idToken)]);
+    const assignmentsData = results[0];
+    const submissionsData = results[1];
+    if (!assignmentsData.ok || !submissionsData.ok) {
+      container.innerHTML = '<p class="lectures-empty">과제 목록을 불러오지 못했습니다.</p>';
+      return;
+    }
+    renderAdminAssignmentList(assignmentsData.assignments, submissionsData.submissions);
+  } catch (err) {
+    container.innerHTML = '<p class="lectures-empty">과제 목록을 불러오지 못했습니다.</p>';
   }
 }
 
@@ -113,7 +152,7 @@ function renderStudentAssignmentList(assignments) {
   });
 }
 
-async function loadAssignments(options) {
+async function loadAssignments() {
   const container = document.getElementById('assignments-list');
   const session = getSession();
   if (!session) return;
@@ -124,14 +163,30 @@ async function loadAssignments(options) {
       container.innerHTML = '<p class="lectures-empty">과제 목록을 불러오지 못했습니다.</p>';
       return;
     }
-    if (options && options.showDeleteButton) {
-      renderAssignmentList(data.assignments, options);
-    } else {
-      renderStudentAssignmentList(data.assignments);
-    }
+    renderStudentAssignmentList(data.assignments);
   } catch (err) {
     container.innerHTML = '<p class="lectures-empty">과제 목록을 불러오지 못했습니다.</p>';
   }
+}
+
+async function handleDeleteAssignmentClick(assignmentId, btn) {
+  if (!confirm('정말 삭제하시겠습니까? 되돌릴 수 없습니다.')) return;
+
+  const session = getSession();
+  if (!session) return;
+
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '삭제 중...';
+
+  const data = await fetchDeleteAssignment(assignmentId, session.idToken);
+  if (!data.ok) {
+    alert('삭제 실패: ' + data.error);
+    btn.disabled = false;
+    btn.textContent = originalText;
+    return;
+  }
+  loadAdminAssignments();
 }
 
 async function handleSubmitAssignmentForm(e, assignmentId, form) {
@@ -165,26 +220,6 @@ async function handleSubmitAssignmentForm(e, assignmentId, form) {
   }
 }
 
-async function handleDeleteAssignmentClick(assignmentId, btn) {
-  if (!confirm('정말 삭제하시겠습니까? 되돌릴 수 없습니다.')) return;
-
-  const session = getSession();
-  if (!session) return;
-
-  const originalText = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = '삭제 중...';
-
-  const data = await fetchDeleteAssignment(assignmentId, session.idToken);
-  if (!data.ok) {
-    alert('삭제 실패: ' + data.error);
-    btn.disabled = false;
-    btn.textContent = originalText;
-    return;
-  }
-  loadAssignments({ showDeleteButton: true });
-}
-
 async function handleAssignmentFormSubmit(e) {
   e.preventDefault();
 
@@ -210,7 +245,7 @@ async function handleAssignmentFormSubmit(e) {
   statusEl.textContent = '생성 완료';
   document.getElementById('assignment-form').reset();
   submitBtn.disabled = false;
-  loadAssignments({ showDeleteButton: true });
+  loadAdminAssignments();
 }
 
 window.addEventListener('load', function () {
