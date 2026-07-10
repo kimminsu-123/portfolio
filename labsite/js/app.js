@@ -11,6 +11,7 @@ function renderApp() {
     userArea.style.display = 'flex';
     document.getElementById('user-email').textContent = session.email;
     document.getElementById('user-role').textContent = session.isAdmin ? '관리자' : '수강생';
+    document.getElementById('admin-page-btn').style.display = session.isAdmin ? 'inline-block' : 'none';
 
     loggedOutView.style.display = 'none';
     loggedInView.style.display = 'block';
@@ -31,4 +32,7 @@ window.addEventListener('load', () => {
   initGoogleLogin();
   renderApp();
   document.getElementById('logout-btn').addEventListener('click', logout);
+  document.getElementById('admin-page-btn').addEventListener('click', () => {
+    window.open('./admin.html', 'labsite-admin', 'width=1000,height=800,resizable=yes,scrollbars=yes');
+  });
 });

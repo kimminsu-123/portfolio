@@ -55,7 +55,7 @@ body {
   font-size: 0.9rem;
 }
 
-#logout-btn {
+.header-btn {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-primary);
@@ -65,7 +65,7 @@ body {
   font-size: 0.85rem;
 }
 
-#logout-btn:hover {
+.header-btn:hover {
   border-color: var(--accent-primary);
 }
 
