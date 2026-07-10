@@ -33,6 +33,8 @@ function doPost(e) {
       return handleDeleteAssignment(body);
     case 'listAssignments':
       return handleListAssignments(body.idToken);
+    case 'submitAssignment':
+      return handleSubmitAssignment(body);
     default:
       return jsonResponse({ ok: false, error: 'unknown action' });
   }
@@ -357,10 +359,65 @@ function handleListAssignments(idToken) {
   if (!auth.ok) return jsonResponse(auth);
 
   const rows = readSheetRows('Assignments');
+  const mySubmissions = auth.isAdmin
+    ? []
+    : readSheetRows('Submissions').filter(function (s) { return s.studentEmail === auth.email; });
+
   const list = rows.map(function (r) {
-    return { id: r.id, title: r.title, description: r.description, dueDate: formatDateOnly(r.dueDate), createdAt: r.createdAt };
+    const dueDate = formatDateOnly(r.dueDate);
+    const submission = mySubmissions.filter(function (s) { return String(s.assignmentId) === String(r.id); })[0] || null;
+    return {
+      id: r.id,
+      title: r.title,
+      description: r.description,
+      dueDate: dueDate,
+      createdAt: r.createdAt,
+      mySubmission: submission ? {
+        fileName: submission.fileName,
+        lastUpdatedAt: formatDateTimeKST(submission.lastUpdatedAt),
+        isLate: isSubmissionLate(dueDate, submission.lastUpdatedAt),
+      } : null,
+    };
   });
   return jsonResponse({ ok: true, assignments: list });
+}
+
+function handleSubmitAssignment(body) {
+  const auth = requireStudentOrAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  if (!body.assignmentId || !body.fileName || !body.fileBase64) {
+    return jsonResponse({ ok: false, error: 'assignmentId, fileName, fileBase64 required' });
+  }
+
+  const assignment = readSheetRows('Assignments').filter(function (a) { return String(a.id) === String(body.assignmentId); })[0];
+  if (!assignment) return jsonResponse({ ok: false, error: 'assignment not found' });
+
+  const bytes = Utilities.base64Decode(body.fileBase64);
+  const blob = Utilities.newBlob(bytes, body.mimeType || 'application/octet-stream', body.fileName);
+
+  const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Submissions');
+  const values = sheet.getDataRange().getValues();
+  const headers = values[0];
+  const assignmentIdColIdx = headers.indexOf('assignmentId');
+  const emailColIdx = headers.indexOf('studentEmail');
+  const fileIdColIdx = headers.indexOf('fileId');
+  const fileNameColIdx = headers.indexOf('fileName');
+  const lastUpdatedColIdx = headers.indexOf('lastUpdatedAt');
+  const now = new Date().toISOString();
+
+  for (let i = 1; i < values.length; i++) {
+    if (String(values[i][assignmentIdColIdx]) === String(body.assignmentId) && values[i][emailColIdx] === auth.email) {
+      Drive.Files.update({}, values[i][fileIdColIdx], blob);
+      sheet.getRange(i + 1, fileNameColIdx + 1).setValue(body.fileName);
+      sheet.getRange(i + 1, lastUpdatedColIdx + 1).setValue(now);
+      return jsonResponse({ ok: true, resubmitted: true });
+    }
+  }
+
+  const file = DriveApp.getFolderById(assignment.folderId).createFile(blob);
+  sheet.appendRow([Utilities.getUuid(), body.assignmentId, auth.email, auth.name || auth.email, file.getId(), body.fileName, now, now]);
+  return jsonResponse({ ok: true, resubmitted: false });
 }
 
 // Sheets가 "yyyy-mm-dd" 형태의 문자열을 셀에 쓰는 시점에 Date로 자동 인식해버려서,
@@ -369,6 +426,16 @@ function formatDateOnly(value) {
   if (!value) return '';
   if (value instanceof Date) return Utilities.formatDate(value, 'Asia/Seoul', 'yyyy-MM-dd');
   return String(value);
+}
+
+function formatDateTimeKST(isoString) {
+  if (!isoString) return '';
+  return Utilities.formatDate(new Date(isoString), 'Asia/Seoul', 'yyyy-MM-dd HH:mm');
+}
+
+function isSubmissionLate(dueDate, submittedAtIso) {
+  if (!dueDate || !submittedAtIso) return false;
+  return Utilities.formatDate(new Date(submittedAtIso), 'Asia/Seoul', 'yyyy-MM-dd') > dueDate;
 }
 
 function detectFileType(fileName) {
@@ -525,6 +592,22 @@ function setupSubmissionRootFolder() {
 
   Logger.log('과제 제출 루트 폴더 생성 완료: ' + folder.getId());
   Logger.log('URL: ' + folder.getUrl());
+}
+
+// doGet/doPost에서는 호출하지 않음 — Apps Script 에디터에서 수동으로 한 번만 실행
+function setupSubmissionsSheet() {
+  const ss = SpreadsheetApp.openById(getConfig().spreadsheetId);
+  if (ss.getSheetByName('Submissions')) {
+    Logger.log('Submissions 탭이 이미 있습니다.');
+    return;
+  }
+
+  const sheet = ss.insertSheet('Submissions');
+  sheet.getRange(1, 1, 1, 8).setValues([
+    ['id', 'assignmentId', 'studentEmail', 'studentName', 'fileId', 'fileName', 'firstSubmittedAt', 'lastUpdatedAt'],
+  ]);
+
+  Logger.log('Submissions 탭 생성 완료');
 }
 
 // doGet/doPost에서는 호출하지 않음 — seedTestLectures()가 남긴 테스트 데이터(test-html-1, test-ppt-1 행 +

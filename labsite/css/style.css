@@ -192,6 +192,64 @@ main p {
   flex-shrink: 0;
 }
 
+.assignment-student-card {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.assignment-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+.submission-status {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.late-badge {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.submission-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submission-form input[type="file"] {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  flex: 1;
+  min-width: 160px;
+}
+
+.submission-form button[type="submit"] {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.submission-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submission-form-status {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
 .lecture-delete-btn {
   background: transparent;
   border: 1px solid var(--border);

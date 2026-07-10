@@ -22,6 +22,21 @@ async function fetchDeleteAssignment(assignmentId, idToken) {
   return res.json();
 }
 
+async function fetchSubmitAssignment(assignmentId, fileName, mimeType, fileBase64, idToken) {
+  const res = await fetch(CONFIG.EXEC_URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'submitAssignment',
+      idToken: idToken,
+      assignmentId: assignmentId,
+      fileName: fileName,
+      mimeType: mimeType,
+      fileBase64: fileBase64,
+    }),
+  });
+  return res.json();
+}
+
 function renderAssignmentList(assignments, options) {
   const showDeleteButton = !!(options && options.showDeleteButton);
   const container = document.getElementById('assignments-list');
@@ -56,6 +71,48 @@ function renderAssignmentList(assignments, options) {
   }
 }
 
+function renderStudentAssignmentList(assignments) {
+  const container = document.getElementById('assignments-list');
+
+  if (assignments.length === 0) {
+    container.innerHTML = '<p class="lectures-empty">등록된 과제가 없습니다.</p>';
+    return;
+  }
+
+  container.innerHTML = assignments.map(function (a) {
+    const dueLabel = a.dueDate ? escapeHtml(a.dueDate) + '까지 제출 가능' : '';
+    const descBlock = a.description ? '<p class="assignment-description">' + escapeHtml(a.description) + '</p>' : '';
+    const submission = a.mySubmission;
+
+    let statusText = '미제출';
+    if (submission) {
+      statusText = '제출 완료: ' + escapeHtml(submission.fileName) + ' (' + escapeHtml(submission.lastUpdatedAt) + ')';
+      if (submission.isLate) statusText += ' <span class="late-badge">지각 제출</span>';
+    }
+    const submitLabel = submission ? '다시 제출하기' : '제출하기';
+
+    return (
+      '<div class="lecture-card assignment-student-card">' +
+        '<div class="lecture-info">' +
+          '<span class="lecture-title">' + escapeHtml(a.title) + '</span>' +
+          '<span class="lecture-week">' + dueLabel + '</span>' +
+        '</div>' +
+        descBlock +
+        '<p class="submission-status">' + statusText + '</p>' +
+        '<form class="submission-form" data-assignment-id="' + escapeHtml(a.id) + '">' +
+          '<input type="file" required>' +
+          '<button type="submit">' + submitLabel + '</button>' +
+          '<span class="submission-form-status"></span>' +
+        '</form>' +
+      '</div>'
+    );
+  }).join('');
+
+  container.querySelectorAll('.submission-form').forEach(function (form) {
+    form.addEventListener('submit', function (e) { handleSubmitAssignmentForm(e, form.dataset.assignmentId, form); });
+  });
+}
+
 async function loadAssignments(options) {
   const container = document.getElementById('assignments-list');
   const session = getSession();
@@ -67,9 +124,44 @@ async function loadAssignments(options) {
       container.innerHTML = '<p class="lectures-empty">과제 목록을 불러오지 못했습니다.</p>';
       return;
     }
-    renderAssignmentList(data.assignments, options);
+    if (options && options.showDeleteButton) {
+      renderAssignmentList(data.assignments, options);
+    } else {
+      renderStudentAssignmentList(data.assignments);
+    }
   } catch (err) {
     container.innerHTML = '<p class="lectures-empty">과제 목록을 불러오지 못했습니다.</p>';
+  }
+}
+
+async function handleSubmitAssignmentForm(e, assignmentId, form) {
+  e.preventDefault();
+
+  const session = getSession();
+  if (!session) return;
+
+  const fileInput = form.querySelector('input[type="file"]');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const statusEl = form.querySelector('.submission-form-status');
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  submitBtn.disabled = true;
+  statusEl.textContent = '제출 중...';
+
+  try {
+    const fileBase64 = await readFileAsBase64(file);
+    const data = await fetchSubmitAssignment(assignmentId, file.name, file.type, fileBase64, session.idToken);
+    if (!data.ok) {
+      statusEl.textContent = '제출 실패: ' + data.error;
+      submitBtn.disabled = false;
+      return;
+    }
+    statusEl.textContent = '제출 완료';
+    loadAssignments();
+  } catch (err) {
+    statusEl.textContent = '제출 요청 실패: ' + err;
+    submitBtn.disabled = false;
   }
 }
 

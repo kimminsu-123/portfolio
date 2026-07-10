@@ -4,6 +4,15 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+function readFileAsBase64(file) {
+  return new Promise(function (resolve, reject) {
+    const reader = new FileReader();
+    reader.onload = function () { resolve(reader.result.substring(reader.result.indexOf(',') + 1)); };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 async function fetchLectures() {
   const session = getSession();
   const res = await fetch(CONFIG.EXEC_URL, {
