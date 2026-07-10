@@ -13,6 +13,11 @@ function clearSession() {
   sessionStorage.removeItem(SESSION_KEY);
 }
 
+function hideLoadingView() {
+  const el = document.getElementById('loading-view');
+  if (el) el.style.display = 'none';
+}
+
 async function verifyLoginWithBackend(idToken) {
   const res = await fetch(CONFIG.EXEC_URL, {
     method: 'POST',

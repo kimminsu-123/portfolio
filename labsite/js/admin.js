@@ -1,4 +1,5 @@
 function renderApp() {
+  hideLoadingView();
   const session = getSession();
 
   const loginArea = document.getElementById('login-area');
