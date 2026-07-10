@@ -35,6 +35,8 @@ function doPost(e) {
       return handleListAssignments(body.idToken);
     case 'submitAssignment':
       return handleSubmitAssignment(body);
+    case 'listSubmissions':
+      return handleListSubmissions(body);
     default:
       return jsonResponse({ ok: false, error: 'unknown action' });
   }
@@ -359,9 +361,7 @@ function handleListAssignments(idToken) {
   if (!auth.ok) return jsonResponse(auth);
 
   const rows = readSheetRows('Assignments');
-  const mySubmissions = auth.isAdmin
-    ? []
-    : readSheetRows('Submissions').filter(function (s) { return s.studentEmail === auth.email; });
+  const mySubmissions = readSheetRows('Submissions').filter(function (s) { return s.studentEmail === auth.email; });
 
   const list = rows.map(function (r) {
     const dueDate = formatDateOnly(r.dueDate);
@@ -393,8 +393,11 @@ function handleSubmitAssignment(body) {
   const assignment = readSheetRows('Assignments').filter(function (a) { return String(a.id) === String(body.assignmentId); })[0];
   if (!assignment) return jsonResponse({ ok: false, error: 'assignment not found' });
 
+  const studentDisplayName = auth.name || auth.email;
+  const storedFileName = studentDisplayName + '_' + body.fileName;
+
   const bytes = Utilities.base64Decode(body.fileBase64);
-  const blob = Utilities.newBlob(bytes, body.mimeType || 'application/octet-stream', body.fileName);
+  const blob = Utilities.newBlob(bytes, body.mimeType || 'application/octet-stream', storedFileName);
 
   const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Submissions');
   const values = sheet.getDataRange().getValues();
@@ -408,16 +411,37 @@ function handleSubmitAssignment(body) {
 
   for (let i = 1; i < values.length; i++) {
     if (String(values[i][assignmentIdColIdx]) === String(body.assignmentId) && values[i][emailColIdx] === auth.email) {
-      Drive.Files.update({}, values[i][fileIdColIdx], blob);
-      sheet.getRange(i + 1, fileNameColIdx + 1).setValue(body.fileName);
+      Drive.Files.update({ name: storedFileName }, values[i][fileIdColIdx], blob);
+      sheet.getRange(i + 1, fileNameColIdx + 1).setValue(storedFileName);
       sheet.getRange(i + 1, lastUpdatedColIdx + 1).setValue(now);
       return jsonResponse({ ok: true, resubmitted: true });
     }
   }
 
   const file = DriveApp.getFolderById(assignment.folderId).createFile(blob);
-  sheet.appendRow([Utilities.getUuid(), body.assignmentId, auth.email, auth.name || auth.email, file.getId(), body.fileName, now, now]);
+  sheet.appendRow([Utilities.getUuid(), body.assignmentId, auth.email, studentDisplayName, file.getId(), storedFileName, now, now]);
   return jsonResponse({ ok: true, resubmitted: false });
+}
+
+function handleListSubmissions(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  const titleById = {};
+  readSheetRows('Assignments').forEach(function (a) { titleById[a.id] = a.title; });
+
+  const submissions = readSheetRows('Submissions').map(function (s) {
+    return {
+      assignmentTitle: titleById[s.assignmentId] || '(삭제된 과제)',
+      studentName: s.studentName,
+      studentEmail: s.studentEmail,
+      fileName: s.fileName,
+      firstSubmittedAt: formatDateTimeKST(s.firstSubmittedAt),
+      lastUpdatedAt: formatDateTimeKST(s.lastUpdatedAt),
+    };
+  }).sort(function (a, b) { return a.lastUpdatedAt < b.lastUpdatedAt ? 1 : -1; });
+
+  return jsonResponse({ ok: true, submissions: submissions });
 }
 
 // Sheets가 "yyyy-mm-dd" 형태의 문자열을 셀에 쓰는 시점에 Date로 자동 인식해버려서,

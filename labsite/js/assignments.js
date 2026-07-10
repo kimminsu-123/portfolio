@@ -92,7 +92,7 @@ function renderStudentAssignmentList(assignments) {
     const submitLabel = submission ? '다시 제출하기' : '제출하기';
 
     return (
-      '<div class="lecture-card assignment-student-card">' +
+      '<div class="lecture-card lecture-card-stacked">' +
         '<div class="lecture-info">' +
           '<span class="lecture-title">' + escapeHtml(a.title) + '</span>' +
           '<span class="lecture-week">' + dueLabel + '</span>' +
