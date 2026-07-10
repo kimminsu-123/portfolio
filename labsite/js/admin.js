@@ -34,8 +34,9 @@ function renderApp() {
   }
 }
 
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
   initGoogleLogin();
+  await refreshSession();
   renderApp();
   document.getElementById('logout-btn').addEventListener('click', logout);
 });

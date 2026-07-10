@@ -13,16 +13,20 @@ function clearSession() {
   sessionStorage.removeItem(SESSION_KEY);
 }
 
+async function verifyLoginWithBackend(idToken) {
+  const res = await fetch(CONFIG.EXEC_URL, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'verifyLogin', idToken: idToken }),
+  });
+  return res.json();
+}
+
 async function handleCredentialResponse(response) {
   const idToken = response.credential;
 
   let data;
   try {
-    const res = await fetch(CONFIG.EXEC_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'verifyLogin', idToken: idToken }),
-    });
-    data = await res.json();
+    data = await verifyLoginWithBackend(idToken);
   } catch (err) {
     alert('백엔드 요청에 실패했습니다: ' + err);
     return;
@@ -41,6 +45,32 @@ async function handleCredentialResponse(response) {
     idToken: idToken,
   });
   renderApp();
+}
+
+// 새로고침 시 캐시된 세션을 그대로 믿지 않고 서버 기준(수강생 명부 등록 여부, 토큰 만료)으로 재검증
+async function refreshSession() {
+  const session = getSession();
+  if (!session) return;
+
+  let data;
+  try {
+    data = await verifyLoginWithBackend(session.idToken);
+  } catch (err) {
+    return;
+  }
+
+  if (!data.ok) {
+    clearSession();
+    return;
+  }
+
+  setSession({
+    email: data.email,
+    isAdmin: data.isAdmin,
+    isStudent: data.isStudent,
+    name: data.name,
+    idToken: session.idToken,
+  });
 }
 
 function initGoogleLogin() {
