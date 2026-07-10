@@ -23,6 +23,8 @@ function renderApp() {
     loggedOutView.style.display = 'block';
     loggedInView.style.display = 'none';
   }
+
+  loadLectures();
 }
 
 window.addEventListener('load', () => {

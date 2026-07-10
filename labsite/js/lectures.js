@@ -20,7 +20,16 @@ async function fetchLecturePreview(lectureId) {
   return res.json();
 }
 
-function renderLectureList(lectures) {
+async function fetchDeleteLecture(lectureId, idToken) {
+  const res = await fetch(CONFIG.EXEC_URL, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'deleteLecture', idToken: idToken, lectureId: lectureId }),
+  });
+  return res.json();
+}
+
+function renderLectureList(lectures, options) {
+  const showDeleteButton = !!(options && options.showDeleteButton);
   const container = document.getElementById('lectures-list');
 
   if (lectures.length === 0) {
@@ -31,6 +40,9 @@ function renderLectureList(lectures) {
   container.innerHTML = lectures.map(function (lecture) {
     const typeLabel = lecture.fileType === 'ppt' ? 'PPT' : 'HTML';
     const weekLabel = lecture.week ? 'Week ' + escapeHtml(lecture.week) : '';
+    const deleteBtn = showDeleteButton
+      ? '<button class="lecture-delete-btn" data-id="' + escapeHtml(lecture.id) + '">삭제</button>'
+      : '';
     return (
       '<div class="lecture-card">' +
         '<div class="lecture-info">' +
@@ -38,7 +50,10 @@ function renderLectureList(lectures) {
           '<span class="lecture-title">' + escapeHtml(lecture.title) + '</span>' +
           '<span class="lecture-type-badge lecture-type-' + escapeHtml(lecture.fileType) + '">' + typeLabel + '</span>' +
         '</div>' +
-        '<button class="lecture-preview-btn" data-id="' + escapeHtml(lecture.id) + '">미리보기</button>' +
+        '<div class="lecture-actions">' +
+          '<button class="lecture-preview-btn" data-id="' + escapeHtml(lecture.id) + '">확인하기</button>' +
+          deleteBtn +
+        '</div>' +
       '</div>'
     );
   }).join('');
@@ -46,9 +61,15 @@ function renderLectureList(lectures) {
   container.querySelectorAll('.lecture-preview-btn').forEach(function (btn) {
     btn.addEventListener('click', function () { openPreview(btn.dataset.id); });
   });
+
+  if (showDeleteButton) {
+    container.querySelectorAll('.lecture-delete-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { handleDeleteLectureClick(btn.dataset.id, btn); });
+    });
+  }
 }
 
-async function loadLectures() {
+async function loadLectures(options) {
   const container = document.getElementById('lectures-list');
   try {
     const data = await fetchLectures();
@@ -56,10 +77,30 @@ async function loadLectures() {
       container.innerHTML = '<p class="lectures-empty">강의자료를 불러오지 못했습니다.</p>';
       return;
     }
-    renderLectureList(data.lectures);
+    renderLectureList(data.lectures, options);
   } catch (err) {
     container.innerHTML = '<p class="lectures-empty">강의자료를 불러오지 못했습니다.</p>';
   }
+}
+
+async function handleDeleteLectureClick(lectureId, btn) {
+  if (!confirm('정말 삭제하시겠습니까? 되돌릴 수 없습니다.')) return;
+
+  const session = getSession();
+  if (!session) return;
+
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '삭제 중...';
+
+  const data = await fetchDeleteLecture(lectureId, session.idToken);
+  if (!data.ok) {
+    alert('삭제 실패: ' + data.error);
+    btn.disabled = false;
+    btn.textContent = originalText;
+    return;
+  }
+  loadLectures({ showDeleteButton: true });
 }
 
 let currentSlides = [];
@@ -140,10 +181,20 @@ async function openPreview(lectureId) {
 function closePreview() {
   document.getElementById('preview-overlay').style.display = 'none';
   document.getElementById('preview-body').innerHTML = '';
+  currentSlides = [];
+  currentSlideIndex = 0;
 }
 
+document.addEventListener('keydown', function (e) {
+  if (currentSlides.length === 0) return;
+  const overlay = document.getElementById('preview-overlay');
+  if (!overlay || overlay.style.display === 'none') return;
+
+  if (e.key === 'ArrowLeft' && currentSlideIndex > 0) showSlide(currentSlideIndex - 1);
+  if (e.key === 'ArrowRight' && currentSlideIndex < currentSlides.length - 1) showSlide(currentSlideIndex + 1);
+});
+
 window.addEventListener('load', function () {
-  loadLectures();
   document.getElementById('preview-close-btn').addEventListener('click', closePreview);
   document.getElementById('preview-overlay').addEventListener('click', function (e) {
     if (e.target.id === 'preview-overlay') closePreview();

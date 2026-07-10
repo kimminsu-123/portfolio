@@ -17,6 +17,10 @@ function doPost(e) {
       return handleListLectures();
     case 'getLecturePreview':
       return handleGetLecturePreview(body.lectureId);
+    case 'uploadLecture':
+      return handleUploadLecture(body);
+    case 'deleteLecture':
+      return handleDeleteLecture(body);
     default:
       return jsonResponse({ ok: false, error: 'unknown action' });
   }
@@ -47,6 +51,13 @@ function verifyGoogleIdToken(idToken) {
   return payload.email;
 }
 
+function requireAdmin(idToken) {
+  const email = verifyGoogleIdToken(idToken);
+  if (!email) return { ok: false, error: 'invalid token' };
+  if (email !== getConfig().adminEmail) return { ok: false, error: 'forbidden: admin only' };
+  return { ok: true, email: email };
+}
+
 function getConfig() {
   const props = PropertiesService.getScriptProperties();
   return {
@@ -74,12 +85,26 @@ function handleGetLecturePreview(lectureId) {
   if (!lecture) return jsonResponse({ ok: false, error: 'lecture not found' });
 
   if (lecture.fileType === 'ppt') {
-    let slideImageUrls = [];
+    let fileIds = [];
     try {
-      slideImageUrls = lecture.slideImageUrls ? JSON.parse(lecture.slideImageUrls) : [];
+      fileIds = lecture.slideImageFileIds ? JSON.parse(lecture.slideImageFileIds) : [];
     } catch (err) {
-      slideImageUrls = [];
+      fileIds = [];
     }
+
+    // 저장된 건 Drive 파일 ID들 — getThumbnail()의 contentUrl은 30분 만료라 캐싱 불가하므로
+    // 매 조회마다 Drive에 저장해둔 PNG를 읽어 base64로 즉석 인코딩한다.
+    const slideImageUrls = fileIds
+      .map(function (fileId) {
+        try {
+          const blob = DriveApp.getFileById(fileId).getBlob();
+          return 'data:' + blob.getContentType() + ';base64,' + Utilities.base64Encode(blob.getBytes());
+        } catch (err) {
+          return null;
+        }
+      })
+      .filter(function (url) { return url !== null; });
+
     return jsonResponse({ ok: true, fileType: 'ppt', title: lecture.title, slideImageUrls: slideImageUrls });
   }
 
@@ -89,6 +114,137 @@ function handleGetLecturePreview(lectureId) {
   }
 
   return jsonResponse({ ok: false, error: 'unsupported fileType' });
+}
+
+function handleUploadLecture(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  if (!body.title || !body.fileName || !body.fileBase64) {
+    return jsonResponse({ ok: false, error: 'title, fileName, fileBase64 required' });
+  }
+
+  const fileType = detectFileType(body.fileName);
+  if (!fileType) return jsonResponse({ ok: false, error: 'unsupported file extension' });
+
+  const folderId = getConfig().lectureFolderId;
+  if (!folderId) return jsonResponse({ ok: false, error: 'LECTURE_FOLDER_ID not configured' });
+  const folder = DriveApp.getFolderById(folderId);
+
+  const id = Utilities.getUuid();
+  const uploadedAt = new Date().toISOString();
+  const bytes = Utilities.base64Decode(body.fileBase64);
+  const mimeType = fileType === 'ppt'
+    ? 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    : MimeType.HTML;
+  const blob = Utilities.newBlob(bytes, mimeType, body.fileName);
+
+  let sourceFileId = '';
+  let slidesFileId = '';
+  let slideImageFileIds = [];
+
+  try {
+    sourceFileId = folder.createFile(blob).getId();
+
+    if (fileType === 'ppt') {
+      slidesFileId = convertPptxToSlides(blob, body.title, folderId);
+      slideImageFileIds = cacheSlideThumbnails(slidesFileId, id, folder);
+    }
+  } catch (err) {
+    trashFileIfExists(sourceFileId);
+    trashFileIfExists(slidesFileId);
+    slideImageFileIds.forEach(trashFileIfExists);
+    return jsonResponse({ ok: false, error: '업로드 처리 실패: ' + err });
+  }
+
+  const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Lectures');
+  sheet.appendRow([
+    id, body.title, body.week || '', fileType,
+    sourceFileId, slidesFileId,
+    slideImageFileIds.length ? JSON.stringify(slideImageFileIds) : '',
+    uploadedAt,
+  ]);
+
+  return jsonResponse({
+    ok: true,
+    lecture: { id: id, title: body.title, week: body.week || '', fileType: fileType, uploadedAt: uploadedAt },
+  });
+}
+
+function handleDeleteLecture(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  if (!body.lectureId) return jsonResponse({ ok: false, error: 'lectureId required' });
+
+  const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Lectures');
+  const values = sheet.getDataRange().getValues();
+  const headers = values[0];
+  const idColIdx = headers.indexOf('id');
+
+  let rowIndex = -1;
+  let rowData = null;
+  for (let i = 1; i < values.length; i++) {
+    if (String(values[i][idColIdx]) === String(body.lectureId)) {
+      rowIndex = i + 1;
+      rowData = values[i];
+      break;
+    }
+  }
+  if (rowIndex === -1) return jsonResponse({ ok: false, error: 'lecture not found' });
+
+  const lecture = {};
+  headers.forEach(function (h, i) { lecture[h] = rowData[i]; });
+
+  trashFileIfExists(lecture.sourceFileId);
+  trashFileIfExists(lecture.slidesFileId);
+  if (lecture.slideImageFileIds) {
+    let ids = [];
+    try { ids = JSON.parse(lecture.slideImageFileIds); } catch (err) { ids = []; }
+    ids.forEach(trashFileIfExists);
+  }
+
+  sheet.deleteRow(rowIndex);
+  return jsonResponse({ ok: true, deletedId: body.lectureId });
+}
+
+function detectFileType(fileName) {
+  const lower = String(fileName).toLowerCase();
+  if (lower.endsWith('.ppt') || lower.endsWith('.pptx')) return 'ppt';
+  if (lower.endsWith('.html') || lower.endsWith('.htm')) return 'html';
+  return null;
+}
+
+function convertPptxToSlides(blob, title, folderId) {
+  const resource = { name: title, mimeType: MimeType.GOOGLE_SLIDES, parents: [folderId] };
+  const converted = Drive.Files.create(resource, blob);
+  return converted.id;
+}
+
+function cacheSlideThumbnails(slidesFileId, lectureId, folder) {
+  const presentation = Slides.Presentations.get(slidesFileId);
+  const slides = presentation.slides || [];
+
+  return slides.map(function (slide, idx) {
+    const thumbnail = Slides.Presentations.Pages.getThumbnail(slidesFileId, slide.objectId, {
+      'thumbnailProperties.thumbnailSize': 'LARGE',
+    });
+    // contentUrl은 서명된 임시 URL(수명 30분) — 만료 전에 바로 소비해 Drive PNG로 영구 저장한다.
+    const imgBlob = UrlFetchApp.fetch(thumbnail.contentUrl).getBlob()
+      .setName(lectureId + '-slide-' + (idx + 1) + '.png');
+    const fileId = folder.createFile(imgBlob).getId();
+    Utilities.sleep(300); // getThumbnail은 expensive read 쿼터 — 슬라이드 많을 때 과다호출 방지
+    return fileId;
+  });
+}
+
+function trashFileIfExists(fileId) {
+  if (!fileId) return;
+  try {
+    DriveApp.getFileById(fileId).setTrashed(true);
+  } catch (err) {
+    // 이미 없거나 접근 불가 — 무시
+  }
 }
 
 function readLecturesSheet() {
@@ -130,7 +286,7 @@ function setupDatabase() {
   const lecturesSheet = ss.getSheets()[0];
   lecturesSheet.setName('Lectures');
   lecturesSheet.getRange(1, 1, 1, 8).setValues([
-    ['id', 'title', 'week', 'fileType', 'sourceFileId', 'slidesFileId', 'slideImageUrls', 'uploadedAt'],
+    ['id', 'title', 'week', 'fileType', 'sourceFileId', 'slidesFileId', 'slideImageFileIds', 'uploadedAt'],
   ]);
 
   props.setProperty('SPREADSHEET_ID', ss.getId());
@@ -139,7 +295,44 @@ function setupDatabase() {
   Logger.log('URL: ' + ss.getUrl());
 }
 
-// doGet/doPost에서는 호출하지 않음 — 읽기 전용 목록/미리보기 기능 검증용 임시 테스트 데이터 삽입, 업로드 기능(§10-5) 완성되면 삭제
+// doGet/doPost에서는 호출하지 않음 — Apps Script 에디터에서 수동으로 한 번만 실행
+function setupLectureFolder() {
+  const props = PropertiesService.getScriptProperties();
+  const existingId = props.getProperty('LECTURE_FOLDER_ID');
+  if (existingId) {
+    Logger.log('LECTURE_FOLDER_ID가 이미 설정되어 있습니다: ' + existingId);
+    return;
+  }
+
+  const folder = DriveApp.createFolder('LabSite Lectures');
+  props.setProperty('LECTURE_FOLDER_ID', folder.getId());
+
+  Logger.log('강의자료 폴더 생성 완료: ' + folder.getId());
+  Logger.log('URL: ' + folder.getUrl());
+}
+
+// doGet/doPost에서는 호출하지 않음 — seedTestLectures()가 남긴 테스트 데이터(test-html-1, test-ppt-1 행 +
+// test-lecture.html Drive 파일) 정리용 1회성 함수. slideImageUrls -> slideImageFileIds 컬럼명 변경 후 실행할 것.
+function cleanupTestLectures() {
+  const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Lectures');
+  const values = sheet.getDataRange().getValues();
+  const headers = values[0];
+  const idColIdx = headers.indexOf('id');
+  const sourceColIdx = headers.indexOf('sourceFileId');
+  const targetIds = ['test-html-1', 'test-ppt-1'];
+
+  for (let i = values.length - 1; i >= 1; i--) {
+    if (targetIds.indexOf(String(values[i][idColIdx])) !== -1) {
+      const sourceFileId = values[i][sourceColIdx];
+      trashFileIfExists(sourceFileId);
+      sheet.deleteRow(i + 1);
+    }
+  }
+
+  Logger.log('테스트 데이터 정리 완료');
+}
+
+// doGet/doPost에서는 호출하지 않음 — 읽기 전용 목록/미리보기 기능 검증용 임시 테스트 데이터 삽입, 업로드 기능(§10-5) 완성되어 cleanupTestLectures() 실행 후 삭제 예정
 function seedTestLectures() {
   const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Lectures');
   const now = new Date().toISOString();
