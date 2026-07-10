@@ -13,6 +13,11 @@ function clearSession() {
   sessionStorage.removeItem(SESSION_KEY);
 }
 
+function showLoadingView() {
+  const el = document.getElementById('loading-view');
+  if (el) el.style.display = 'flex';
+}
+
 function hideLoadingView() {
   const el = document.getElementById('loading-view');
   if (el) el.style.display = 'none';
@@ -28,16 +33,19 @@ async function verifyLoginWithBackend(idToken) {
 
 async function handleCredentialResponse(response) {
   const idToken = response.credential;
+  showLoadingView();
 
   let data;
   try {
     data = await verifyLoginWithBackend(idToken);
   } catch (err) {
+    hideLoadingView();
     alert('백엔드 요청에 실패했습니다: ' + err);
     return;
   }
 
   if (!data.ok) {
+    hideLoadingView();
     alert('로그인 확인에 실패했습니다: ' + data.error);
     return;
   }
