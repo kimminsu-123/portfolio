@@ -358,9 +358,17 @@ function handleListAssignments(idToken) {
 
   const rows = readSheetRows('Assignments');
   const list = rows.map(function (r) {
-    return { id: r.id, title: r.title, description: r.description, dueDate: r.dueDate, createdAt: r.createdAt };
+    return { id: r.id, title: r.title, description: r.description, dueDate: formatDateOnly(r.dueDate), createdAt: r.createdAt };
   });
   return jsonResponse({ ok: true, assignments: list });
+}
+
+// Sheets가 "yyyy-mm-dd" 형태의 문자열을 셀에 쓰는 시점에 Date로 자동 인식해버려서,
+// 읽어올 때 Date 객체로 반환되고 JSON.stringify가 UTC ISO 문자열로 직렬화하는 문제 방지
+function formatDateOnly(value) {
+  if (!value) return '';
+  if (value instanceof Date) return Utilities.formatDate(value, 'Asia/Seoul', 'yyyy-MM-dd');
+  return String(value);
 }
 
 function detectFileType(fileName) {

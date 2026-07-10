@@ -32,7 +32,7 @@ function renderAssignmentList(assignments, options) {
   }
 
   container.innerHTML = assignments.map(function (a) {
-    const dueLabel = a.dueDate ? '마감: ' + escapeHtml(a.dueDate) : '';
+    const dueLabel = a.dueDate ? escapeHtml(a.dueDate) + '까지 제출 가능' : '';
     const deleteBtn = showDeleteButton
       ? '<button class="lecture-delete-btn" data-id="' + escapeHtml(a.id) + '">삭제</button>'
       : '';
