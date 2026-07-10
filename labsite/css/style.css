@@ -334,7 +334,8 @@ main p {
 }
 
 .admin-form input[type="text"],
-.admin-form input[type="email"] {
+.admin-form input[type="email"],
+.admin-form input[type="date"] {
   background: var(--bg-primary);
   border: 1px solid var(--border);
   color: var(--text-primary);
@@ -345,9 +346,28 @@ main p {
   min-width: 160px;
 }
 
+.admin-form textarea {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  flex: 1 1 100%;
+  min-width: 200px;
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
 #upload-week {
   flex: none;
   width: 100px;
+}
+
+#assignment-due-date {
+  flex: none;
+  width: 140px;
 }
 
 .admin-form input[type="file"] {

@@ -8,6 +8,7 @@ function renderApp() {
   const notAdminView = document.getElementById('not-admin-view');
   const adminPanel = document.getElementById('admin-panel');
   const studentsPanel = document.getElementById('students-panel');
+  const assignmentsPanel = document.getElementById('assignments-panel');
 
   if (!session) {
     loginArea.style.display = 'block';
@@ -16,6 +17,7 @@ function renderApp() {
     notAdminView.style.display = 'none';
     adminPanel.style.display = 'none';
     studentsPanel.style.display = 'none';
+    assignmentsPanel.style.display = 'none';
     return;
   }
 
@@ -28,10 +30,12 @@ function renderApp() {
   notAdminView.style.display = session.isAdmin ? 'none' : 'block';
   adminPanel.style.display = session.isAdmin ? 'block' : 'none';
   studentsPanel.style.display = session.isAdmin ? 'block' : 'none';
+  assignmentsPanel.style.display = session.isAdmin ? 'block' : 'none';
 
   if (session.isAdmin) {
     loadLectures({ showDeleteButton: true });
     loadStudents();
+    loadAssignments({ showDeleteButton: true });
   }
 }
 

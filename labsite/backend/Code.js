@@ -27,6 +27,12 @@ function doPost(e) {
       return handleRemoveStudent(body);
     case 'listStudents':
       return handleListStudents(body);
+    case 'createAssignment':
+      return handleCreateAssignment(body);
+    case 'deleteAssignment':
+      return handleDeleteAssignment(body);
+    case 'listAssignments':
+      return handleListAssignments(body.idToken);
     default:
       return jsonResponse({ ok: false, error: 'unknown action' });
   }
@@ -294,6 +300,69 @@ function handleListStudents(body) {
   return jsonResponse({ ok: true, students: rows });
 }
 
+function handleCreateAssignment(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  if (!body.title) return jsonResponse({ ok: false, error: 'title required' });
+
+  const rootFolderId = getConfig().submissionRootFolderId;
+  if (!rootFolderId) return jsonResponse({ ok: false, error: 'SUBMISSION_ROOT_FOLDER_ID not configured' });
+
+  const id = Utilities.getUuid();
+  const createdAt = new Date().toISOString();
+  const folder = DriveApp.getFolderById(rootFolderId).createFolder(body.title + ' - ' + id);
+
+  const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Assignments');
+  sheet.appendRow([id, body.title, body.description || '', body.dueDate || '', folder.getId(), createdAt]);
+
+  return jsonResponse({
+    ok: true,
+    assignment: { id: id, title: body.title, description: body.description || '', dueDate: body.dueDate || '', createdAt: createdAt },
+  });
+}
+
+function handleDeleteAssignment(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  if (!body.assignmentId) return jsonResponse({ ok: false, error: 'assignmentId required' });
+
+  const sheet = SpreadsheetApp.openById(getConfig().spreadsheetId).getSheetByName('Assignments');
+  const values = sheet.getDataRange().getValues();
+  const headers = values[0];
+  const idColIdx = headers.indexOf('id');
+
+  let rowIndex = -1;
+  let rowData = null;
+  for (let i = 1; i < values.length; i++) {
+    if (String(values[i][idColIdx]) === String(body.assignmentId)) {
+      rowIndex = i + 1;
+      rowData = values[i];
+      break;
+    }
+  }
+  if (rowIndex === -1) return jsonResponse({ ok: false, error: 'assignment not found' });
+
+  const assignment = {};
+  headers.forEach(function (h, i) { assignment[h] = rowData[i]; });
+
+  trashFolderIfExists(assignment.folderId);
+  sheet.deleteRow(rowIndex);
+  return jsonResponse({ ok: true, deletedId: body.assignmentId });
+}
+
+function handleListAssignments(idToken) {
+  const auth = requireStudentOrAdmin(idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  const rows = readSheetRows('Assignments');
+  const list = rows.map(function (r) {
+    return { id: r.id, title: r.title, description: r.description, dueDate: r.dueDate, createdAt: r.createdAt };
+  });
+  return jsonResponse({ ok: true, assignments: list });
+}
+
 function detectFileType(fileName) {
   const lower = String(fileName).toLowerCase();
   if (lower.endsWith('.ppt') || lower.endsWith('.pptx')) return 'ppt';
@@ -328,6 +397,15 @@ function trashFileIfExists(fileId) {
   if (!fileId) return;
   try {
     DriveApp.getFileById(fileId).setTrashed(true);
+  } catch (err) {
+    // 이미 없거나 접근 불가 — 무시
+  }
+}
+
+function trashFolderIfExists(folderId) {
+  if (!folderId) return;
+  try {
+    DriveApp.getFolderById(folderId).setTrashed(true);
   } catch (err) {
     // 이미 없거나 접근 불가 — 무시
   }
@@ -409,6 +487,36 @@ function setupStudentsSheet() {
   sheet.getRange(1, 1, 1, 3).setValues([['email', 'name', 'registeredAt']]);
 
   Logger.log('Students 탭 생성 완료');
+}
+
+// doGet/doPost에서는 호출하지 않음 — Apps Script 에디터에서 수동으로 한 번만 실행
+function setupAssignmentsSheet() {
+  const ss = SpreadsheetApp.openById(getConfig().spreadsheetId);
+  if (ss.getSheetByName('Assignments')) {
+    Logger.log('Assignments 탭이 이미 있습니다.');
+    return;
+  }
+
+  const sheet = ss.insertSheet('Assignments');
+  sheet.getRange(1, 1, 1, 6).setValues([['id', 'title', 'description', 'dueDate', 'folderId', 'createdAt']]);
+
+  Logger.log('Assignments 탭 생성 완료');
+}
+
+// doGet/doPost에서는 호출하지 않음 — Apps Script 에디터에서 수동으로 한 번만 실행
+function setupSubmissionRootFolder() {
+  const props = PropertiesService.getScriptProperties();
+  const existingId = props.getProperty('SUBMISSION_ROOT_FOLDER_ID');
+  if (existingId) {
+    Logger.log('SUBMISSION_ROOT_FOLDER_ID가 이미 설정되어 있습니다: ' + existingId);
+    return;
+  }
+
+  const folder = DriveApp.createFolder('LabSite Submissions');
+  props.setProperty('SUBMISSION_ROOT_FOLDER_ID', folder.getId());
+
+  Logger.log('과제 제출 루트 폴더 생성 완료: ' + folder.getId());
+  Logger.log('URL: ' + folder.getUrl());
 }
 
 // doGet/doPost에서는 호출하지 않음 — seedTestLectures()가 남긴 테스트 데이터(test-html-1, test-ppt-1 행 +

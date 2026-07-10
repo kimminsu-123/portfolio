@@ -8,6 +8,7 @@ function renderApp() {
   const notRegisteredView = document.getElementById('not-registered-view');
   const loggedInView = document.getElementById('logged-in-view');
   const lecturesSection = document.getElementById('lectures-section');
+  const assignmentsSection = document.getElementById('assignments-section');
 
   if (!session) {
     loginArea.style.display = 'block';
@@ -16,6 +17,7 @@ function renderApp() {
     notRegisteredView.style.display = 'none';
     loggedInView.style.display = 'none';
     lecturesSection.style.display = 'none';
+    assignmentsSection.style.display = 'none';
     return;
   }
 
@@ -31,12 +33,14 @@ function renderApp() {
   notRegisteredView.style.display = canViewContent ? 'none' : 'block';
   loggedInView.style.display = canViewContent ? 'block' : 'none';
   lecturesSection.style.display = canViewContent ? 'block' : 'none';
+  assignmentsSection.style.display = canViewContent ? 'block' : 'none';
 
   if (canViewContent) {
     document.getElementById('welcome-message').textContent = session.isAdmin
       ? '관리자로 로그인되었습니다.'
       : '수강생으로 로그인되었습니다.';
     loadLectures();
+    loadAssignments();
   }
 }
 

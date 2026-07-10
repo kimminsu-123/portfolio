@@ -60,6 +60,20 @@
         <p class="lectures-empty">불러오는 중...</p>
       </div>
     </section>
+
+    <section id="assignments-panel" class="upload-section" style="display:none;">
+      <h2>과제 관리</h2>
+      <form id="assignment-form" class="admin-form">
+        <input id="assignment-title" type="text" placeholder="제목" required>
+        <input id="assignment-due-date" type="date">
+        <textarea id="assignment-description" placeholder="설명"></textarea>
+        <button id="assignment-submit-btn" type="submit">생성</button>
+        <span id="assignment-status" class="admin-form-status"></span>
+      </form>
+      <div id="assignments-list" class="lectures-list">
+        <p class="lectures-empty">불러오는 중...</p>
+      </div>
+    </section>
   </main>
 
   <section class="lectures-section">
@@ -84,6 +98,7 @@
   <script src="./js/lectures.js"></script>
   <script src="./js/upload.js"></script>
   <script src="./js/students.js"></script>
+  <script src="./js/assignments.js"></script>
   <script src="./js/admin.js"></script>
 </body>
 </html>
