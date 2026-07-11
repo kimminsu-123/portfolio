@@ -39,6 +39,29 @@ async function fetchDeleteLecture(lectureId, idToken) {
   return res.json();
 }
 
+async function fetchDownloadLecture(lectureId, idToken) {
+  const res = await fetch(CONFIG.EXEC_URL, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'downloadLecture', idToken: idToken, lectureId: lectureId }),
+  });
+  return res.json();
+}
+
+function triggerBrowserDownload(base64, mimeType, fileName) {
+  const byteString = atob(base64);
+  const bytes = new Uint8Array(byteString.length);
+  for (let i = 0; i < byteString.length; i++) bytes[i] = byteString.charCodeAt(i);
+  const blob = new Blob([bytes], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 function renderLectureList(lectures, options) {
   const showDeleteButton = !!(options && options.showDeleteButton);
   const container = document.getElementById('lectures-list');
@@ -51,6 +74,9 @@ function renderLectureList(lectures, options) {
   container.innerHTML = lectures.map(function (lecture) {
     const typeLabel = lecture.fileType === 'ppt' ? 'PPT' : 'HTML';
     const weekLabel = lecture.week ? 'Week ' + escapeHtml(lecture.week) : '';
+    const downloadBtn = showDeleteButton
+      ? '<button class="lecture-download-btn" data-id="' + escapeHtml(lecture.id) + '">다운로드</button>'
+      : '';
     const deleteBtn = showDeleteButton
       ? '<button class="lecture-delete-btn" data-id="' + escapeHtml(lecture.id) + '">삭제</button>'
       : '';
@@ -63,6 +89,7 @@ function renderLectureList(lectures, options) {
         '</div>' +
         '<div class="lecture-actions">' +
           '<button class="lecture-preview-btn" data-id="' + escapeHtml(lecture.id) + '">확인하기</button>' +
+          downloadBtn +
           deleteBtn +
         '</div>' +
       '</div>'
@@ -74,6 +101,9 @@ function renderLectureList(lectures, options) {
   });
 
   if (showDeleteButton) {
+    container.querySelectorAll('.lecture-download-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { handleDownloadLectureClick(btn.dataset.id, btn); });
+    });
     container.querySelectorAll('.lecture-delete-btn').forEach(function (btn) {
       btn.addEventListener('click', function () { handleDeleteLectureClick(btn.dataset.id, btn); });
     });
@@ -114,6 +144,29 @@ async function handleDeleteLectureClick(lectureId, btn) {
   loadLectures({ showDeleteButton: true });
 }
 
+async function handleDownloadLectureClick(lectureId, btn) {
+  const session = getSession();
+  if (!session) return;
+
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '다운로드 중...';
+
+  try {
+    const data = await fetchDownloadLecture(lectureId, session.idToken);
+    if (!data.ok) {
+      alert('다운로드 실패: ' + data.error);
+      return;
+    }
+    triggerBrowserDownload(data.fileBase64, data.mimeType, data.fileName);
+  } catch (err) {
+    alert('다운로드 요청 실패: ' + err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
+}
+
 let currentSlides = [];
 let currentSlideIndex = 0;
 
@@ -135,7 +188,7 @@ function renderPptPreview(slideImageUrls) {
 
   body.innerHTML =
     '<div class="slide-viewer">' +
-      '<img id="slide-image" src="">' +
+      '<img id="slide-image" src="" oncontextmenu="return false;" draggable="false">' +
       '<div class="slide-controls">' +
         '<button id="slide-prev">‹</button>' +
         '<span id="slide-counter"></span>' +

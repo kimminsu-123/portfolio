@@ -288,7 +288,8 @@ main {
   flex-shrink: 0;
 }
 
-.lecture-preview-btn {
+.lecture-preview-btn,
+.lecture-download-btn {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-primary);
@@ -300,9 +301,15 @@ main {
   transition: border-color 0.15s, background 0.15s;
 }
 
-.lecture-preview-btn:hover {
+.lecture-preview-btn:hover,
+.lecture-download-btn:hover {
   border-color: var(--accent-primary);
   background: var(--accent-soft);
+}
+
+.lecture-download-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .lecture-delete-btn {
@@ -659,6 +666,8 @@ main {
   max-height: 100%;
   object-fit: contain;
   border-radius: 6px;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .slide-controls {

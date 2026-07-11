@@ -21,6 +21,8 @@ function doPost(e) {
       return handleUploadLecture(body);
     case 'deleteLecture':
       return handleDeleteLecture(body);
+    case 'downloadLecture':
+      return handleDownloadLecture(body);
     case 'addStudent':
       return handleAddStudent(body);
     case 'removeStudent':
@@ -250,6 +252,26 @@ function handleDeleteLecture(body) {
 
   sheet.deleteRow(rowIndex);
   return jsonResponse({ ok: true, deletedId: body.lectureId });
+}
+
+function handleDownloadLecture(body) {
+  const auth = requireAdmin(body.idToken);
+  if (!auth.ok) return jsonResponse(auth);
+
+  if (!body.lectureId) return jsonResponse({ ok: false, error: 'lectureId required' });
+
+  const lecture = readSheetRows('Lectures').filter(function (r) { return String(r.id) === String(body.lectureId); })[0];
+  if (!lecture) return jsonResponse({ ok: false, error: 'lecture not found' });
+
+  const file = DriveApp.getFileById(lecture.sourceFileId);
+  const blob = file.getBlob();
+
+  return jsonResponse({
+    ok: true,
+    fileName: file.getName(),
+    mimeType: blob.getContentType(),
+    fileBase64: Utilities.base64Encode(blob.getBytes()),
+  });
 }
 
 function handleAddStudent(body) {
