@@ -63,18 +63,31 @@ function handleVerifyLogin(idToken) {
 }
 
 function verifyGoogleIdToken(idToken) {
+  if (!idToken) return null;
+
+  const cache = CacheService.getScriptCache();
+  const cacheKey = 'idtok:' + Utilities.base64EncodeWebSafe(
+    Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, idToken)
+  );
+  const cached = cache.get(cacheKey);
+  if (cached !== null) return cached === '' ? null : cached;
+
   const oauthClientId = getConfig().oauthClientId;
   const res = UrlFetchApp.fetch(
     'https://oauth2.googleapis.com/tokeninfo?id_token=' + encodeURIComponent(idToken),
     { muteHttpExceptions: true }
   );
-  if (res.getResponseCode() !== 200) return null;
 
-  const payload = JSON.parse(res.getContentText());
-  if (payload.aud !== oauthClientId) return null;
-  if (payload.email_verified !== 'true' && payload.email_verified !== true) return null;
+  let email = null;
+  if (res.getResponseCode() === 200) {
+    const payload = JSON.parse(res.getContentText());
+    const validAudience = payload.aud === oauthClientId;
+    const validEmail = payload.email_verified === 'true' || payload.email_verified === true;
+    if (validAudience && validEmail) email = payload.email;
+  }
 
-  return payload.email;
+  cache.put(cacheKey, email === null ? '' : email, 300); // 5분 TTL — 반복 요청마다 tokeninfo 왕복 생략
+  return email;
 }
 
 function requireAdmin(idToken) {
@@ -138,18 +151,12 @@ function handleGetLecturePreview(lectureId, idToken) {
       fileIds = [];
     }
 
-    // 저장된 건 Drive 파일 ID들 — getThumbnail()의 contentUrl은 30분 만료라 캐싱 불가하므로
-    // 매 조회마다 Drive에 저장해둔 PNG를 읽어 base64로 즉석 인코딩한다.
-    const slideImageUrls = fileIds
-      .map(function (fileId) {
-        try {
-          const blob = DriveApp.getFileById(fileId).getBlob();
-          return 'data:' + blob.getContentType() + ';base64,' + Utilities.base64Encode(blob.getBytes());
-        } catch (err) {
-          return null;
-        }
-      })
-      .filter(function (url) { return url !== null; });
+    // 슬라이드 이미지는 업로드 시 "링크가 있는 모든 사용자"로 공유 설정해뒀으므로
+    // Apps Script가 Drive 바이트를 읽어 base64로 재인코딩할 필요 없이 직접 URL만 조립한다.
+    // 브라우저가 <img>로 각 URL을 네이티브 병렬 로드한다.
+    const slideImageUrls = fileIds.map(function (fileId) {
+      return 'https://drive.google.com/thumbnail?id=' + fileId + '&sz=w1920';
+    });
 
     return jsonResponse({ ok: true, fileType: 'ppt', title: lecture.title, slideImageUrls: slideImageUrls });
   }
@@ -503,16 +510,29 @@ function cacheSlideThumbnails(slidesFileId, lectureId, folder) {
   const slides = presentation.slides || [];
 
   return slides.map(function (slide, idx) {
-    const thumbnail = Slides.Presentations.Pages.getThumbnail(slidesFileId, slide.objectId, {
-      'thumbnailProperties.thumbnailSize': 'LARGE',
-    });
     // contentUrl은 서명된 임시 URL(수명 30분) — 만료 전에 바로 소비해 Drive PNG로 영구 저장한다.
-    const imgBlob = UrlFetchApp.fetch(thumbnail.contentUrl).getBlob()
+    const imgBlob = fetchSlideThumbnailBlob(slidesFileId, slide.objectId)
       .setName(lectureId + '-slide-' + (idx + 1) + '.png');
-    const fileId = folder.createFile(imgBlob).getId();
-    Utilities.sleep(300); // getThumbnail은 expensive read 쿼터 — 슬라이드 많을 때 과다호출 방지
-    return fileId;
+    const file = folder.createFile(imgBlob);
+    // 미리보기에서 Apps Script를 거치지 않고 브라우저가 이 URL로 직접 접근하기 위해 공개 링크로 전환.
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+    return file.getId();
   });
+}
+
+function fetchSlideThumbnailBlob(slidesFileId, slideObjectId) {
+  const maxAttempts = 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const thumbnail = Slides.Presentations.Pages.getThumbnail(slidesFileId, slideObjectId, {
+        'thumbnailProperties.thumbnailSize': 'LARGE',
+      });
+      return UrlFetchApp.fetch(thumbnail.contentUrl).getBlob();
+    } catch (err) {
+      if (attempt === maxAttempts) throw err;
+      Utilities.sleep(500 * attempt); // getThumbnail 쿼터 초과 등 실패 시에만 backoff, 정상 상황엔 지연 없음
+    }
+  }
 }
 
 function trashFileIfExists(fileId) {
