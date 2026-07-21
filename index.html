@@ -1015,6 +1015,112 @@
                 flex-shrink: 0;
             }
 
+        /* Publications Section */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .publication-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .publication-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 4px;
+                height: 100%;
+                background: var(--accent-primary);
+                transform: scaleY(0);
+                transition: transform 0.3s;
+            }
+
+            .publication-card:hover {
+                border-color: var(--accent-primary);
+                transform: translateY(-4px);
+                box-shadow: 0 10px 30px var(--shadow);
+            }
+
+                .publication-card:hover::before {
+                    transform: scaleY(1);
+                }
+
+        .publication-status {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+            .publication-status.published {
+                background: rgba(33, 150, 243, 0.1);
+                color: #2196f3;
+                border: 1px solid rgba(33, 150, 243, 0.2);
+            }
+
+        .publication-period {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .publication-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .publication-venue {
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .publication-summary {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .publication-highlight {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+            .publication-highlight .highlight-label {
+                font-size: 0.85rem;
+                color: var(--text-muted);
+            }
+
+            .publication-highlight .highlight-value {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--accent-primary);
+            }
+
+        .publication-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
         .education-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1207,6 +1313,7 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#activities">Activities</a></li>
+                <li><a href="#publications">Publications</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -1805,6 +1912,51 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Research</div>
+                <h2 class="section-title">연구 및 논문</h2>
+                <p class="section-description">
+                    학회 학술대회 논문집에 게재된 연구입니다.
+                </p>
+            </div>
+            <div class="publications-grid">
+                <div class="publication-card fade-in">
+                    <span class="publication-status published">게재 확정</span>
+                    <div class="publication-period">2026.07 게재</div>
+                    <h3 class="publication-title">Unity DOTS 기반 모바일 전력 및 발열 효율 비교 연구</h3>
+                    <div class="publication-venue">
+                        김민수 (제1저자) · 이범로 (지도교수) — 청강문화산업대학교 게임콘텐츠스쿨 · 한국컴퓨터정보학회 하계학술대회 논문집 · 제34권 2호
+                    </div>
+                    <p class="publication-summary">
+                        Unity DOTS(ECS + Job System + Burst Compiler)가 기존 MonoBehaviour 방식 대비 모바일 CPU 연산 성능과
+                        발열 유지력에 미치는 영향을 대규모 군집(Boid) 시뮬레이션으로 정량 비교했습니다.
+                        Burst 없이 멀티스레딩만 적용한 구조는 오히려 기존 방식보다 더 빨리 열 쓰로틀링에 진입하는
+                        역설적 결과가 나타났고, Job System과 Burst Compiler를 함께 적용했을 때만 성능 향상과
+                        발열 방어가 동시에 성립함을 실증했습니다.
+                    </p>
+                    <div class="publication-highlight">
+                        <span class="highlight-label">CPU 연산 성능</span>
+                        <span class="highlight-value">130× 프레임 타임 단축 (3,507ms → 27ms)</span>
+                    </div>
+                    <div class="publication-highlight">
+                        <span class="highlight-label">발열 유지력</span>
+                        <span class="highlight-value">쓰로틀링 진입 2.2배 지연 (2.5분 → 5.5분, Burst 적용 시)</span>
+                    </div>
+                    <div class="publication-tags">
+                        <span class="tag">Unity DOTS</span>
+                        <span class="tag">ECS</span>
+                        <span class="tag">Burst Compiler</span>
+                        <span class="tag">Thermal Throttling</span>
+                    </div>
+                    <!-- DOI/링크 발급 전이면 아래 버튼 생략, 발급 후 주석 해제 -->
+                    <!-- <a href="[DOI 링크]" class="btn btn-secondary" target="_blank">논문 보기</a> -->
+                </div>
             </div>
         </div>
     </section>
