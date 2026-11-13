@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kim Min Soo Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Unity 클라이언트 개발자 김민수의 포트폴리오 — 프로젝트, 연구, 경력, 교육·멘토링 활동">
+    <title>김민수 — Unity Client Developer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
     <style>
         :root {
-            --bg-primary: #0a0e14;
-            --bg-secondary: #131820;
-            --bg-card: #1a1f2b;
-            --accent-primary: #00d9ff;
-            --accent-secondary: #7b61ff;
-            --text-primary: #e6e9f0;
-            --text-secondary: #99a0b5;
-            --text-muted: #5c6370;
-            --border: rgba(255, 255, 255, 0.08);
-            --shadow: rgba(0, 0, 0, 0.4);
+            --bg-primary: #f7f4ee;
+            --bg-secondary: #efebe3;
+            --bg-card: #fffdf9;
+            --text-primary: #23211e;
+            --text-secondary: #57524a;
+            --text-muted: #77716a;
+            --accent-primary: #1f6b66;
+            --accent-secondary: #4a5a6e;
+            --accent-success: #3e7c4a;
+            --accent-soft: #e2eeeb;
+            --border: #e2dcd1;
+            --border-strong: #cfc7b9;
+            --shadow: rgba(35, 33, 30, 0.08);
+
+            --lv-high: #1f6b66;
+            --lv-mid-dot: #b07a2a;
+            --lv-mid-text: #8f6424;
+            --lv-low-dot: #b8b1a6;
+            --lv-low-text: #77716a;
+            --dot-empty: #e2dcd1;
+
+            --chart-muted: #cbc4b8;
+            --chart-grid: #ece6dc;
+
+            --container: 1080px;
+            --radius: 10px;
         }
 
         * {
@@ -25,44 +42,53 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-padding-top: 72px;
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-size: 17px;
+            line-height: 1.75;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            -webkit-font-smoothing: antialiased;
         }
 
-            body::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-image: linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
-                background-size: 50px 50px;
-                pointer-events: none;
-                z-index: 0;
-            }
+        a {
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
 
         .container {
-            max-width: 1200px;
+            max-width: var(--container);
             margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
+            padding: 0 24px;
         }
 
+        .num {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Nav */
         nav {
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 14, 20, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(247, 244, 238, 0.92);
+            backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
             z-index: 100;
         }
 
@@ -70,321 +96,1069 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                height: 60px;
+                gap: 24px;
             }
 
         .nav-logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
             font-weight: 700;
-            color: var(--accent-primary);
+            font-size: 1rem;
             text-decoration: none;
+            white-space: nowrap;
         }
+
+            .nav-logo span {
+                color: var(--text-muted);
+                font-weight: 500;
+                margin-left: 6px;
+            }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 24px;
             list-style: none;
         }
 
             .nav-links a {
                 color: var(--text-secondary);
                 text-decoration: none;
-                font-size: 0.95rem;
+                font-size: 0.9375rem;
                 font-weight: 500;
-                transition: color 0.3s;
-                position: relative;
+                white-space: nowrap;
+                padding: 4px 0;
+                border-bottom: 2px solid transparent;
+                transition: color 0.2s, border-color 0.2s;
             }
 
-                .nav-links a::after {
-                    content: '';
-                    position: absolute;
-                    bottom: -5px;
-                    left: 0;
-                    width: 0;
-                    height: 2px;
-                    background: var(--accent-primary);
-                    transition: width 0.3s;
+                .nav-links a:hover,
+                .nav-links a.active {
+                    color: var(--text-primary);
+                    border-bottom-color: var(--accent-primary);
                 }
 
-                .nav-links a:hover {
-                    color: var(--accent-primary);
-                }
-
-                    .nav-links a:hover::after {
-                        width: 100%;
-                    }
-
+        /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            position: relative;
+            padding: 96px 0 88px;
+            border-bottom: 1px solid var(--border);
         }
 
         .hero-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            width: 100%;
-        }
-
-        .hero-image {
-            flex-shrink: 0;
-        }
-
-        .profile-image {
-            width: 320px;
-            height: 320px;
-            border-radius: 20px;
-            object-fit: cover;
-            border: 3px solid var(--accent-primary);
-            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.3);
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            opacity: 0;
-            animation: fadeInScale 1s ease 0.2s forwards;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            flex: 1;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 64px;
+            align-items: start;
         }
 
         .hero-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
             color: var(--accent-primary);
-            margin-bottom: 1rem;
-            display: inline-block;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
+            margin-bottom: 16px;
         }
 
         .hero-title {
-            font-size: 4.5rem;
+            font-size: clamp(2rem, 4.2vw, 2.875rem);
             font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
         }
 
         .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.0625rem;
             color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.4s forwards;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .profile-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 12px;
+            object-fit: cover;
+            display: block;
+            background: var(--bg-secondary);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--border-strong);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+            max-width: 640px;
+        }
+
+        .stat {
+            display: block;
+            padding: 20px 20px 20px 0;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+            .stat + .stat {
+                padding-left: 20px;
+                border-left: 1px solid var(--border);
+            }
+
+            .stat:hover .stat-value {
+                color: var(--accent-primary);
+            }
+
+        .stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            transition: color 0.2s;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .stat-note {
+            display: block;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-top: 2px;
         }
 
         .hero-cta {
             display: flex;
-            gap: 1rem;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.6s forwards;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px 24px;
         }
 
         .btn {
-            padding: 1rem 2rem;
+            display: inline-block;
+            padding: 12px 22px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
+            border: 1px solid transparent;
             cursor: pointer;
-            border: none;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
         }
 
         .btn-primary {
-            background: var(--accent-primary);
-            color: var(--bg-primary);
+            background: var(--text-primary);
+            color: var(--bg-card);
         }
 
             .btn-primary:hover {
-                background: var(--text-primary);
-                transform: translateY(-2px);
-                box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+                background: var(--accent-primary);
             }
 
         .btn-secondary {
             background: transparent;
             color: var(--text-primary);
-            border: 2px solid var(--border);
+            border-color: var(--border-strong);
         }
 
             .btn-secondary:hover {
-                border-color: var(--accent-primary);
-                color: var(--accent-primary);
+                border-color: var(--text-primary);
             }
 
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 20px;
+            font-size: 0.9375rem;
+        }
+
+        .text-link {
+            color: var(--text-secondary);
+            text-decoration: underline;
+            text-decoration-color: var(--border-strong);
+            text-underline-offset: 4px;
+            transition: color 0.2s, text-decoration-color 0.2s;
+        }
+
+            .text-link:hover {
+                color: var(--accent-primary);
+                text-decoration-color: var(--accent-primary);
+            }
+
+        /* Sections */
         section {
-            padding: 8rem 0;
-            position: relative;
+            padding: 96px 0;
+            border-bottom: 1px solid var(--border);
         }
 
         .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 48px;
+            max-width: 640px;
         }
 
         .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
         }
 
         .section-title {
-            font-size: 3rem;
+            font-size: clamp(1.625rem, 3vw, 2rem);
             font-weight: 700;
-            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.35;
+            margin-bottom: 12px;
         }
 
         .section-description {
-            font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
         }
 
+        .subsection-title {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            margin: 64px 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-strong);
+        }
+
+        .q {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+            .q::before {
+                content: 'Q. ';
+                font-weight: 700;
+            }
+
+        .meta-line {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .tag-line {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .more {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+            .more::after {
+                content: ' →';
+                transition: margin-left 0.2s;
+            }
+
+        [data-project] {
+            cursor: pointer;
+        }
+
+            [data-project]:focus-visible {
+                outline: 2px solid var(--accent-primary);
+                outline-offset: 3px;
+            }
+
+        /* Featured */
+        .featured {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+            .featured:hover {
+                border-color: var(--border-strong);
+                box-shadow: 0 8px 24px var(--shadow);
+            }
+
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+            display: block;
+            background: var(--bg-secondary);
+        }
+
+        .featured-content {
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .featured-badge {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .featured-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        .featured-desc {
+            color: var(--text-secondary);
+        }
+
+        .featured-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+            .featured-points li {
+                padding-left: 16px;
+                position: relative;
+                line-height: 1.6;
+            }
+
+                .featured-points li::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0.65em;
+                    width: 6px;
+                    height: 1px;
+                    background: var(--text-muted);
+                }
+
+            .featured-points strong {
+                color: var(--text-primary);
+                font-weight: 600;
+            }
+
+        /* Project grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
 
         .project-card {
             background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
             border: 1px solid var(--border);
-            transition: all 0.4s;
-            position: relative;
-            cursor: pointer;
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-            .project-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-                transform: scaleX(0);
-                transition: transform 0.4s;
-            }
-
             .project-card:hover {
-                transform: translateY(-8px);
-                border-color: var(--accent-primary);
-                box-shadow: 0 20px 40px var(--shadow);
+                border-color: var(--border-strong);
+                box-shadow: 0 6px 18px var(--shadow);
             }
-
-                .project-card:hover::before {
-                    transform: scaleX(1);
-                }
 
         .project-image {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            display: block;
+            background: var(--bg-secondary);
             border-bottom: 1px solid var(--border);
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 20px 22px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
         }
 
         .project-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.4;
         }
 
         .project-description {
+            font-size: 0.9375rem;
             color: var(--text-secondary);
-            margin-bottom: 1rem;
             line-height: 1.6;
         }
 
-        .project-tags {
+        .project-card .q {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-top: 4px;
+        }
+
+        .project-card .tag-line {
+            margin-top: auto;
+            padding-top: 12px;
+        }
+
+        /* Research */
+        .research {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .publication-status {
+            display: inline-block;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            background: var(--accent-soft);
+            padding: 2px 10px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+
+        .publication-title {
+            font-size: 1.375rem;
+            font-weight: 700;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+
+        .publication-venue {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .publication-summary {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .research-figures {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border-strong);
+        }
+
+        .figure {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .figure-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            color: var(--accent-primary);
+        }
+
+        .figure-label {
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .figure-note {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Charts */
+        .chart-block {
+            margin-top: 56px;
+        }
+
+        .chart-legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            padding: 0.4rem 0.8rem;
-            background: rgba(0, 217, 255, 0.1);
-            color: var(--accent-primary);
-            border-radius: 6px;
-            border: 1px solid rgba(0, 217, 255, 0.2);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            align-items: center;
+            gap: 8px 20px;
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
+            margin-bottom: 16px;
         }
 
-            .project-link:hover {
-                color: var(--accent-primary);
+        .key {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 6px;
+            vertical-align: -1px;
+        }
+
+        .key-accent {
+            background: var(--accent-primary);
+        }
+
+        .key-muted {
+            background: var(--chart-muted);
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px 18px;
+            margin: 0;
+            min-width: 0;
+        }
+
+        .chart-card-wide {
+            grid-column: 1 / -1;
+        }
+
+        .chart-card figcaption {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .chart-kicker {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.45;
+        }
+
+        .chart-sub {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .chart-canvas {
+            position: relative;
+            height: 176px;
+            margin-top: 12px;
+        }
+
+            .chart-canvas.sm {
+                height: 124px;
             }
 
-        /* Modal Styles */
+        .chart-note {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-top: 10px;
+        }
+
+        .chart-table {
+            margin-top: 16px;
+            font-size: 0.875rem;
+        }
+
+            .chart-table summary {
+                cursor: pointer;
+                color: var(--text-secondary);
+                font-weight: 600;
+                padding: 6px 0;
+            }
+
+            .chart-table table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 8px;
+                font-variant-numeric: tabular-nums;
+                background: var(--bg-card);
+            }
+
+            .chart-table th,
+            .chart-table td {
+                text-align: right;
+                padding: 8px 12px;
+                border-bottom: 1px solid var(--border);
+                white-space: nowrap;
+            }
+
+                .chart-table th:first-child,
+                .chart-table td:first-child {
+                    text-align: left;
+                }
+
+            .chart-table thead th {
+                color: var(--text-muted);
+                font-weight: 600;
+            }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .metric-charts {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+            .metric-charts .chart-card {
+                padding: 16px 18px 14px;
+                background: var(--bg-primary);
+            }
+
+        .chart-source {
+            grid-column: 1 / -1;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        /* Experience */
+        .career {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 32px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-strong);
+        }
+
+            .career:first-of-type {
+                border-top: none;
+                padding-top: 0;
+            }
+
+        .career-period {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .career-company {
+            font-size: 1.375rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .career-role {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            margin-bottom: 12px;
+        }
+
+        .career-description {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            max-width: 680px;
+        }
+
+        .company-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .company-project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+            .company-project-card:hover {
+                border-color: var(--border-strong);
+                box-shadow: 0 4px 14px var(--shadow);
+            }
+
+            .company-project-card img {
+                width: 100%;
+                aspect-ratio: 4 / 3;
+                object-fit: cover;
+                display: block;
+                background: var(--bg-secondary);
+                border-bottom: 1px solid var(--border);
+            }
+
+        .company-project-body {
+            padding: 12px 14px 14px;
+        }
+
+        .company-project-title {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .company-project-subtitle {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-top: 2px;
+        }
+
+        .company-project-list {
+            list-style: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .company-project-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4px 16px;
+            align-items: baseline;
+            padding: 14px 4px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+            .company-project-row:hover {
+                background: var(--bg-card);
+            }
+
+            .company-project-row .company-project-title {
+                font-size: 1rem;
+            }
+
+            .company-project-row .company-project-subtitle {
+                grid-column: 1;
+                margin: 0;
+            }
+
+            .company-project-row .company-project-badge {
+                grid-column: 2;
+                grid-row: 1 / span 2;
+                align-self: center;
+            }
+
+        .company-project-badge {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        /* Activities */
+        .activity-list {
+            list-style: none;
+        }
+
+        .activity-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 32px;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+            .activity-row:first-child {
+                padding-top: 4px;
+            }
+
+        .activity-when {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-start;
+        }
+
+        .activity-period {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .activity-category {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .status-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            background: var(--accent-soft);
+            padding: 1px 10px;
+            border-radius: 999px;
+        }
+
+            .status-live::before {
+                content: '';
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--accent-primary);
+            }
+
+        .activity-title {
+            font-size: 1.1875rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .activity-organization {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .activity-description {
+            color: var(--text-secondary);
+            max-width: 720px;
+        }
+
+        .activity-achievements {
+            list-style: none;
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-width: 720px;
+        }
+
+        .achievement-item {
+            position: relative;
+            padding-left: 16px;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+            .achievement-item::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0.72em;
+                width: 6px;
+                height: 1px;
+                background: var(--text-muted);
+            }
+
+            .achievement-item strong {
+                color: var(--text-primary);
+                font-weight: 600;
+            }
+
+        .activity-body .text-link {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.9375rem;
+        }
+
+        /* Skills */
+        .skill-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            margin-bottom: 32px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+        }
+
+        .skill-category-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+            .skill-item:last-child {
+                border-bottom: none;
+            }
+
+        .skill-name {
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+        }
+
+        .level {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .dots {
+            display: inline-flex;
+            gap: 3px;
+        }
+
+            .dots i {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--dot-empty);
+            }
+
+        .level-high {
+            color: var(--lv-high);
+        }
+
+            .level-high .dots i {
+                background: var(--lv-high);
+            }
+
+        .level-mid {
+            color: var(--lv-mid-text);
+        }
+
+            .level-mid .dots i:nth-child(-n+2) {
+                background: var(--lv-mid-dot);
+            }
+
+        .level-low {
+            color: var(--lv-low-text);
+            font-weight: 500;
+        }
+
+            .level-low .dots i:first-child {
+                background: var(--lv-low-dot);
+            }
+
+        /* Education */
+        .education-list {
+            list-style: none;
+            border-top: 1px solid var(--border-strong);
+        }
+
+        .education-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 32px;
+            padding: 22px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .education-period {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .education-degree {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .education-school {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .education-note {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Contact */
+        #contact {
+            border-bottom: none;
+        }
+
+        .contact-list {
+            list-style: none;
+            border-top: 1px solid var(--border-strong);
+            max-width: 720px;
+        }
+
+        .contact-item {
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: 32px;
+            align-items: center;
+            padding: 18px 4px;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+            .contact-item:hover {
+                background: var(--bg-card);
+            }
+
+                .contact-item:hover .contact-value {
+                    color: var(--accent-primary);
+                }
+
+        .contact-label {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .contact-value {
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-arrow {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        footer {
+            padding: 32px 0 48px;
+        }
+
+            footer p {
+                color: var(--text-muted);
+                font-size: 0.875rem;
+            }
+
+        /* Modal */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(10, 14, 20, 0.95);
-            backdrop-filter: blur(10px);
+            inset: 0;
+            background: rgba(35, 33, 30, 0.5);
             z-index: 1000;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            overflow-y: auto;
+            padding: 24px;
         }
 
             .modal-overlay.active {
@@ -393,103 +1167,100 @@
 
         .modal-content {
             background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            max-width: 1000px;
+            border-radius: 12px;
+            max-width: 960px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
-            animation: modalSlideIn 0.4s ease;
+            box-shadow: 0 24px 64px rgba(35, 33, 30, 0.25);
+            animation: modalIn 0.25s ease;
         }
 
-        @keyframes modalSlideIn {
+        @keyframes modalIn {
             from {
                 opacity: 0;
-                transform: translateY(50px) scale(0.95);
+                transform: translateY(12px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
 
         .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border);
+            position: sticky;
+            top: 16px;
+            float: right;
+            margin: 16px 16px 0 0;
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 1.125rem;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            transition: all 0.3s;
             z-index: 10;
+            transition: border-color 0.2s, color 0.2s;
         }
 
             .modal-close:hover {
-                background: var(--accent-primary);
-                color: var(--bg-primary);
-                transform: rotate(90deg);
+                border-color: var(--text-primary);
+                color: var(--text-primary);
             }
 
         .modal-header {
-            padding: 3rem;
-            padding-bottom: 2rem;
+            padding: 48px 48px 32px;
             border-bottom: 1px solid var(--border);
         }
 
         .modal-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin-bottom: 12px;
         }
 
         .modal-subtitle {
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
+            font-size: 1.0625rem;
+            margin-bottom: 24px;
         }
 
         .modal-meta {
             display: flex;
-            gap: 2rem;
+            gap: 16px 40px;
             flex-wrap: wrap;
         }
 
         .meta-item {
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 2px;
         }
 
         .meta-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.8125rem;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .meta-value {
-            color: var(--accent-primary);
             font-weight: 600;
+            font-size: 0.9375rem;
         }
 
         .modal-body {
-            padding: 3rem;
+            padding: 40px 48px 48px;
         }
 
         .modal-section {
-            margin-bottom: 3rem;
+            margin-bottom: 48px;
         }
 
             .modal-section:last-child {
@@ -497,808 +1268,344 @@
             }
 
         .modal-section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .section-icon {
-            font-size: 1.3rem;
+        .section-icon,
+        .feature-icon {
+            display: none;
         }
 
         .media-gallery {
             display: grid;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 16px;
         }
 
         .media-item {
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
             border: 1px solid var(--border);
             background: var(--bg-secondary);
         }
 
-            .media-item img {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-
+            .media-item img,
             .media-item video {
                 width: 100%;
                 height: auto;
                 display: block;
             }
 
-        .media-placeholder {
-            aspect-ratio: 16/9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--text-muted);
+        .video-container iframe {
+            border: none !important;
+            border-radius: 0 !important;
         }
 
         .responsibility-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 12px;
         }
 
         .responsibility-item {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 12px;
+            background: var(--bg-primary);
+            padding: 18px 20px;
+            border-radius: 8px;
             border-left: 3px solid var(--accent-primary);
         }
 
         .responsibility-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
         .responsibility-description {
             color: var(--text-secondary);
-            line-height: 1.7;
+            font-size: 0.9688rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
         }
 
         .feature-item {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 12px;
+            background: var(--bg-primary);
+            padding: 18px 20px;
+            border-radius: 8px;
             border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-            .feature-item:hover {
-                border-color: var(--accent-primary);
-                transform: translateY(-4px);
-            }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
         }
 
         .feature-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
         .feature-description {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9375rem;
             line-height: 1.6;
         }
 
         .tech-stack-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 8px;
         }
 
         .tech-item {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            padding: 0.6rem 1rem;
-            background: rgba(123, 97, 255, 0.15);
-            color: var(--accent-secondary);
-            border-radius: 8px;
-            border: 1px solid rgba(123, 97, 255, 0.3);
+            font-size: 0.875rem;
+            padding: 4px 12px;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border-radius: 999px;
+            border: 1px solid var(--border);
         }
 
         .challenge-item {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
         }
 
+            .challenge-item:first-child {
+                padding-top: 0;
+            }
+
             .challenge-item:last-child {
-                margin-bottom: 0;
+                border-bottom: none;
             }
 
         .challenge-question {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--accent-primary);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
+            margin-bottom: 8px;
         }
 
         .challenge-answer {
             color: var(--text-secondary);
-            line-height: 1.7;
-            padding-left: 1.5rem;
         }
 
         .modal-links {
             display: flex;
-            gap: 1rem;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .modal-btn {
-            padding: 1rem 2rem;
+            padding: 10px 18px;
             border-radius: 8px;
             font-weight: 600;
+            font-size: 0.9375rem;
             text-decoration: none;
-            transition: all 0.3s;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
+            border: 1px solid var(--border-strong);
+            color: var(--text-primary);
+            background: transparent;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
         }
 
+            .modal-btn:hover {
+                border-color: var(--text-primary);
+            }
+
         .modal-btn-primary {
-            background: var(--accent-primary);
-            color: var(--bg-primary);
+            background: var(--text-primary);
+            border-color: var(--text-primary);
+            color: var(--bg-card);
         }
 
             .modal-btn-primary:hover {
-                background: var(--text-primary);
-                transform: translateY(-2px);
-            }
-
-        .modal-btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border);
-        }
-
-            .modal-btn-secondary:hover {
+                background: var(--accent-primary);
                 border-color: var(--accent-primary);
-                color: var(--accent-primary);
             }
 
         .modal-btn-code {
-            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
-            color: white;
-            border: 2px solid transparent;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(123, 97, 255, 0.3);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
         }
 
             .modal-btn-code:hover {
-                box-shadow: 0 6px 25px rgba(123, 97, 255, 0.5);
-                transform: translateY(-2px) scale(1.02);
-            }
-
-
-        /* Company Projects Section */
-        #company-projects {
-            background: var(--bg-secondary);
-        }
-
-        .company-section {
-            margin-bottom: 4rem;
-        }
-
-        .company-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--accent-primary);
-        }
-
-        .company-logo {
-            font-size: 2.5rem;
-        }
-
-        .company-info h3 {
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .company-info p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .company-projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .company-project-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-            .company-project-card:hover {
+                background: var(--accent-soft);
                 border-color: var(--accent-primary);
-                transform: translateY(-4px);
-                box-shadow: 0 8px 20px var(--shadow);
             }
 
-        .company-project-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .company-project-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .company-project-badge {
-            display: inline-block;
-            padding: 0.3rem 0.7rem;
-            background: rgba(0, 217, 255, 0.1);
-            color: var(--accent-primary);
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        /* Skills, Timeline, etc... */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-            .skill-category:hover {
-                border-color: var(--accent-primary);
-                transform: translateY(-4px);
-            }
-
-        .skill-category-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .skill-category-icon {
-            font-size: 1.5rem;
-        }
-
-        .skill-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .skill-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .skill-name {
-            color: var(--text-secondary);
-        }
-
-        .skill-level {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            padding: 0.3rem 0.6rem;
-            background: rgba(123, 97, 255, 0.1);
-            color: var(--accent-secondary);
-            border-radius: 4px;
-        }
-
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 3rem;
-            padding-bottom: 3rem;
-            border-left: 2px solid var(--border);
-        }
-
-            .timeline-item:last-child {
-                border-left: 2px solid transparent;
-            }
-
-        .timeline-dot {
-            position: absolute;
-            left: -9px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--accent-primary);
-            box-shadow: 0 0 0 4px var(--bg-primary);
-        }
-
-        .timeline-content {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-            .timeline-content:hover {
-                border-color: var(--accent-primary);
-                transform: translateX(8px);
-            }
-
-        .timeline-period {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-company {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .timeline-description {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        /* Activities Section */
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .activity-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .activity-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 4px;
-                height: 100%;
-                background: var(--accent-primary);
-                transform: scaleY(0);
-                transition: transform 0.3s;
-            }
-
-            .activity-card:hover {
-                border-color: var(--accent-primary);
-                transform: translateY(-4px);
-                box-shadow: 0 10px 30px var(--shadow);
-            }
-
-                .activity-card:hover::before {
-                    transform: scaleY(1);
-                }
-
-        .activity-category {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            padding: 0.4rem 0.8rem;
-            background: rgba(0, 217, 255, 0.1);
-            color: var(--accent-primary);
-            border-radius: 6px;
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            margin-bottom: 1rem;
-        }
-
-            .activity-category.competition {
-                background: rgba(255, 193, 7, 0.1);
-                color: #ffc107;
-                border-color: rgba(255, 193, 7, 0.2);
-            }
-
-            .activity-category.instructor {
-                background: rgba(76, 175, 80, 0.1);
-                color: #4caf50;
-                border-color: rgba(76, 175, 80, 0.2);
-            }
-
-            .activity-category.academy {
-                background: rgba(156, 39, 176, 0.1);
-                color: #9c27b0;
-                border-color: rgba(156, 39, 176, 0.2);
-            }
-
-            .activity-category.club {
-                background: rgba(200, 39, 40, 0.1);
-                color: #c71616;
-                border-color: rgba(200, 39, 40, 0.2);
-            }
-
-        .activity-period {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .activity-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .activity-organization {
-            color: var(--accent-primary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .activity-description {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .activity-achievements {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .achievement-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-            .achievement-item::before {
-                content: '✓';
-                color: var(--accent-primary);
-                font-weight: bold;
-                flex-shrink: 0;
-            }
-
-        /* Publications Section */
-        .publications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .publication-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .publication-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 4px;
-                height: 100%;
-                background: var(--accent-primary);
-                transform: scaleY(0);
-                transition: transform 0.3s;
-            }
-
-            .publication-card:hover {
-                border-color: var(--accent-primary);
-                transform: translateY(-4px);
-                box-shadow: 0 10px 30px var(--shadow);
-            }
-
-                .publication-card:hover::before {
-                    transform: scaleY(1);
-                }
-
-        .publication-status {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            margin-bottom: 1rem;
-        }
-
-            .publication-status.published {
-                background: rgba(33, 150, 243, 0.1);
-                color: #2196f3;
-                border: 1px solid rgba(33, 150, 243, 0.2);
-            }
-
-        .publication-period {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .publication-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .publication-venue {
-            color: var(--accent-primary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .publication-summary {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .publication-highlight {
-            display: flex;
-            align-items: baseline;
-            gap: 0.6rem;
-            margin-bottom: 1rem;
-        }
-
-            .publication-highlight .highlight-label {
-                font-size: 0.85rem;
-                color: var(--text-muted);
-            }
-
-            .publication-highlight .highlight-value {
-                font-family: 'JetBrains Mono', monospace;
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: var(--accent-primary);
-            }
-
-        .publication-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .education-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-            .education-card:hover {
-                border-color: var(--accent-primary);
-                transform: translateY(-4px);
-            }
-
-        .education-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .education-degree {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .education-school {
-            color: var(--accent-primary);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .education-period {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .contact-content {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--text-secondary);
-            transition: all 0.3s;
-            padding: 1.5rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            min-width: 150px;
-        }
-
-            .contact-item:hover {
-                color: var(--accent-primary);
-                border-color: var(--accent-primary);
-                transform: translateY(-4px);
-            }
-
-        .contact-icon {
-            font-size: 2rem;
-        }
-
-        .contact-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .contact-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-        }
-
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-            footer p {
-                color: var(--text-muted);
-                font-size: 0.9rem;
-            }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* Motion */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(12px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
             .fade-in.visible {
                 opacity: 1;
-                transform: translateY(0);
+                transform: none;
             }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .hero-wrapper {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .profile-image {
-                width: 250px;
-                height: 250px;
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .projects-grid,
-            .skills-grid,
-            .education-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in {
+                opacity: 1;
+                transform: none;
+                transition: none;
             }
 
             .modal-content {
-                margin: 1rem;
+                animation: none;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .modal-header,
+            .company-projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                min-height: 0;
+                aspect-ratio: 16 / 9;
+            }
+
+            .research {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .chart-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .metric-charts {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 720px) {
+            body {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .nav-logo span {
+                display: none;
+            }
+
+            .nav-links {
+                gap: 16px;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+                .nav-links::-webkit-scrollbar {
+                    display: none;
+                }
+
+            .hero {
+                padding: 56px 0;
+            }
+
+            .hero-wrapper {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .profile-image {
+                width: 112px;
+                height: 112px;
+            }
+
+            .stat {
+                padding: 16px 12px 16px 0;
+            }
+
+                .stat + .stat {
+                    padding-left: 12px;
+                }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .stat-note {
+                display: none;
+            }
+
+            section {
+                padding: 64px 0;
+            }
+
+            .section-header {
+                margin-bottom: 32px;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                padding: 24px;
+            }
+
+            .career,
+            .activity-row,
+            .education-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .contact-item {
+                grid-template-columns: 1fr auto;
+                gap: 4px 16px;
+            }
+
+                .contact-item .contact-label {
+                    grid-column: 1 / -1;
+                    font-size: 0.8125rem;
+                    color: var(--text-muted);
+                }
+
+            .modal-overlay {
+                padding: 0;
+                align-items: flex-end;
+            }
+
+            .modal-content {
+                max-height: 94vh;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .modal-header {
+                padding: 40px 20px 24px;
+            }
+
             .modal-body {
-                padding: 2rem 1.5rem;
+                padding: 28px 20px 40px;
             }
 
             .modal-title {
-                font-size: 2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -1306,767 +1613,780 @@
 <body>
     <nav>
         <div class="container">
-            <a href="#about" class="nav-logo">&lt;/Unity Client Developer&gt;</a>
+            <a href="#about" class="nav-logo">김민수<span>Unity Client Developer</span></a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#activities">Activities</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#projects">프로젝트</a></li>
+                <li><a href="#research">연구</a></li>
+                <li><a href="#experience">경력</a></li>
+                <li><a href="#activities">활동</a></li>
+                <li><a href="#skills">기술</a></li>
+                <li><a href="#contact">연락</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="hero" id="about">
+    <header class="hero" id="about">
         <div class="container">
             <div class="hero-wrapper">
-                <div class="hero-image">
-                    <img src="profile_img.jpg" alt="Profile" class="profile-image">
-                </div>
                 <div class="hero-content">
-                    <div class="hero-label">Unity Client Developer</div>
+                    <p class="hero-label">Unity Client Developer</p>
                     <h1 class="hero-title">
-                        설계와 협업으로
-                        게임의 완성도를 높이는
-                        <br>개발자 김민수
+                        설계와 협업으로 게임의 완성도를 높이는<br>개발자 김민수
                     </h1>
                     <p class="hero-description">
                         기능 구현보다 시스템 설계와 구조를 중시합니다.
                         문제를 예측하고, 설득력 있는 커뮤니케이션으로 팀을 이끕니다.
                         완성도 높은 게임을 만드는 것이 저의 개발 철학입니다.
                     </p>
+
+                    <div class="hero-stats">
+                        <a href="#projects" class="stat">
+                            <span class="stat-value num">5회</span>
+                            <span class="stat-label">리드 프로그래머</span>
+                            <span class="stat-note">최대 16명 팀</span>
+                        </a>
+                        <a href="#activities" class="stat">
+                            <span class="stat-value num">5회</span>
+                            <span class="stat-label">수상</span>
+                            <span class="stat-note">고등 해커톤 대상 외</span>
+                        </a>
+                        <a href="#research" class="stat">
+                            <span class="stat-value num">130×</span>
+                            <span class="stat-label">DOTS 연산 성능</span>
+                            <span class="stat-note">모바일 프레임 타임 단축 · 논문</span>
+                        </a>
+                    </div>
+
                     <div class="hero-cta">
-                        <a href="https://spiny-curve-75f.notion.site/d901e50a53f546deaff5b3039f2444fa?pvs=74" class="btn btn-primary">
-				<span style="margin-right: 0.5rem;">📚</span>
-				개인 학습 페이지
-			</a>
                         <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
-                        <a href="김민수_이력서 및 경력 기술서.pdf" class="btn btn-secondary" download>
-                            <span style="margin-right: 0.5rem;">📄</span>
-                            이력서 다운로드
-                        </a>
-			<a href="김민수_포트폴리오.pdf" class="btn btn-secondary" download>
-                            <span style="margin-right: 0.5rem;">📄</span>
-                            포트폴리오 다운로드
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">연락하기</a>
+                        <a href="김민수_이력서 및 경력 기술서.pdf" class="btn btn-secondary" download>이력서 PDF</a>
+                        <div class="hero-links">
+                            <a href="김민수_포트폴리오.pdf" class="text-link" download>포트폴리오 PDF</a>
+                            <a href="https://spiny-curve-75f.notion.site/d901e50a53f546deaff5b3039f2444fa?pvs=74" class="text-link" target="_blank" rel="noopener">학습 노트</a>
+                            <a href="#contact" class="text-link">연락하기</a>
+                        </div>
                     </div>
+                </div>
+                <div class="hero-image">
+                    <img src="profile_img.jpg" alt="김민수 프로필 사진" class="profile-image">
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Portfolio</div>
-                <h2 class="section-title">주요 프로젝트</h2>
-                <p class="section-description">
-                    다양한 장르의 게임 개발 경험과 기술적 도전 과제를 해결한 프로젝트들입니다.
-                </p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card fade-in" onclick="openProjectModal('sceneNote')">
-                    <img src="scenenote_img1.png" class="project-image" alt="Scene Note Thumbnail">
-                    <div class="project-content">
-                        <h3 class="project-title">Scene Note</h3>
-                        <p class="project-description">
-                            Unity 씬(Scene) 위에 직접 노트를 남겨 소통할 수 있는 레벨 디자인 협업 에셋 툴
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Unity Editor</span>
-                            <span class="tag">ScriptableObject</span>
-                            <span class="tag">GUI</span>
-                            <span class="tag">C#</span>
-                        </div>
-                        <div class="project-links">
-                            <span class="project-link">→ 상세보기</span>
-                        </div>
-                    </div>
+    <main>
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">Projects</p>
+                    <h2 class="section-title">프로젝트</h2>
+                    <p class="section-description">
+                        다양한 장르의 게임 개발 경험과, 그 과정에서 마주친 기술적 문제를 어떻게 풀었는지 담았습니다.
+                    </p>
                 </div>
 
-                <div class="project-card fade-in" onclick="openProjectModal('distoria')">
-                    <img src="distoria_img.png" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Distoria</h3>
-                        <p class="project-description">
-                            차원을 넘나드는 3D FPS 로그라이크. 중세시대를 장악한 피안화 세력과의 전투
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">FPS</span>
-                            <span class="tag">Job System</span>
-                            <span class="tag">UniTask</span>
+                <article class="featured fade-in" data-project="distoria" tabindex="0" role="button" aria-label="Distoria 상세 보기">
+                    <img src="distoria_img.png" class="featured-image" alt="Distoria 게임 화면">
+                    <div class="featured-content">
+                        <span class="featured-badge">대표 프로젝트</span>
+                        <div>
+                            <h3 class="featured-title">Distoria</h3>
+                            <p class="meta-line num">2025.03 – 2025.11 · PC · 16명 · 리드 프로그래머 / TD</p>
                         </div>
-                        <div class="project-links">
-                            <span class="project-link">→ 상세보기</span>
-                        </div>
+                        <p class="featured-desc">차원을 넘나드는 3D FPS 로그라이크. 중세시대를 장악한 피안화 세력과의 전투</p>
+                        <p class="q">Camera Stacking으로 총기 가려짐은 해결했지만 드로우콜이 2배가 됐습니다. 비용 없이 해결한 방법은?</p>
+                        <ul class="featured-points">
+                            <li><strong>URP Render Feature</strong>로 무기·플레이어를 마지막에 렌더링 — 추가 드로우콜 없이 가려짐 해결</li>
+                            <li><strong>Job System Physics Command + UniTask</strong>로 물리 처리 <span class="num">330ms → 3ms</span> — 60FPS 유지</li>
+                            <li><strong>Custom Inspector Spawner 툴</strong> — 몬스터 배치·웨이브·트리거를 클릭 한 번으로</li>
+                        </ul>
+                        <span class="more">상세 보기</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card fade-in" onclick="openProjectModal('didducking')">
-                    <img src="deducking_img.png" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">디더깅</h3>
-                        <p class="project-description">
-                            패링과 무공으로 납치된 부모님을 구출하는 2D 액션 게임
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">2D Action</span>
-                            <span class="tag">Spine</span>
-                            <span class="tag">FSM</span>
+                <h3 class="subsection-title">그 밖의 프로젝트</h3>
+                <div class="projects-grid">
+                    <article class="project-card fade-in" data-project="sceneNote" tabindex="0" role="button">
+                        <img src="scenenote_img1.png" class="project-image" alt="Scene Note 화면" loading="lazy">
+                        <div class="project-content">
+                            <h4 class="project-title">Scene Note</h4>
+                            <p class="project-description">Unity 씬 위에 직접 노트를 남겨 소통하는 레벨 디자인 협업 에디터 툴</p>
+                            <p class="q">씬에 노트 오브젝트를 두면 씬이 무거워지고 병합 충돌이 납니다. 씬을 건드리지 않는 노트는?</p>
+                            <p class="tag-line">Unity Editor · ScriptableObject · GUI · C#</p>
                         </div>
-                        <div class="project-links">
-                            <span class="project-link">→ 상세보기</span>
-                        </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card fade-in" onclick="openProjectModal('tal')">
-                    <img src="tal_img.png" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">탈(TAL)</h3>
-                        <p class="project-description">
-                            도깨비 탈에 잠식당한 주인공의 공포 탈출기 - 5일 게임잼 작품
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Horror</span>
-                            <span class="tag">Tilemap</span>
-                            <span class="tag">A* AI</span>
+                    <article class="project-card fade-in" data-project="didducking" tabindex="0" role="button">
+                        <img src="deducking_img.png" class="project-image" alt="디더깅 게임 화면" loading="lazy">
+                        <div class="project-content">
+                            <h4 class="project-title">디더깅</h4>
+                            <p class="project-description">패링과 무공으로 납치된 부모님을 구출하는 2D 액션 게임</p>
+                            <p class="q">Spine 이벤트를 다룰 줄 모르는 아티스트가 타격 타이밍을 직접 맞추려면?</p>
+                            <p class="tag-line">Unity · 2D Action · Spine · FSM</p>
                         </div>
-                        <div class="project-links">
-                            <span class="project-link">→ 상세보기</span>
-                        </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card fade-in" onclick="openProjectModal('racingCar')">
-                    <img src="racingcar_img.png" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">레이싱 자동차 게임</h3>
-                        <p class="project-description">
-                            최대 4명이 참여하는 실시간 멀티플레이어 2D 레이싱
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">UDP Server</span>
-                            <span class="tag">Multiplayer</span>
-                            <span class="tag">Physics</span>
+                    <article class="project-card fade-in" data-project="tal" tabindex="0" role="button">
+                        <img src="tal_img.png" class="project-image" alt="탈 게임 화면" loading="lazy">
+                        <div class="project-content">
+                            <h4 class="project-title">탈(TAL)</h4>
+                            <p class="project-description">도깨비 탈에 잠식당한 주인공의 공포 탈출기 — 5일 게임잼 작품</p>
+                            <p class="q">5일 게임잼, 퍼즐마다 상호작용을 따로 만들 시간이 없다면?</p>
+                            <p class="tag-line">Unity · Horror · Tilemap · A* AI</p>
                         </div>
-                        <div class="project-links">
-                            <span class="project-link">→ 상세보기</span>
-                        </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card fade-in" onclick="openProjectModal('simpleChat')">
-                    <img src="simplechat_img.png" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Simple Chat</h3>
-                        <p class="project-description">
-                            C# Winform과 TCP 소켓 통신을 활용한 채팅 프로그램
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">C# Winform</span>
-                            <span class="tag">TCP Socket</span>
-                            <span class="tag">Network</span>
+                    <article class="project-card fade-in" data-project="racingCar" tabindex="0" role="button">
+                        <img src="racingcar_img.png" class="project-image" alt="레이싱 자동차 게임 화면" loading="lazy">
+                        <div class="project-content">
+                            <h4 class="project-title">레이싱 자동차 게임</h4>
+                            <p class="project-description">최대 4명이 참여하는 실시간 멀티플레이어 2D 레이싱</p>
+                            <p class="q">혼자서 4인 실시간 멀티플레이를 기한 안에 — 무엇을 직접 만들고 무엇을 빌렸나?</p>
+                            <p class="tag-line">Unity · UDP Server · Multiplayer · Physics</p>
                         </div>
-                        <div class="project-links">
-                            <span class="project-link">→ 상세보기</span>
-                        </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card fade-in" onclick="openProjectModal('hungrySquirrel')">
-                    <img src="hungrysquirrel_img.png" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">배고파 밥줘</h3>
-                        <p class="project-description">
-                            배고픈 다람쥐의 생존기 - 2D 도트 그래픽 생존 아케이드 게임
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">2D Arcade</span>
-                            <span class="tag">Procedural Map</span>
-                            <span class="tag">Survival</span>
+                    <article class="project-card fade-in" data-project="simpleChat" tabindex="0" role="button">
+                        <img src="simplechat_img.png" class="project-image" alt="Simple Chat 화면" loading="lazy">
+                        <div class="project-content">
+                            <h4 class="project-title">Simple Chat</h4>
+                            <p class="project-description">C# Winform과 TCP 소켓 통신을 활용한 채팅 프로그램</p>
+                            <p class="q">라이브러리 없이 TCP 소켓만으로 서버와 클라이언트를 잇는다면?</p>
+                            <p class="tag-line">C# Winform · TCP Socket · Network</p>
                         </div>
-                        <div class="project-links">
-                            <span class="project-link">→ 상세보기</span>
-                        </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card fade-in" onclick="openProjectModal('railroad')">
-                    <img src="railroad_img.png" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">레일로드</h3>
-                        <p class="project-description">
-                            열차 안에서 발생한 몬스터 출몰 사건을 해결하는 2D 로그라이크
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Roguelike</span>
-                            <span class="tag">OOP</span>
-                            <span class="tag">GitLab</span>
+                    <article class="project-card fade-in" data-project="hungrySquirrel" tabindex="0" role="button">
+                        <img src="hungrysquirrel_img.png" class="project-image" alt="배고파 밥줘 게임 화면" loading="lazy">
+                        <div class="project-content">
+                            <h4 class="project-title">배고파 밥줘</h4>
+                            <p class="project-description">배고픈 다람쥐의 생존기 — 2D 도트 그래픽 생존 아케이드 게임</p>
+                            <p class="q">큰 나무 뒤로 들어간 다람쥐를 카메라가 놓치지 않으려면?</p>
+                            <p class="tag-line">Unity · 2D Arcade · Procedural Map · Survival</p>
                         </div>
-                        <div class="project-links">
-                            <span class="project-link">→ 상세보기</span>
+                    </article>
+
+                    <article class="project-card fade-in" data-project="railroad" tabindex="0" role="button">
+                        <img src="railroad_img.png" class="project-image" alt="레일로드 게임 화면" loading="lazy">
+                        <div class="project-content">
+                            <h4 class="project-title">레일로드</h4>
+                            <p class="project-description">열차 안에서 발생한 몬스터 출몰 사건을 해결하는 2D 로그라이크</p>
+                            <p class="q">무기를 추가할 때마다 기존 코드를 고쳐야 했던 구조, 어떻게 바꿨나?</p>
+                            <p class="tag-line">Unity · Roguelike · OOP · GitLab</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-
-    <section id="company-projects">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Professional Work</div>
-                <h2 class="section-title">회사 프로젝트</h2>
-                <p class="section-description">
-                    실무에서 진행한 다양한 상용 프로젝트 경험입니다.
-                </p>
-            </div>
-
-            <!-- IMTSOFT Projects -->
-            <div class="company-section fade-in">
-                <div class="company-header">
-                    <div class="company-logo">🏢</div>
-                    <div class="company-info">
-                        <h3>IMTSOFT</h3>
-                        <p>2020.08 - 2022.05 | POS/KIOSK 솔루션 개발</p>
-                    </div>
+        <section id="research">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">Research</p>
+                    <h2 class="section-title">연구</h2>
+                    <p class="section-description">학회 학술대회 논문집에 게재된 연구입니다.</p>
                 </div>
-                <div class="company-projects-grid">
-                    <div class="company-project-card" onclick="openProjectModal('imtsoft_gwangmyeong_pos')">
-                        <h4 class="company-project-title">광명동굴 POS 시스템</h4>
-                        <p class="company-project-subtitle">관광지 티켓 발권 시스템</p>
-                        <span class="company-project-badge">POS</span>
+                <div class="research fade-in">
+                    <div>
+                        <span class="publication-status">게재 확정 · 2026.07</span>
+                        <h3 class="publication-title">Unity DOTS 기반 모바일 전력 및 발열 효율 비교 연구</h3>
+                        <p class="publication-venue">
+                            김민수 (제1저자) · 이범로 (지도교수) — 청강문화산업대학교 게임콘텐츠스쿨<br>
+                            한국컴퓨터정보학회 하계학술대회 논문집 · 제34권 2호
+                        </p>
+                        <p class="publication-summary">
+                            Unity DOTS(ECS + Job System + Burst Compiler)가 기존 MonoBehaviour 방식 대비 모바일 CPU 연산 성능과
+                            발열 유지력에 미치는 영향을 대규모 군집(Boid) 시뮬레이션으로 정량 비교했습니다.
+                            Burst 없이 멀티스레딩만 적용한 구조는 오히려 기존 방식보다 더 빨리 열 쓰로틀링에 진입하는
+                            역설적 결과가 나타났고, Job System과 Burst Compiler를 함께 적용했을 때만 성능 향상과
+                            발열 방어가 동시에 성립함을 실증했습니다.
+                        </p>
+                        <p class="tag-line">Unity DOTS · ECS · Burst Compiler · Thermal Throttling</p>
+                        <!-- DOI/링크 발급 후 주석 해제 -->
+                        <!-- <a href="[DOI 링크]" class="text-link" target="_blank" rel="noopener">논문 보기</a> -->
                     </div>
-                    <div class="company-project-card" onclick="openProjectModal('imtsoft_subway_pos')">
-                        <h4 class="company-project-title">Subway POS 시스템</h4>
-                        <p class="company-project-subtitle">매장용 POS 및 배달 시스템</p>
-                        <span class="company-project-badge">POS</span>
-                    </div>
-                    <div class="company-project-card" onclick="openProjectModal('imtsoft_callisco_pos')">
-                        <h4 class="company-project-title">캘리스코 POS 시스템</h4>
-                        <p class="company-project-subtitle">매장 POS 및 QR 오더 시스템</p>
-                        <span class="company-project-badge">POS</span>
-                    </div>
-                    <div class="company-project-card" onclick="openProjectModal('imtsoft_package_system')">
-                        <h4 class="company-project-title">자체 패키지 시스템</h4>
-                        <p class="company-project-subtitle">POS / KIOSK / DID / DIT / MIS 통합</p>
-                        <span class="company-project-badge">통합 시스템</span>
-                    </div>
-                    <div class="company-project-card" onclick="openProjectModal('imtsoft_ourhome_meal')">
-                        <h4 class="company-project-title">아워홈 급식 시스템</h4>
-                        <p class="company-project-subtitle">급식 전용 통합 시스템 (C# Winform)</p>
-                        <span class="company-project-badge">급식 시스템</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tenacities Projects -->
-            <div class="company-section fade-in">
-                <div class="company-header">
-                    <div class="company-logo">🎮</div>
-                    <div class="company-info">
-                        <h3>Tenacities</h3>
-                        <p>2022.05 - 2023.12 | 게임/메타버스 클라이언트 개발</p>
-                    </div>
-                </div>
-                <div class="company-projects-grid">
-                    <div class="company-project-card" onclick="openProjectModal('tenacities_19roulette')">
-                        <img src="19roulette_img1.png" class="project-image">
-                        <h4 class="company-project-title">19 Roulette</h4>
-                        <p class="company-project-subtitle">술자리 파티 게임 (출시: CBT - 5일 완성)</p>
-                        <span class="company-project-badge">모바일 게임</span>
-                    </div>
-                    <div class="company-project-card" onclick="openProjectModal('tenacities_cryptobuddies')">
-                        <img src="cryptobuddies_img1.png" class="project-image">
-                        <h4 class="company-project-title">Crypto Buddies</h4>
-                        <p class="company-project-subtitle">VR 펫 육성 시뮬레이션 (출시: Beta)</p>
-                        <span class="company-project-badge">VR 시뮬레이션</span>
-                    </div>
-                    <div class="company-project-card" onclick="openProjectModal('tenacities_duettaebo')">
-                        <img src="duettaebo_img1.png" class="project-image">
-                        <h4 class="company-project-title">DuetTaebo</h4>
-                        <p class="company-project-subtitle">VR 리듬 게임 - NFT 로비 (출시: Beta)</p>
-                        <span class="company-project-badge">VR 리듬</span>
-                    </div>
-                    <div class="company-project-card" onclick="openProjectModal('tenacities_toany')">
-                        <img src="toany_img1.png" class="project-image">
-                        <h4 class="company-project-title">ToAny</h4>
-                        <p class="company-project-subtitle">고려대 배경 소셜 메타버스 (출시: Alpha)</p>
-                        <span class="company-project-badge">메타버스</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Expertise</div>
-                <h2 class="section-title">기술 스택</h2>
-                <p class="section-description">
-                    게임 개발에 필요한 다양한 기술과 도구를 다룹니다.
-                </p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category fade-in">
-                    <h3 class="skill-category-title">
-                        <span class="skill-category-icon">💻</span>
-                        프로그래밍
-                    </h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">C#</span>
-                            <span class="skill-level">고급</span>
+                    <div class="research-figures">
+                        <div class="figure">
+                            <div class="figure-value num">130×</div>
+                            <div class="figure-label">CPU 연산 성능 — 프레임 타임 단축</div>
+                            <div class="figure-note num">3,507ms → 27ms</div>
                         </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Computer Science</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Network Programming</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">C++</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">VB6</span>
-                            <span class="skill-level">중급</span>
+                        <div class="figure">
+                            <div class="figure-value num">2.2×</div>
+                            <div class="figure-label">발열 유지력 — 쓰로틀링 진입 지연</div>
+                            <div class="figure-note num">2.5분 → 5.5분 (Burst 적용 시)</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="skill-category fade-in">
-                    <h3 class="skill-category-title">
-                        <span class="skill-category-icon">🎨</span>
-                        게임 개발
-                    </h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Unity Engine</span>
-                            <span class="skill-level">고급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Performance Optimization</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Gameplay Programming</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">UI/UX Implementation</span>
-                            <span class="skill-level">중급</span>
-                        </div>
+                <div class="chart-block fade-in">
+                    <div class="chart-legend">
+                        <span><span class="key key-accent" aria-hidden="true"></span>ECS + Job + Burst</span>
+                        <span><span class="key key-muted" aria-hidden="true"></span>비교군 (MonoBehaviour · ECS + Job)</span>
+                        <span>실험 기기: Galaxy S24 (Exynos 2400) · Unity 6000.4</span>
                     </div>
-                </div>
 
-                <div class="skill-category fade-in">
-                    <h3 class="skill-category-title">
-                        <span class="skill-category-icon">🔧</span>
-                        도구 & 협업
-                    </h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Git</span>
-                            <span class="skill-level">고급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Slack / Jandi</span>
-                            <span class="skill-level">고급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Addressables</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Dotween</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Spine</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">DOTS</span>
-                            <span class="skill-level">초급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">AWS</span>
-                            <span class="skill-level">초급</span>
-                        </div>
-                    </div>
-                </div>
+                    <div class="chart-grid">
+                        <figure class="chart-card chart-card-wide">
+                            <figcaption>
+                                <span class="chart-kicker">TC1 · CPU 스트레스 테스트</span>
+                                <span class="chart-title">평균 CPU 프레임 타임</span>
+                                <span class="chart-sub">3,000개 개체 · 프레임 제한 해제 · 낮을수록 좋음</span>
+                            </figcaption>
+                            <div class="chart-canvas">
+                                <canvas data-chart="frameTime" role="img" aria-label="평균 CPU 프레임 타임: MonoBehaviour 3,507.4ms, ECS+Job 280.1ms, ECS+Job+Burst 27.1ms"></canvas>
+                            </div>
+                            <p class="chart-note">같은 부하에서 MonoBehaviour는 0.29 FPS로 사실상 멈췄고, Job만 붙인 ECS는 3.6 FPS, Burst까지 결합하자 38.2 FPS가 나왔습니다.</p>
+                        </figure>
 
-                <div class="skill-category fade-in">
-                    <h3 class="skill-category-title">
-                        <span class="skill-category-icon">📁</span>
-                        데이터베이스
-                    </h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">MSSQL</span>
-                            <span class="skill-level">고급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">MYSQL</span>
-                            <span class="skill-level">고급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">SQLite</span>
-                            <span class="skill-level">중급</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Redis</span>
-                            <span class="skill-level">초급</span>
-                        </div>
+                        <figure class="chart-card">
+                            <figcaption>
+                                <span class="chart-kicker">TC2 · 발열 테스트</span>
+                                <span class="chart-title">쓰로틀링 진입 시점</span>
+                                <span class="chart-sub">30 FPS 고정 · 15분 연속 구동 · 늦을수록 좋음</span>
+                            </figcaption>
+                            <div class="chart-canvas">
+                                <canvas data-chart="throttle" role="img" aria-label="쓰로틀링 진입 시점: MonoBehaviour 10분, ECS+Job 2.5분, ECS+Job+Burst 5.5분"></canvas>
+                            </div>
+                            <p class="chart-note">Burst 없이 멀티스레딩만 적용한 ECS + Job이 <strong>가장 먼저</strong> 쓰로틀링에 들어갔습니다. MonoBehaviour가 늦은 이유는 연산 병목으로 부하 자체가 낮았기 때문입니다.</p>
+                        </figure>
+
+                        <figure class="chart-card">
+                            <figcaption>
+                                <span class="chart-kicker">TC2 · 발열 테스트</span>
+                                <span class="chart-title">발열 상황 평균 FPS</span>
+                                <span class="chart-sub">목표 30 FPS · 높을수록 좋음</span>
+                            </figcaption>
+                            <div class="chart-canvas">
+                                <canvas data-chart="thermalFps" role="img" aria-label="발열 상황 평균 FPS: MonoBehaviour 16.0, ECS+Job 16.6, ECS+Job+Burst 21.6"></canvas>
+                            </div>
+                            <p class="chart-note">쓰로틀링이 걸린 뒤에도 Burst 결합 구조만 20 FPS 이상을 지켰습니다.</p>
+                        </figure>
+
+                        <figure class="chart-card">
+                            <figcaption>
+                                <span class="chart-kicker">TC2 · 발열 테스트</span>
+                                <span class="chart-title">15분간 배터리 소모</span>
+                                <span class="chart-sub">개체 수 250 / 1,000 / 4,000개 · 낮을수록 좋음</span>
+                            </figcaption>
+                            <div class="chart-canvas">
+                                <canvas data-chart="battery" role="img" aria-label="15분간 배터리 소모: MonoBehaviour 6%, ECS+Job 9%, ECS+Job+Burst 10%"></canvas>
+                            </div>
+                        </figure>
+
+                        <figure class="chart-card">
+                            <figcaption>
+                                <span class="chart-kicker">TC2 · 발열 테스트</span>
+                                <span class="chart-title">15분간 처리한 총 프레임</span>
+                                <span class="chart-sub">개체 수 250 / 1,000 / 4,000개 · 높을수록 좋음</span>
+                            </figcaption>
+                            <div class="chart-canvas">
+                                <canvas data-chart="frames" role="img" aria-label="15분간 처리한 총 프레임: MonoBehaviour 14,416, ECS+Job 14,999, ECS+Job+Burst 19,474"></canvas>
+                            </div>
+                            <p class="chart-note">Burst 결합 구조는 배터리를 가장 많이 썼지만, 16배 많은 개체를 돌리면서 MonoBehaviour보다 약 35% 많은 프레임을 처리했습니다.</p>
+                        </figure>
                     </div>
+
+                    <details class="chart-table">
+                        <summary>표로 보기</summary>
+                        <div class="table-scroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">지표</th>
+                                        <th scope="col">MonoBehaviour</th>
+                                        <th scope="col">ECS + Job</th>
+                                        <th scope="col">ECS + Job + Burst</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row">TC1 평균 FPS</th><td>0.29</td><td>3.6</td><td>38.2</td></tr>
+                                    <tr><th scope="row">TC1 CPU 프레임 타임 (ms)</th><td>3,507.4</td><td>280.1</td><td>27.1</td></tr>
+                                    <tr><th scope="row">TC2 개체 수</th><td>250</td><td>1,000</td><td>4,000</td></tr>
+                                    <tr><th scope="row">TC2 쓰로틀링 진입 (분)</th><td>10</td><td>2.5</td><td>5.5</td></tr>
+                                    <tr><th scope="row">TC2 평균 FPS</th><td>16.0</td><td>16.6</td><td>21.6</td></tr>
+                                    <tr><th scope="row">TC2 배터리 소모 (%)</th><td>6</td><td>9</td><td>10</td></tr>
+                                    <tr><th scope="row">TC2 총 처리 프레임</th><td>14,416</td><td>14,999</td><td>19,474</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </details>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="experience">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Career</div>
-                <h2 class="section-title">경력</h2>
-                <p class="section-description">
-                    게임 개발 경험과 주요 성과입니다.
-                </p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-period">2022.05 - 2023.12</div>
-                        <h3 class="timeline-title">Unity 클라이언트 개발자 (프리랜서)</h3>
-                        <div class="timeline-company">Tenacities</div>
-                        <p class="timeline-description">
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">Career</p>
+                    <h2 class="section-title">경력</h2>
+                    <p class="section-description">실무에서 진행한 상용 프로젝트와 주요 업무입니다.</p>
+                </div>
+
+                <article class="career fade-in">
+                    <div class="career-period num">2022.05 – 2023.12</div>
+                    <div>
+                        <h3 class="career-company">Tenacities</h3>
+                        <p class="career-role">Unity 클라이언트 개발자 (프리랜서) · 게임/메타버스 클라이언트 개발</p>
+                        <p class="career-description">
                             모바일 메타버스 ToAny 클라이언트 개발 및 VR 클라이언트 개발을 담당했습니다.
                             성능 최적화, 네트워크 연동, VR 컨텐츠 개발 등의 업무를 수행하였습니다.
                         </p>
+                        <div class="company-projects-grid">
+                            <div class="company-project-card" data-project="tenacities_19roulette" tabindex="0" role="button">
+                                <img src="19roulette_img1.png" alt="19 Roulette 화면" loading="lazy">
+                                <div class="company-project-body">
+                                    <h4 class="company-project-title">19 Roulette</h4>
+                                    <p class="company-project-subtitle">술자리 파티 게임 · 모바일 · CBT, 5일 완성</p>
+                                </div>
+                            </div>
+                            <div class="company-project-card" data-project="tenacities_cryptobuddies" tabindex="0" role="button">
+                                <img src="cryptobuddies_img1.png" alt="Crypto Buddies 화면" loading="lazy">
+                                <div class="company-project-body">
+                                    <h4 class="company-project-title">Crypto Buddies</h4>
+                                    <p class="company-project-subtitle">VR 펫 육성 시뮬레이션 · Beta</p>
+                                </div>
+                            </div>
+                            <div class="company-project-card" data-project="tenacities_duettaebo" tabindex="0" role="button">
+                                <img src="duettaebo_img1.png" alt="DuetTaebo 화면" loading="lazy">
+                                <div class="company-project-body">
+                                    <h4 class="company-project-title">DuetTaebo</h4>
+                                    <p class="company-project-subtitle">VR 리듬 게임 · NFT 로비 · Beta</p>
+                                </div>
+                            </div>
+                            <div class="company-project-card" data-project="tenacities_toany" tabindex="0" role="button">
+                                <img src="toany_img1.png" alt="ToAny 화면" loading="lazy">
+                                <div class="company-project-body">
+                                    <h4 class="company-project-title">ToAny</h4>
+                                    <p class="company-project-subtitle">고려대 배경 소셜 메타버스 · Alpha</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-period">2020.08 - 2022.05</div>
-                        <h3 class="timeline-title">애플리케이션 개발자 (사원_산업기능요원)</h3>
-                        <div class="timeline-company">IMTSOFT</div>
-                        <p class="timeline-description">
+                <article class="career fade-in">
+                    <div class="career-period num">2020.08 – 2022.05</div>
+                    <div>
+                        <h3 class="career-company">IMTSOFT</h3>
+                        <p class="career-role">애플리케이션 개발자 (사원 · 산업기능요원) · POS/KIOSK 솔루션 개발</p>
+                        <p class="career-description">
                             C# 과 VB6 을 이용한 POS/KIOSK 솔루션을 개발하였습니다.
                             외부 결제 수단 기능 개발 (Kakao, 자체 결제 모듈 등), 프린터기 연동 기능 및 API 연결 등의 업무를 수행하였습니다.
                             MSSQL, MYSQL, MariaDB 등 데이터베이스 관리 업무를 수행하였습니다.
                         </p>
+                        <ul class="company-project-list">
+                            <li class="company-project-row" data-project="imtsoft_gwangmyeong_pos" tabindex="0" role="button">
+                                <h4 class="company-project-title">광명동굴 POS 시스템</h4>
+                                <p class="company-project-subtitle">관광지 티켓 발권 시스템</p>
+                                <span class="company-project-badge">POS</span>
+                            </li>
+                            <li class="company-project-row" data-project="imtsoft_subway_pos" tabindex="0" role="button">
+                                <h4 class="company-project-title">Subway POS 시스템</h4>
+                                <p class="company-project-subtitle">매장용 POS 및 배달 시스템</p>
+                                <span class="company-project-badge">POS</span>
+                            </li>
+                            <li class="company-project-row" data-project="imtsoft_callisco_pos" tabindex="0" role="button">
+                                <h4 class="company-project-title">캘리스코 POS 시스템</h4>
+                                <p class="company-project-subtitle">매장 POS 및 QR 오더 시스템</p>
+                                <span class="company-project-badge">POS</span>
+                            </li>
+                            <li class="company-project-row" data-project="imtsoft_package_system" tabindex="0" role="button">
+                                <h4 class="company-project-title">자체 패키지 시스템</h4>
+                                <p class="company-project-subtitle">POS / KIOSK / DID / DIT / MIS 통합</p>
+                                <span class="company-project-badge">통합 시스템</span>
+                            </li>
+                            <li class="company-project-row" data-project="imtsoft_ourhome_meal" tabindex="0" role="button">
+                                <h4 class="company-project-title">아워홈 급식 시스템</h4>
+                                <p class="company-project-subtitle">급식 전용 통합 시스템 (C# Winform)</p>
+                                <span class="company-project-badge">급식 시스템</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="activities">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">Activities</p>
+                    <h2 class="section-title">교육 · 멘토링 · 활동</h2>
+                    <p class="section-description">가르치고, 대회에 나가고, 함께 만들어 온 기록입니다.</p>
+                </div>
+
+                <h3 class="subsection-title" style="margin-top:0;">교육 · 멘토링</h3>
+                <ol class="activity-list">
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2026.10.07 – 2026.12.26</span>
+                            <span class="status-live">진행 중</span>
+                            <span class="activity-category">강사</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">12주 게임 출시 프로젝트 멘토</h4>
+                            <p class="activity-organization">덕영 고등학교</p>
+                            <p class="activity-description">
+                                학생들이 기획·아트·프로그래밍 파트로 팀을 이루어 12주 동안 게임을 만들고 Steam 출시까지 경험하는 프로젝트를
+                                직접 기획하고 멘토링하고 있습니다. 목표는 서로 다른 파트 간의 협업을 이해하고, 게임 출시와 그 이후의 대응을 경험하는 것입니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item"><strong>운영 계획 직접 수립</strong> — 팀빌딩·제안서 발표 → 2주 단위 작업 발표·피드백 → 8주차 중간 시연 → 12주차 최종 발표 및 출시</li>
+                                <li class="achievement-item"><strong>팀 구성 설계</strong> — 기획·아트·프로그래밍 혼합 4~5인 팀</li>
+                                <li class="achievement-item"><strong>Unity 기초 워크숍 자료 108장 직접 제작</strong> — 기획·아트 등 비프로그래머 대상, 개발 프로세스부터 에디터·UI·2D·Git Flow 협업까지</li>
+                                <li class="achievement-item"><strong>주간 운영</strong> — 매주 멘토링 · 공동 작업 · 팀 회의</li>
+                                <li class="achievement-item"><strong>최종 목표</strong> — Steam 정식 출시, 기획서·아트 가이드·소스·빌드본 산출</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2026.03.16 – 2027.12.31</span>
+                            <span class="activity-category">강사</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">디지털 튜터</h4>
+                            <p class="activity-organization">덕영 고등학교</p>
+                            <p class="activity-description">
+                                덕영고등학교에서 디지털 튜터로 활동하며 학생들의 소프트웨어·게임 개발 학습을 지원하고 있습니다.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2026.03.09 – 2026.04.03</span>
+                            <span class="activity-category">강사</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">지방기능경기대회 게임부문 멘토</h4>
+                            <p class="activity-organization">덕영 고등학교</p>
+                            <p class="activity-description">
+                                덕영고등학교에서 지방기능경기대회 게임부문 멘토를 맡아 4명의 학생을 지도하였습니다.
+                                게임 개발 실기 준비 과정을 함께하며 대회 출전을 위한 멘토링을 진행하였습니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">멘토링 학생 4명 중 2명 전국기능경기대회 출전 자격 획득</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2025.01.13 – 2025.01.24</span>
+                            <span class="activity-category">강사</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">알고리즘 강사</h4>
+                            <p class="activity-organization">덕영 고등학교</p>
+                            <p class="activity-description">
+                                덕영고등학교에서 알고리즘 시간제 방과후 강사를 맡아서 진행하였습니다.
+                                자료구조 배열, 리스트, 스택, 큐, 덱, 트리, 그래프 강의를 진행하며 백준 알고리즘 사이트를 통해
+                                알고리즘 수업을 진행하였습니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">총 20명의 수강생 교육</li>
+                                <li class="achievement-item">알고리즘 8일분의 강의 자료 제공</li>
+                                <li class="achievement-item">알고리즘 문제 총 93문제 자료 준비</li>
+                                <li class="achievement-item">과제 제공 및 지도, 피드백 제공</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+
+                <h3 class="subsection-title">대회 · 학습 · 동아리</h3>
+                <ol class="activity-list">
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2024.07.15 – 2024.07.19</span>
+                            <span class="activity-category">대회</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">청강대&amp;유니티 게임잼</h4>
+                            <p class="activity-organization">주최: 청강 문화 산업 대학교 &amp; 유니티</p>
+                            <p class="activity-description">
+                                기획1, 그래픽1, 프로그래머2 중 리드 프로그래머를 담당하여 개발을 진행하였습니다.
+                                팀원 중 절반이 프로젝트에 대한 경험이 없어 프로젝트의 일정 및 방향을 이끄는 역할도 수행하였습니다.
+                                2D 쯔꾸르풍 공포게임을 개발하였습니다.
+                                몬스터 3종, 상호작용 시스템, 아이템과 인벤토리 시스템을 주로 개발하였습니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">우수상 수여</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2024.05 – 2024.08</span>
+                            <span class="activity-category">아카데미</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">소프트웨어 공학용 수학</h4>
+                            <p class="activity-organization">POCU 아카데미</p>
+                            <p class="activity-description">
+                                소프트웨어 공학용 수학을 수강하였습니다.
+                                성적은 86점으로 수료까지 성공적으로 이수하였습니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">소프트웨어 공학용 수학 이수</li>
+                                <li class="achievement-item">86점 이상으로 수료증 발급</li>
+                            </ul>
+                            <a href="POCU_수료증.png" class="text-link" download>수료증 다운로드</a>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2020.03 – 2025.12</span>
+                            <span class="activity-category">동아리</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">한얼</h4>
+                            <p class="activity-organization">청강 문화 산업 대학교</p>
+                            <p class="activity-description">
+                                청강 문화 산업 대학교 게임 개발동아리에 가입하여 동아리원으로 활동하였습니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">한얼 개발 프로젝트 참여</li>
+                                <li class="achievement-item">개발 프로젝트 멘토 참여</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-category">대회</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">고등 해커톤</h4>
+                            <p class="activity-organization">주최: 디지털미디어 고등학교</p>
+                            <p class="activity-description">
+                                유니티로 이용한 퍼즐 게임을 만들었습니다.
+                                주제는 "복" 으로, 황새가 아기를 찾기위한 여정을 그린 게임을 만들었습니다.
+                                게임 안에서 블록 코딩을 통해 맵을 올라가 아기를 찾고 아기를 부모님에게 전달해주는 게임을 만들었습니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">대상 수여</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2019.12.21 – 2019.12.22</span>
+                            <span class="activity-category">대회</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">앱잼</h4>
+                            <p class="activity-description">모바일 슈팅 게임을 만들었습니다.</p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">우수상 수여</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2018.07 – 2018.11<br>2019.07 – 2019.11</span>
+                            <span class="activity-category">대회</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">컨텐츠 대회</h4>
+                            <p class="activity-organization">경기 콘텐츠 진흥원</p>
+                            <p class="activity-description">
+                                MAKE 동아리 참여 기간동안 게임을 개발하여 VR 복싱 게임, 2D 횡스트롤 슈팅 게임을 개발하였습니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">우수상 수여</li>
+                                <li class="achievement-item">최우수상 수여</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="activity-row fade-in">
+                        <div class="activity-when">
+                            <span class="activity-period num">2018.03 – 2020.01</span>
+                            <span class="activity-category">동아리</span>
+                        </div>
+                        <div class="activity-body">
+                            <h4 class="activity-title">MAKE</h4>
+                            <p class="activity-organization">덕영 고등학교</p>
+                            <p class="activity-description">
+                                덕영 고등학교 소프트웨어 개발 동아리인 MAKE 에서 활동하였습니다.
+                                활동하는 동안 게임 개발 소속의 팀장 및 리더로서 활동하였습니다.
+                            </p>
+                            <ul class="activity-achievements">
+                                <li class="achievement-item">게임 개발 리더</li>
+                                <li class="achievement-item">게임 개발 스터디 제공</li>
+                                <li class="achievement-item">게임 개발 프로젝트 및 대회 참여</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">Skills</p>
+                    <h2 class="section-title">기술 스택</h2>
+                    <p class="section-description">게임 개발에 필요한 다양한 기술과 도구를 다룹니다.</p>
+                </div>
+
+                <div class="skill-legend" aria-hidden="true">
+                    <span class="level level-high"><span class="dots"><i></i><i></i><i></i></span>고급</span>
+                    <span class="level level-mid"><span class="dots"><i></i><i></i><i></i></span>중급</span>
+                    <span class="level level-low"><span class="dots"><i></i><i></i><i></i></span>초급</span>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-category fade-in">
+                        <h3 class="skill-category-title">프로그래밍</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-name">C#</span><span class="level level-high"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>고급</span></li>
+                            <li class="skill-item"><span class="skill-name">Computer Science</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">Network Programming</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">C++</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">VB6</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category fade-in">
+                        <h3 class="skill-category-title">게임 개발</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-name">Unity Engine</span><span class="level level-high"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>고급</span></li>
+                            <li class="skill-item"><span class="skill-name">Performance Optimization</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">Gameplay Programming</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">UI/UX Implementation</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category fade-in">
+                        <h3 class="skill-category-title">도구 &amp; 협업</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-name">Git</span><span class="level level-high"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>고급</span></li>
+                            <li class="skill-item"><span class="skill-name">Slack / Jandi</span><span class="level level-high"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>고급</span></li>
+                            <li class="skill-item"><span class="skill-name">Addressables</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">Dotween</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">Spine</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">DOTS</span><span class="level level-low"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>초급</span></li>
+                            <li class="skill-item"><span class="skill-name">AWS</span><span class="level level-low"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>초급</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category fade-in">
+                        <h3 class="skill-category-title">데이터베이스</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-name">MSSQL</span><span class="level level-high"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>고급</span></li>
+                            <li class="skill-item"><span class="skill-name">MYSQL</span><span class="level level-high"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>고급</span></li>
+                            <li class="skill-item"><span class="skill-name">SQLite</span><span class="level level-mid"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>중급</span></li>
+                            <li class="skill-item"><span class="skill-name">Redis</span><span class="level level-low"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>초급</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Activities Section (대회, 강사, 아카데미 경험) -->
-    <section id="activities">
+        <section id="education">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">Education</p>
+                    <h2 class="section-title">학력</h2>
+                </div>
+                <ol class="education-list fade-in">
+                    <li class="education-row">
+                        <div class="education-period num">2026 – 2027</div>
+                        <div>
+                            <h3 class="education-degree">차세대 게임 콘텐츠학과 (전공심화_학사학위)</h3>
+                            <p class="education-school">청강 문화 산업 대학교</p>
+                        </div>
+                    </li>
+                    <li class="education-row">
+                        <div class="education-period num">2020 – 2026</div>
+                        <div>
+                            <h3 class="education-degree">게임과-프로그래밍 전공</h3>
+                            <p class="education-school">청강 문화 산업 대학교</p>
+                            <p class="education-note num">학점 4.21 / 4.5 · 성적 우수상 수여</p>
+                        </div>
+                    </li>
+                    <li class="education-row">
+                        <div class="education-period num">2017 – 2020</div>
+                        <div>
+                            <h3 class="education-degree">소프트웨어과</h3>
+                            <p class="education-school">덕영고등학교</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">Contact</p>
+                    <h2 class="section-title">연락하기</h2>
+                    <p class="section-description">게임 개발 관련 문의나 협업 제안은 언제든 환영합니다.</p>
+                </div>
+                <ul class="contact-list">
+                    <li>
+                        <a href="mailto:minhahas@naver.com" class="contact-item">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">minhahas@naver.com</span>
+                            <span class="contact-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/kimminsu-123" class="contact-item" target="_blank" rel="noopener">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">github.com/kimminsu-123</span>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://spiny-curve-75f.notion.site/Kim-Min-Su-7bbc4e952f6e4463a582ad24146252ef?source=copy_link" class="contact-item" target="_blank" rel="noopener">
+                            <span class="contact-label">Notion</span>
+                            <span class="contact-value">Notion 이력서</span>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://spiny-curve-75f.notion.site/d901e50a53f546deaff5b3039f2444fa?source=copy_link" class="contact-item" target="_blank" rel="noopener">
+                            <span class="contact-label">Notion</span>
+                            <span class="contact-value">Notion 학습 기록</span>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://blog.naver.com/minhahas" class="contact-item" target="_blank" rel="noopener">
+                            <span class="contact-label">Blog</span>
+                            <span class="contact-value">blog.naver.com/minhahas</span>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+821099233207" class="contact-item">
+                            <span class="contact-label">Phone</span>
+                            <span class="contact-value num">010-9923-3207</span>
+                            <span class="contact-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
         <div class="container">
-            <div class="section-header">
-                <div class="section-label">Activities</div>
-                <h2 class="section-title">기타 활동</h2>
-                <p class="section-description">
-                    대회, 강사, 아카데미 등 다양한 활동 경험입니다.
-                </p>
-            </div>
-            <div class="activities-grid">
-                <div class="activity-card fade-in">
-                    <span class="activity-category instructor">강사</span>
-                    <div class="activity-period">2026.03.16 - 2027.12.31</div>
-                    <h3 class="activity-title">디지털 튜터</h3>
-                    <div class="activity-organization">덕영 고등학교</div>
-                    <p class="activity-description">
-                        덕영고등학교에서 디지털 튜터로 활동하며 학생들의 소프트웨어·게임 개발 학습을 지원하고 있습니다.
-                    </p>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category instructor">강사</span>
-                    <div class="activity-period">2026.03.09 - 2026.04.03</div>
-                    <h3 class="activity-title">지방기능경기대회 게임부문 멘토</h3>
-                    <div class="activity-organization">덕영 고등학교</div>
-                    <p class="activity-description">
-                        덕영고등학교에서 지방기능경기대회 게임부문 멘토를 맡아 4명의 학생을 지도하였습니다.<br>
-                        게임 개발 실기 준비 과정을 함께하며 대회 출전을 위한 멘토링을 진행하였습니다.
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">멘토링 학생 4명 중 2명 전국기능경기대회 출전 자격 획득</div>
-                    </div>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category instructor">강사</span>
-                    <div class="activity-period">2025.01.13 - 2025.01.24</div>
-                    <h3 class="activity-title">알고리즘 강사</h3>
-                    <div class="activity-organization">덕영 고등학교</div>
-                    <p class="activity-description">
-                        덕영고등학교에서 알고리즘 시간제 방과후 강사를 맡아서 진행하였습니다.<br>
-                        자료구조 배열, 리스트, 스택, 큐, 덱, 트리, 그래프 강의를 진행하며 백준 알고리즘 사이트를 통해<br>
-                        알고리즘 수업을 진행하였습니다.
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">총 20명의 수강생 교육</div>
-                        <div class="achievement-item">알고리즘 8일분의 강의 자료 제공</div>
-                        <div class="achievement-item">알고리즘 문제 총 93문제 자료 준비</div>
-                        <div class="achievement-item">과제 제공 및 지도, 피드백 제공</div>
-                    </div>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category competition">대회</span>
-                    <div class="activity-period">2024.07.15 - 2024.07.19</div>
-                    <h3 class="activity-title">청강대&유니티 게임잼</h3>
-                    <div class="activity-organization">주최: 청강 문화 산업 대학교 & 유니티</div>
-                    <p class="activity-description">
-                        기획1, 그래픽1, 프로그래머2 중 리드 프로그래머를 담당하여 개발을 진행하였습니다.<br>
-                        팀원 중 절반이 프로젝트에 대한 경험이 없어 프로젝트의 일정 및 방향을 이끄는 역할도 수행하였습니다.<br>
-                        2D 쯔꾸르풍 공포게임을 개발하였습니다. <br>
-                        몬스터 3종, 상호작용 시스템, 아이템과 인벤토리 시스템을 주로 개발하였습니다.
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">우수상 수여</div>
-                    </div>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category academy">아카데미</span>
-                    <div class="activity-period">2024.05 - 2024.08</div>
-                    <h3 class="activity-title">소프트웨어 공학용 수학</h3>
-                    <div class="activity-organization">POCU 아카데미</div>
-                    <p class="activity-description">
-                        소프트웨어 공학용 수학을 수강하였습니다.<br>
-                        성적은 86점으로 수료까지 성공적으로 이수하였습니다.
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">소프트웨어 공학용 수학 이수</div>
-                        <div class="achievement-item">86점 이상으로 수료증 발급</div>
-                    </div>
-                    <a href="POCU_수료증.png" class="btn btn-secondary" download>수료증 다운로드</a>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category club">동아리</span>
-                    <div class="activity-period">2020.03 - 2025.12</div>
-                    <h3 class="activity-title">한얼</h3>
-                    <div class="activity-organization">청강 문화 산업 대학교</div>
-                    <p class="activity-description">
-                        청강 문화 산업 대학교 게임 개발동아리에 가입하여 동아리원으로 활동하였습니다.
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">한얼 개발 프로젝트 참여</div>
-                        <div class="achievement-item">개발 프로젝트 멘토 참여</div>
-                    </div>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category competition">대회</span>
-                    <h3 class="activity-title">고등 해커톤</h3>
-                    <div class="activity-organization">주최: 디지털미디어 고등학교</div>
-                    <p class="activity-description">
-                        유니티로 이용한 퍼즐 게임을 만들었습니다.<br>
-                        주제는 "복" 으로, 황새가 아기를 찾기위한 여정을 그린 게임을 만들었습니다.<br>
-                        게임 안에서 블록 코딩을 통해 맵을 올라가 아기를 찾고 아기를 부모님에게 전달해주는 게임을 만들었습니다.
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">대상 수여</div>
-                    </div>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category competition">대회</span>
-                    <div class="activity-period">2019.12.21 - 2019.12.22</div>
-                    <h3 class="activity-title">앱잼</h3>
-                    <p class="activity-description">
-                        모바일 슈팅 게임을 만들었습니다.
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">우수상 수여</div>
-                    </div>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category competition">대회</span>
-                    <div class="activity-period">2018.07 - 2018.11</div>
-                    <div class="activity-period">2019.07 - 2019.11</div>
-                    <h3 class="activity-title">컨텐츠 대회</h3>
-                    <div class="activity-organization">경기 콘텐츠 진흥원</div>
-                    <p class="activity-description">
-                        MAKE 동아리 참여 기간동안 게임을 개발하여 VR 복싱 게임, 2D 횡스트롤 슈팅 게임을 개발하였습니다. <br>
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">우수상 수여</div>
-                        <div class="achievement-item">최우수상 수여</div>
-                    </div>
-                </div>
-
-                <div class="activity-card fade-in">
-                    <span class="activity-category club">동아리</span>
-                    <div class="activity-period">2018.03 - 2020.01</div>
-                    <h3 class="activity-title">MAKE</h3>
-                    <div class="activity-organization">덕영 고등학교</div>
-                    <p class="activity-description">
-                        덕영 고등학교 소프트웨어 개발 동아리인 MAKE 에서 활동하였습니다.
-                        활동하는 동안 게임 개발 소속의 팀장 및 리더로서 활동하였습니다.
-                    </p>
-                    <div class="activity-achievements">
-                        <div class="achievement-item">게임 개발 리더</div>
-                        <div class="achievement-item">게임 개발 스터디 제공</div>
-                        <div class="achievement-item">게임 개발 프로젝트 및 대회 참여</div>
-                    </div>
-                </div>
-
-            </div>
+            <p>© 2026 Kim Min Soo</p>
         </div>
-    </section>
-
-    <section id="publications">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Research</div>
-                <h2 class="section-title">연구 및 논문</h2>
-                <p class="section-description">
-                    학회 학술대회 논문집에 게재된 연구입니다.
-                </p>
-            </div>
-            <div class="publications-grid">
-                <div class="publication-card fade-in">
-                    <span class="publication-status published">게재 확정</span>
-                    <div class="publication-period">2026.07 게재</div>
-                    <h3 class="publication-title">Unity DOTS 기반 모바일 전력 및 발열 효율 비교 연구</h3>
-                    <div class="publication-venue">
-                        김민수 (제1저자) · 이범로 (지도교수) — 청강문화산업대학교 게임콘텐츠스쿨 · 한국컴퓨터정보학회 하계학술대회 논문집 · 제34권 2호
-                    </div>
-                    <p class="publication-summary">
-                        Unity DOTS(ECS + Job System + Burst Compiler)가 기존 MonoBehaviour 방식 대비 모바일 CPU 연산 성능과
-                        발열 유지력에 미치는 영향을 대규모 군집(Boid) 시뮬레이션으로 정량 비교했습니다.
-                        Burst 없이 멀티스레딩만 적용한 구조는 오히려 기존 방식보다 더 빨리 열 쓰로틀링에 진입하는
-                        역설적 결과가 나타났고, Job System과 Burst Compiler를 함께 적용했을 때만 성능 향상과
-                        발열 방어가 동시에 성립함을 실증했습니다.
-                    </p>
-                    <div class="publication-highlight">
-                        <span class="highlight-label">CPU 연산 성능</span>
-                        <span class="highlight-value">130× 프레임 타임 단축 (3,507ms → 27ms)</span>
-                    </div>
-                    <div class="publication-highlight">
-                        <span class="highlight-label">발열 유지력</span>
-                        <span class="highlight-value">쓰로틀링 진입 2.2배 지연 (2.5분 → 5.5분, Burst 적용 시)</span>
-                    </div>
-                    <div class="publication-tags">
-                        <span class="tag">Unity DOTS</span>
-                        <span class="tag">ECS</span>
-                        <span class="tag">Burst Compiler</span>
-                        <span class="tag">Thermal Throttling</span>
-                    </div>
-                    <!-- DOI/링크 발급 전이면 아래 버튼 생략, 발급 후 주석 해제 -->
-                    <!-- <a href="[DOI 링크]" class="btn btn-secondary" target="_blank">논문 보기</a> -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="education">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Academic</div>
-                <h2 class="section-title">학력</h2>
-            </div>
-            <div class="education-grid">
-                <div class="education-card fade-in">
-                    <div class="education-icon">🎓</div>
-                    <h3 class="education-degree">차세대 게임 콘텐츠학과 (전공심화_학사학위)</h3>
-                    <div class="education-school">청강 문화 산업 대학교</div>
-                    <div class="education-period">2026-2027</div>
-                </div>
-
-                <div class="education-card fade-in">
-                    <div class="education-icon">🎓</div>
-                    <h3 class="education-degree">게임과-프로그래밍 전공</h3>
-                    <div class="education-school">청강 문화 산업 대학교</div>
-                    <div class="education-period">2020-2026</div>
-                    <div class="education-period">학점 : 4.21/4.5</div>
-                    <div class="education-period">성적 우수상 수여</div>
-                </div>
-
-                <div class="education-card fade-in">
-                    <div class="education-icon">📚</div>
-                    <h3 class="education-degree">소프트웨어과</h3>
-                    <div class="education-school">덕영고등학교</div>
-                    <div class="education-period">2017-2020</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Get in Touch</div>
-                <h2 class="section-title">연락하기</h2>
-                <p class="section-description">
-                    게임 개발 관련 문의나 협업 제안은 언제든 환영합니다.
-                </p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-links">
-					<a href="mailto:minhahas@naver.com" class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <span class="contact-label">Email</span>
-						<span class="contact-value">minhahas@naver.com</span>
-					</a>
-                    <a href="https://github.com/kimminsu-123" class="contact-item" target="_blank">
-                        <span class="contact-icon">💻</span>
-                        <span class="contact-label">GitHub</span>
-                        <span class="contact-value">https://github.com/kimminsu-123</span>
-                    </a>
-                    <a href="https://spiny-curve-75f.notion.site/Kim-Min-Su-7bbc4e952f6e4463a582ad24146252ef?source=copy_link" class="contact-item" target="_blank">
-                        <span class="contact-icon">💼</span>
-                        <span class="contact-label">Notion</span>
-                        <span class="contact-value">Notion 이력서</span>
-                    </a>
-                    <a href="https://spiny-curve-75f.notion.site/d901e50a53f546deaff5b3039f2444fa?source=copy_link" class="contact-item" target="_blank">
-                        <span class="contact-icon">📚</span>
-                        <span class="contact-label">Notion</span>
-                        <span class="contact-value">Notion 학습 기록</span>
-                    </a>
-                    <a href="https://blog.naver.com/minhahas" class="contact-item" target="_blank">
-                        <span class="contact-icon">ⓑ</span>
-                        <span class="contact-label">Blog</span>
-                        <span class="contact-value">Blog</span>
-                    </a>
-                    <a href="tel:+821099233207" class="contact-item">
-                        <span class="contact-icon">📱</span>
-                        <span class="contact-label">Phone</span>
-                        <span class="contact-value">010-9923-3207</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    </footer>
 
     <div class="modal-overlay" id="projectModal">
-        <div class="modal-content">
-            <div class="modal-close" onclick="closeProjectModal()">✕</div>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button type="button" class="modal-close" aria-label="닫기" onclick="closeProjectModal()">✕</button>
 
             <div class="modal-header">
                 <h2 class="modal-title" id="modalTitle">프로젝트 제목</h2>
@@ -2075,19 +2395,19 @@
                 <div class="modal-meta">
                     <div class="meta-item">
                         <span class="meta-label">기간</span>
-                        <span class="meta-value" id="modalPeriod">2024.01 - 2024.06</span>
+                        <span class="meta-value num" id="modalPeriod"></span>
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">플랫폼</span>
-                        <span class="meta-value" id="modalPlatform">PC / Mobile</span>
+                        <span class="meta-value" id="modalPlatform"></span>
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">팀 구성</span>
-                        <span class="meta-value" id="modalTeam">4명</span>
+                        <span class="meta-value" id="modalTeam"></span>
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">역할</span>
-                        <span class="meta-value" id="modalRole">Client Developer</span>
+                        <span class="meta-value" id="modalRole"></span>
                     </div>
                 </div>
             </div>
@@ -2097,117 +2417,294 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>© 2025 Unity Client Developer. Built with passion for games.</p>
-        </div>
-    </footer>
-
-    <!-- 프로젝트 데이터 파일 로드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <script src="projects.js"></script>
-    
-    <!-- 메인 스크립트 -->
+
     <script>
-        // 프로젝트 모달 열기 함수
+        let lastFocused = null;
+
+        const hasChartJs = typeof Chart !== 'undefined';
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const rootStyle = getComputedStyle(document.documentElement);
+        const token = name => rootStyle.getPropertyValue(name).trim();
+
+        const chartColors = {
+            accent: token('--accent-primary'),
+            muted: token('--chart-muted'),
+            grid: token('--chart-grid'),
+            axis: token('--border-strong'),
+            text: token('--text-secondary'),
+            textMuted: token('--text-muted'),
+            textStrong: token('--text-primary')
+        };
+
+        const ARCH_LABELS = ['MonoBehaviour', 'ECS + Job', 'ECS + Job + Burst'];
+        const ARCH_LABELS_TC2 = [['MonoBehaviour', '250개'], ['ECS + Job', '1,000개'], ['ECS + Job + Burst', '4,000개']];
+        const EMPHASIS_LAST = [chartColors.muted, chartColors.muted, chartColors.accent];
+        const BEFORE_AFTER = [chartColors.muted, chartColors.accent];
+        const formatNumber = (v, digits = 1) => v.toLocaleString('ko-KR', { maximumFractionDigits: digits });
+
+        const CHART_DEFS = {
+            frameTime: {
+                labels: ARCH_LABELS, data: [3507.4, 280.1, 27.1], colors: EMPHASIS_LAST,
+                format: v => formatNumber(v) + ' ms', tick: v => formatNumber(v, 0)
+            },
+            throttle: {
+                labels: ARCH_LABELS_TC2, data: [10, 2.5, 5.5], colors: EMPHASIS_LAST, max: 15,
+                format: v => formatNumber(v) + '분', tick: v => v + '분'
+            },
+            thermalFps: {
+                labels: ARCH_LABELS_TC2, data: [16.0, 16.6, 21.6], colors: EMPHASIS_LAST, max: 35,
+                format: v => v.toFixed(1) + ' FPS', tick: v => v,
+                target: { value: 30, label: '목표 30 FPS' }
+            },
+            battery: {
+                labels: ARCH_LABELS_TC2, data: [6, 9, 10], colors: EMPHASIS_LAST, max: 12,
+                format: v => v + '%', tick: v => v + '%'
+            },
+            frames: {
+                labels: ARCH_LABELS_TC2, data: [14416, 14999, 19474], colors: EMPHASIS_LAST,
+                format: v => formatNumber(v, 0), tick: v => (v >= 1000 ? v / 1000 + 'K' : v)
+            },
+            distoriaTime: {
+                labels: ['이전 · Raycast', '이후 · Physics Command'], data: [330, 3], colors: BEFORE_AFTER,
+                format: v => v + ' ms', tick: v => v, compact: true
+            },
+            distoriaGc: {
+                labels: ['이전 · Raycast', '이후 · Physics Command'], data: [4000, 400], colors: BEFORE_AFTER,
+                format: v => formatNumber(v, 0) + ' KB', tick: v => (v >= 1000 ? v / 1000 + 'K' : v), compact: true
+            }
+        };
+
+        const valueLabelPlugin = def => ({
+            id: 'valueLabels',
+            afterDatasetsDraw(chart) {
+                const { ctx } = chart;
+                const meta = chart.getDatasetMeta(0);
+                const card = chart.canvas.closest('.chart-card');
+                const surface = card ? getComputedStyle(card).backgroundColor : chartColors.grid;
+                const fontSize = chart.width < 360 ? 12 : 13;
+                ctx.save();
+                ctx.font = `600 ${fontSize}px 'Pretendard Variable', Pretendard, sans-serif`;
+                ctx.textBaseline = 'middle';
+                meta.data.forEach((bar, i) => {
+                    const text = def.format(def.data[i]);
+                    const x = bar.x + 8;
+                    const w = ctx.measureText(text).width;
+                    ctx.fillStyle = surface;
+                    ctx.fillRect(x - 3, bar.y - fontSize * 0.75, w + 6, fontSize * 1.5);
+                    ctx.fillStyle = chartColors.textStrong;
+                    ctx.fillText(text, x, bar.y);
+                });
+                ctx.restore();
+            }
+        });
+
+        const targetLinePlugin = target => ({
+            id: 'targetLine',
+            beforeDatasetsDraw(chart) {
+                const { ctx, chartArea } = chart;
+                const x = chart.scales.x.getPixelForValue(target.value);
+                ctx.save();
+                ctx.strokeStyle = chartColors.textMuted;
+                ctx.lineWidth = 1;
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                ctx.moveTo(x, chartArea.top);
+                ctx.lineTo(x, chartArea.bottom);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.font = "500 12px 'Pretendard Variable', Pretendard, sans-serif";
+                ctx.fillStyle = chartColors.textMuted;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                ctx.fillText(target.label, x, chartArea.top - 4);
+                ctx.restore();
+            }
+        });
+
+        function renderChart(canvas) {
+            if (!hasChartJs || Chart.getChart(canvas)) return;
+            const def = CHART_DEFS[canvas.dataset.chart];
+            if (!def) return;
+
+            const plugins = [valueLabelPlugin(def)];
+            if (def.target) plugins.push(targetLinePlugin(def.target));
+
+            new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels: def.labels,
+                    datasets: [{
+                        data: def.data,
+                        backgroundColor: def.colors,
+                        hoverBackgroundColor: def.colors,
+                        borderRadius: 4,
+                        borderSkipped: 'start',
+                        barThickness: def.compact ? 16 : 20
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: reduceMotion ? false : { duration: 900, easing: 'easeOutQuart' },
+                    layout: { padding: { left: 4, right: 76, top: def.target ? 20 : 4 } },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: def.max,
+                            grid: { color: chartColors.grid, lineWidth: 1, drawTicks: false },
+                            border: { display: false },
+                            ticks: { color: chartColors.textMuted, padding: 6, maxTicksLimit: 5, font: { size: 12 }, callback: def.tick }
+                        },
+                        y: {
+                            grid: { display: false },
+                            border: { color: chartColors.axis },
+                            ticks: {
+                                color: chartColors.text,
+                                padding: 8,
+                                font: ctx => ({ size: def.compact || ctx.chart.width < 360 ? 12 : 13, weight: '500' })
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: chartColors.textStrong,
+                            titleColor: '#fffdf9',
+                            bodyColor: '#efebe3',
+                            padding: 10,
+                            cornerRadius: 6,
+                            displayColors: false,
+                            callbacks: {
+                                title: items => [].concat(items[0].label).join(' · '),
+                                label: item => def.format(item.raw)
+                            }
+                        }
+                    }
+                },
+                plugins
+            });
+        }
+
+        function destroyCharts(root) {
+            if (!hasChartJs) return;
+            root.querySelectorAll('canvas[data-chart]').forEach(canvas => {
+                const chart = Chart.getChart(canvas);
+                if (chart) chart.destroy();
+            });
+        }
+
+        if (hasChartJs) {
+            Chart.defaults.font.family = "'Pretendard Variable', Pretendard, -apple-system, 'Malgun Gothic', sans-serif";
+
+            const chartObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        renderChart(entry.target);
+                        chartObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+            fontsReady.then(() => {
+                document.querySelectorAll('main canvas[data-chart]').forEach(c => chartObserver.observe(c));
+            });
+        } else {
+            document.querySelectorAll('.chart-table').forEach(d => { d.open = true; });
+            document.querySelectorAll('.chart-canvas').forEach(c => { c.style.display = 'none'; });
+        }
+
         function openProjectModal(projectId) {
             const modal = document.getElementById('projectModal');
             const modalBody = document.getElementById('modalBody');
-            
-            // projects.js에서 데이터 가져오기
             const project = projectsData[projectId];
-            
+
             if (!project) {
                 console.error('프로젝트를 찾을 수 없습니다:', projectId);
                 return;
             }
-            
-            // 메타 데이터 설정
+
             document.getElementById('modalTitle').textContent = project.meta.title;
             document.getElementById('modalSubtitle').textContent = project.meta.subtitle;
             document.getElementById('modalPeriod').textContent = project.meta.period;
             document.getElementById('modalPlatform').textContent = project.meta.platform;
             document.getElementById('modalTeam').textContent = project.meta.team;
             document.getElementById('modalRole').textContent = project.meta.role;
-            
-            // HTML 콘텐츠 설정
+
             modalBody.innerHTML = project.html;
-            
-            // 모달 표시
+
+            lastFocused = document.activeElement;
             modal.classList.add('active');
+            modal.querySelector('.modal-content').scrollTop = 0;
             document.body.style.overflow = 'hidden';
+            modal.querySelector('.modal-close').focus();
+
+            if (hasChartJs) {
+                modalBody.querySelectorAll('canvas[data-chart]').forEach(renderChart);
+            } else {
+                modalBody.querySelectorAll('.chart-canvas').forEach(c => { c.style.display = 'none'; });
+            }
         }
 
-        // 모달 닫기 함수
         function closeProjectModal() {
             const modal = document.getElementById('projectModal');
+            if (!modal.classList.contains('active')) return;
+
             modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            const modalBody = document.getElementById('modalBody');
+            destroyCharts(modalBody);
+            modalBody.innerHTML = '';
+            document.body.style.overflow = '';
+            if (lastFocused) lastFocused.focus();
         }
 
-        // 모달 외부 클릭 시 닫기
-        document.getElementById('projectModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeProjectModal();
-            }
-        });
-
-        // ESC 키로 모달 닫기
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeProjectModal();
-            }
-        });
-
-        // 부드러운 스크롤
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        document.querySelectorAll('[data-project]').forEach(el => {
+            el.addEventListener('click', () => openProjectModal(el.dataset.project));
+            el.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openProjectModal(el.dataset.project);
                 }
             });
         });
 
-        // 스크롤 시 페이드 인 애니메이션
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        document.getElementById('projectModal').addEventListener('click', function (e) {
+            if (e.target === this) closeProjectModal();
+        });
 
-        const observer = new IntersectionObserver((entries) => {
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeProjectModal();
+        });
+
+        const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-        // 스크롤 시 네비게이션 활성화
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const scrollY = window.pageYOffset;
+        const navLinks = new Map();
+        document.querySelectorAll('.nav-links a').forEach(a => navLinks.set(a.getAttribute('href').slice(1), a));
 
-            sections.forEach(section => {
-                const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 100;
-                const sectionId = section.getAttribute('id');
-                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    navLink?.classList.add('active');
-                } else {
-                    navLink?.classList.remove('active');
+        const navObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const link = navLinks.get(entry.target.id);
+                if (!link) return;
+                if (entry.isIntersecting) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
                 }
             });
-        });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+
+        document.querySelectorAll('main section[id]').forEach(s => navObserver.observe(s));
     </script>
 </body>
 </html>

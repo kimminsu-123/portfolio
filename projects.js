@@ -196,6 +196,27 @@ const distoriaContent = {
                     Unity의 기본 Physics 대신 DOTS의 JobSystem과 UniTask를 활용해 물리 연산을 비동기로 처리하여 
                     메인 스레드 부하를 줄였고, 결과적으로 안정적인 60FPS를 달성했습니다.
                 </div>
+                <div class="metric-charts">
+                    <figure class="chart-card">
+                        <figcaption>
+                            <span class="chart-title">물리 처리 시간</span>
+                            <span class="chart-sub">낮을수록 좋음</span>
+                        </figcaption>
+                        <div class="chart-canvas sm">
+                            <canvas data-chart="distoriaTime" role="img" aria-label="물리 처리 시간: 이전 330ms, 이후 3ms"></canvas>
+                        </div>
+                    </figure>
+                    <figure class="chart-card">
+                        <figcaption>
+                            <span class="chart-title">GC Allocation</span>
+                            <span class="chart-sub">낮을수록 좋음</span>
+                        </figcaption>
+                        <div class="chart-canvas sm">
+                            <canvas data-chart="distoriaGc" role="img" aria-label="GC Allocation: 이전 4,000KB, 이후 400KB"></canvas>
+                        </div>
+                    </figure>
+                    <p class="chart-source">프로파일러 측정 — Physics.Raycast 동기 호출에서 JobSystem Physics Command 배치 처리로 전환한 전후 (이전 330ms · 4,000KB → 이후 3ms · 400KB)</p>
+                </div>
             </div>
             <div class="challenge-item">
                 <div class="challenge-question">
@@ -217,15 +238,15 @@ const distoriaContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/Distoria-246135ce59d38098ba7bde231c3337e3?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 상세 페이지
+                    Notion 상세 페이지
                     <span>→</span>
                 </a>
                 <a href="https://youtu.be/Rod2KIllyt4" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
-                    🎬 YouTube 플레이 영상
+                    YouTube 플레이 영상
                     <span>→</span>
                 </a>
                 <a href="Distoria Source Codes.zip" class="modal-btn modal-btn-code" target="_blank" onclick="event.stopPropagation();">
-                    💾 소스 코드 다운로드
+                    소스 코드 다운로드
                     <span>→</span>
                 </a>
             </div>
@@ -427,15 +448,15 @@ const didduckingContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/246135ce59d38046a012d3f234151774?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
                 <a href="https://www.youtube.com/watch?v=UQihDznK2fs" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
-                    🎬 YouTube 플레이 영상
+                    YouTube 플레이 영상
                     <span>→</span>
                 </a>
                 <a href="Deducking Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
-                    💾 소스 코드 다운로드
+                    소스 코드 다운로드
                     <span>→</span>
                 </a>
             </div>
@@ -633,15 +654,15 @@ const talContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/d7ba6891b7a34e6181e21b91c929eaaf?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
                 <a href="https://youtu.be/RI5yqaG5vKE" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
-                    🎬 YouTube 플레이 영상
+                    YouTube 플레이 영상
                     <span>→</span>
                 </a>
-                <a href="TAL Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
-                    💾 소스 코드 다운로드
+                <a href="Tal Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
+                    소스 코드 다운로드
                     <span>⬇</span>
                 </a>
             </div>
@@ -842,19 +863,19 @@ const racingCarContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/158473ee5ab04041a1662fd96f8e3e37?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
                 <a href="https://github.com/kimminsu-123/Client_RacingCarGame" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
-                    💻 GitHub - Client
+                    GitHub - Client
                     <span>→</span>
                 </a>
                 <a href="https://github.com/kimminsu-123/Server_RacingCarGame" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
-                    🖥️ GitHub - Server
+                    GitHub - Server
                     <span>→</span>
                 </a>
                 <a href="https://youtu.be/Wf-_HLx74Qg" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
-                    🎬 YouTube 플레이 영상
+                    YouTube 플레이 영상
                     <span>→</span>
                 </a>
             </div>
@@ -1017,11 +1038,11 @@ const simpleChatContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/Simple-Chat-264e911996b44b438cc93f3fbba378ff?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
                 <a href="https://github.com/kimminsu-123/SimpleChat" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
-                    💻 GitHub 저장소
+                    GitHub 저장소
                     <span>→</span>
                 </a>
             </div>
@@ -1194,11 +1215,11 @@ const hungrySquirrelContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/78100c5cf81640c0a8cc45672aa6ded2?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
                 <a href="HungrySquirrel Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
-                    💾 소스 코드 다운로드
+                    소스 코드 다운로드
                     <span>⬇</span>
                 </a>
             </div>
@@ -1377,7 +1398,7 @@ const railroadContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/26d0e0a40f96442f8f922961e34f6359?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
             </div>
@@ -2141,7 +2162,7 @@ const tenacities_toanyContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/ToAny-213561d55f0a4a028db73e3bd9e80198?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
             </div>
@@ -2334,7 +2355,7 @@ const tenacities_duettaeboContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/DuetTaebo-ef46aeb29dce4daeb4fc7ae3e8b30db0?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
             </div>
@@ -2514,7 +2535,7 @@ const tenacities_cryptobuddiesContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/Cryto-Buddies-7d59e43d9fb44fbc91d70c2c5a07e081?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
             </div>
@@ -2691,7 +2712,7 @@ const tenacities_19rouletteContent = {
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/19-Roulette-925216e68ba34a20a92cab05a3714bda?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 페이지
+                    Notion 페이지
                     <span>→</span>
                 </a>
             </div>
@@ -2833,7 +2854,7 @@ const sceneNoteContent = {
             <div class="modal-links">
                 <!-- 이미지/영상이 있는 경우 여기에 추가해주세요 -->
                 <a href="https://spiny-curve-75f.notion.site/3-Tool-Scene-Note-33b135ce59d3808f8417e349c55aa872" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
-                    📄 Notion 상세 페이지
+                    Notion 상세 페이지
                     <span>→</span>
                 </a>
             </div>
