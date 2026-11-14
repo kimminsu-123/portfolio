@@ -11,7 +11,6 @@ const distoriaContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🎮</span>
                 게임 홍보 영상
             </h3>
             <div class="media-gallery">
@@ -32,7 +31,6 @@ const distoriaContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🎮</span>
                 게임 플레이 영상
             </h3>
             <div class="media-gallery">
@@ -53,7 +51,6 @@ const distoriaContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📖</span>
                 프로젝트 개요
             </h3>
             <div class="overview-content">
@@ -62,7 +59,7 @@ const distoriaContent = {
                     이그니스라 불리는 능력자들은 차원을 넘나들 수 있는 힘을 가지고 있다.
                 </p>
                 <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
-                    주인공의 부모는 핵심 이그니스로 활약했지만, 제노스가 미래·현재·과거를 동시에 침범하면서 전투 끝에 목숨을 잃는다.
+                    주인공의 부모는 핵심 이그니스로 활약했지만, 제노스가 미래, 현재, 과거를 동시에 침범하면서 전투 끝에 목숨을 잃는다.
                     분노한 주인공은 능력이 발현되고, 부모의 복수와 세계 평화를 위해 중세시대를 장악한 '피안화' 세력을 물리치기 위해 과거로 향한다.
                 </p>
             </div>
@@ -70,7 +67,6 @@ const distoriaContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -112,27 +108,22 @@ const distoriaContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">🔫</div>
                     <div class="feature-title">다양한 무기 시스템</div>
                     <div class="feature-description">총알 특수능력과 탄창 시스템이 결합된 FPS 전투</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎲</div>
                     <div class="feature-title">로그라이크 요소</div>
                     <div class="feature-description">랜덤 아이템과 버프로 매 플레이마다 다른 경험</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📜</div>
                     <div class="feature-title">퀘스트 시스템</div>
                     <div class="feature-description">스토리 진행과 연계된 퀘스트</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🏆</div>
                     <div class="feature-title">랭킹 시스템</div>
                     <div class="feature-description">실시간 업데이트되는 점수 랭킹</div>
                 </div>
@@ -141,7 +132,6 @@ const distoriaContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -161,7 +151,6 @@ const distoriaContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -215,7 +204,7 @@ const distoriaContent = {
                             <canvas data-chart="distoriaGc" role="img" aria-label="GC Allocation: 이전 4,000KB, 이후 400KB"></canvas>
                         </div>
                     </figure>
-                    <p class="chart-source">프로파일러 측정 — Physics.Raycast 동기 호출에서 JobSystem Physics Command 배치 처리로 전환한 전후 (이전 330ms · 4,000KB → 이후 3ms · 400KB)</p>
+                    <p class="chart-source">프로파일러 측정: Physics.Raycast 동기 호출에서 JobSystem Physics Command 배치 처리로 전환한 전후 (이전 330ms, 4,000KB / 이후 3ms, 400KB)</p>
                 </div>
             </div>
             <div class="challenge-item">
@@ -233,21 +222,17 @@ const distoriaContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/Distoria-246135ce59d38098ba7bde231c3337e3?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 상세 페이지
-                    <span>→</span>
                 </a>
                 <a href="https://youtu.be/Rod2KIllyt4" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
                     YouTube 플레이 영상
-                    <span>→</span>
                 </a>
                 <a href="Distoria Source Codes.zip" class="modal-btn modal-btn-code" target="_blank" onclick="event.stopPropagation();">
                     소스 코드 다운로드
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -267,7 +252,6 @@ const didduckingContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🎮</span>
                 게임 플레이 영상
             </h3>
             <div class="media-gallery">
@@ -288,7 +272,6 @@ const didduckingContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📖</span>
                 프로젝트 개요
             </h3>
             <div class="overview-content">
@@ -305,7 +288,6 @@ const didduckingContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -348,37 +330,30 @@ const didduckingContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">⚔️</div>
                     <div class="feature-title">패링 시스템</div>
                     <div class="feature-description">타이밍 기반의 정교한 패링으로 적의 공격을 무력화</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">💫</div>
                     <div class="feature-title">그로기 시스템</div>
                     <div class="feature-description">적을 제압하고 강력한 반격 기회 획득</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎬</div>
                     <div class="feature-title">Timeline 연출</div>
                     <div class="feature-description">몰입감 있는 컷씬과 보스전 연출</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎨</div>
                     <div class="feature-title">Spine 애니메이션</div>
                     <div class="feature-description">부드럽고 생동감 있는 2D 애니메이션</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🏃</div>
                     <div class="feature-title">액션 중심 전투</div>
                     <div class="feature-description">무공을 활용한 다양한 액션 조합</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">👹</div>
                     <div class="feature-title">다양한 적</div>
                     <div class="feature-description">일반 몬스터부터 강력한 보스까지</div>
                 </div>
@@ -387,7 +362,6 @@ const didduckingContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -404,7 +378,6 @@ const didduckingContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -443,21 +416,17 @@ const didduckingContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크 및 다운로드
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/246135ce59d38046a012d3f234151774?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
                 <a href="https://www.youtube.com/watch?v=UQihDznK2fs" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
                     YouTube 플레이 영상
-                    <span>→</span>
                 </a>
                 <a href="Deducking Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
                     소스 코드 다운로드
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -477,7 +446,6 @@ const talContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🎮</span>
                 게임 플레이 영상
             </h3>
             <div class="media-gallery">
@@ -498,7 +466,6 @@ const talContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📖</span>
                 프로젝트 개요
             </h3>
             <div class="overview-content">
@@ -511,14 +478,13 @@ const talContent = {
                     결국 새로운 도깨비불이 되어 또 다른 희생자를 찾아 나서게 된다.
                 </p>
                 <p style="line-height: 1.8; color: var(--text-muted); font-style: italic;">
-                    ⏱️ 5일간의 게임잼에서 제작된 쯔꾸르풍 공포 게임
+                    5일간의 게임잼에서 제작된 쯔꾸르풍 공포 게임
                 </p>
             </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -555,37 +521,30 @@ const talContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">👻</div>
                     <div class="feature-title">공포 분위기</div>
                     <div class="feature-description">쯔꾸르풍 그래픽으로 표현한 섬뜩한 공포 연출</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎭</div>
                     <div class="feature-title">탈 시스템</div>
                     <div class="feature-description">탈 착용 시 보이는 특별한 요소들</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🔍</div>
                     <div class="feature-title">탐험 & 퍼즐</div>
                     <div class="feature-description">집 곳곳을 탐험하며 탈출 방법 찾기</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🧩</div>
                     <div class="feature-title">모듈형 상호작용</div>
                     <div class="feature-description">컴포넌트 조합으로 다양한 퍼즐 구현</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🤖</div>
                     <div class="feature-title">몬스터 AI</div>
                     <div class="feature-description">4방향 길찾기 알고리즘 기반 AI</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎒</div>
                     <div class="feature-title">인벤토리</div>
                     <div class="feature-description">아이템 수집 및 관리 시스템</div>
                 </div>
@@ -594,7 +553,6 @@ const talContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -609,7 +567,6 @@ const talContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -649,21 +606,17 @@ const talContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크 및 다운로드
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/d7ba6891b7a34e6181e21b91c929eaaf?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
                 <a href="https://youtu.be/RI5yqaG5vKE" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
                     YouTube 플레이 영상
-                    <span>→</span>
                 </a>
                 <a href="Tal Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
                     소스 코드 다운로드
-                    <span>⬇</span>
                 </a>
             </div>
         </div>
@@ -683,7 +636,6 @@ const racingCarContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🎮</span>
                 게임 플레이 영상
             </h3>
             <div class="media-gallery">
@@ -704,7 +656,6 @@ const racingCarContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📖</span>
                 프로젝트 개요
             </h3>
             <div class="overview-content">
@@ -713,14 +664,13 @@ const racingCarContent = {
                     Unity Lobby Service와 자체 UDP 서버를 결합하여 구현한 학교 과제 프로젝트입니다.
                 </p>
                 <p style="line-height: 1.8; color: var(--text-muted); font-style: italic;">
-                    🎓 청강 문화산업대학교 게임 프로그래밍 과제
+                    청강 문화산업대학교 게임 프로그래밍 과제
                 </p>
             </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -756,37 +706,30 @@ const racingCarContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">🏁</div>
                     <div class="feature-title">멀티플레이어</div>
                     <div class="feature-description">2~4명 실시간 레이싱 경주</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🚗</div>
                     <div class="feature-title">드리프트 물리</div>
                     <div class="feature-description">Rigidbody 기반 현실적인 자동차 물리</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🏠</div>
                     <div class="feature-title">로비 시스템</div>
                     <div class="feature-description">Unity Lobby Service 활용</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🌐</div>
                     <div class="feature-title">UDP 서버</div>
                     <div class="feature-description">자체 제작 게임 서버</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📡</div>
                     <div class="feature-title">실시간 동기화</div>
                     <div class="feature-description">플레이어 위치 및 상태 동기화</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📊</div>
                     <div class="feature-title">로깅 시스템</div>
                     <div class="feature-description">커스텀 서버 로깅</div>
                 </div>
@@ -795,7 +738,6 @@ const racingCarContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -810,7 +752,6 @@ const racingCarContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -839,7 +780,6 @@ const racingCarContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📝</span>
                 회고 및 개선점
             </h3>
             <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid var(--accent-secondary);">
@@ -858,25 +798,20 @@ const racingCarContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/158473ee5ab04041a1662fd96f8e3e37?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
                 <a href="https://github.com/kimminsu-123/Client_RacingCarGame" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
                     GitHub - Client
-                    <span>→</span>
                 </a>
                 <a href="https://github.com/kimminsu-123/Server_RacingCarGame" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
                     GitHub - Server
-                    <span>→</span>
                 </a>
                 <a href="https://youtu.be/Wf-_HLx74Qg" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
                     YouTube 플레이 영상
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -896,7 +831,6 @@ const simpleChatContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🖼️</span>
                 미디어
             </h3>
             <div class="media-gallery">
@@ -910,7 +844,6 @@ const simpleChatContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📖</span>
                 프로젝트 개요
             </h3>
             <div class="overview-content">
@@ -919,14 +852,13 @@ const simpleChatContent = {
                     네트워크 프로그래밍의 기초를 학습하기 위한 개인 프로젝트로 제작되었습니다.
                 </p>
                 <p style="line-height: 1.8; color: var(--text-muted); font-style: italic;">
-                    🎯 네트워크 프로그래밍 학습 목적의 개인 프로젝트
+                    네트워크 프로그래밍 학습 목적의 개인 프로젝트
                 </p>
             </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -954,27 +886,22 @@ const simpleChatContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">💬</div>
                     <div class="feature-title">실시간 채팅</div>
                     <div class="feature-description">TCP 기반 실시간 메시지 송수신</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">👥</div>
                     <div class="feature-title">다중 사용자</div>
                     <div class="feature-description">여러 클라이언트 동시 접속 지원</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📦</div>
                     <div class="feature-title">패킷 처리</div>
                     <div class="feature-description">효율적인 메시지 직렬화/역직렬화</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🖥️</div>
                     <div class="feature-title">Winform UI</div>
                     <div class="feature-description">직관적인 데스크톱 인터페이스</div>
                 </div>
@@ -983,7 +910,6 @@ const simpleChatContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -995,7 +921,6 @@ const simpleChatContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -1014,7 +939,6 @@ const simpleChatContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📚</span>
                 학습 내용
             </h3>
             <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid var(--accent-primary);">
@@ -1033,17 +957,14 @@ const simpleChatContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/Simple-Chat-264e911996b44b438cc93f3fbba378ff?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
                 <a href="https://github.com/kimminsu-123/SimpleChat" class="modal-btn modal-btn-secondary" target="_blank" onclick="event.stopPropagation();">
                     GitHub 저장소
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -1063,7 +984,6 @@ const hungrySquirrelContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🖼️</span>
                 미디어
             </h3>
             <div class="media-gallery">
@@ -1075,7 +995,6 @@ const hungrySquirrelContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📖</span>
                 프로젝트 개요
             </h3>
             <div class="overview-content">
@@ -1084,14 +1003,13 @@ const hungrySquirrelContent = {
                     시간이 지날수록 계속 줄어드는 배고픔(HP)을 음식으로 회복시키며 최대한 오래 살아남는 것이 목표입니다.
                 </p>
                 <p style="line-height: 1.8; color: var(--text-muted); font-style: italic;">
-                    🐿️ 귀여운 도트 그래픽과 타이트한 생존 메커니즘의 조화
+                    귀여운 도트 그래픽과 타이트한 생존 메커니즘의 조화
                 </p>
             </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -1119,37 +1037,30 @@ const hungrySquirrelContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">🌙</div>
                     <div class="feature-title">밤낮 시스템</div>
                     <div class="feature-description">시간에 따라 변하는 난이도</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎲</div>
                     <div class="feature-title">랜덤 맵 생성</div>
                     <div class="feature-description">매번 다른 맵 구조</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🍎</div>
                     <div class="feature-title">생존 요소</div>
                     <div class="feature-description">배고픔 & 스태미나 관리</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🌳</div>
                     <div class="feature-title">장애물 시스템</div>
                     <div class="feature-description">다양한 장애물과 상호작용</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">👀</div>
                     <div class="feature-title">오클루전 처리</div>
                     <div class="feature-description">플레이어 가시성 보장</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎨</div>
                     <div class="feature-title">도트 그래픽</div>
                     <div class="feature-description">귀여운 2D 도트 아트</div>
                 </div>
@@ -1158,7 +1069,6 @@ const hungrySquirrelContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -1170,7 +1080,6 @@ const hungrySquirrelContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -1210,17 +1119,14 @@ const hungrySquirrelContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크 및 다운로드
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/78100c5cf81640c0a8cc45672aa6ded2?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
                 <a href="HungrySquirrel Source Codes.zip" class="modal-btn modal-btn-code" download onclick="event.stopPropagation();">
                     소스 코드 다운로드
-                    <span>⬇</span>
                 </a>
             </div>
         </div>
@@ -1240,7 +1146,6 @@ const railroadContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🖼️</span>
                 미디어
             </h3>
             <div class="media-gallery">
@@ -1252,7 +1157,6 @@ const railroadContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📖</span>
                 프로젝트 개요
             </h3>
             <div class="overview-content">
@@ -1261,14 +1165,13 @@ const railroadContent = {
                     맵에서 일정 확률로 얻어지는 아이템을 사용하여 맵 끝에 존재하는 보스를 물리치는 것이 목표입니다.
                 </p>
                 <p style="line-height: 1.8; color: var(--text-muted); font-style: italic;">
-                    🚂 다양한 무기와 아이템으로 전략적 전투를 즐기는 로그라이크
+                    다양한 무기와 아이템으로 전략적 전투를 즐기는 로그라이크
                 </p>
             </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -1295,37 +1198,30 @@ const railroadContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">⚔️</div>
                     <div class="feature-title">다양한 무기</div>
                     <div class="feature-description">무기별 다른 전투 방식</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎒</div>
                     <div class="feature-title">아이템 시스템</div>
                     <div class="feature-description">전략적 아이템 활용</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎲</div>
                     <div class="feature-title">로그라이크</div>
                     <div class="feature-description">랜덤 요소와 리플레이성</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">👾</div>
                     <div class="feature-title">보스전</div>
                     <div class="feature-description">강력한 보스 몬스터</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🚂</div>
                     <div class="feature-title">열차 배경</div>
                     <div class="feature-description">독특한 열차 안 전투</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📱</div>
                     <div class="feature-title">멀티 플랫폼</div>
                     <div class="feature-description">PC & Android 지원</div>
                 </div>
@@ -1334,7 +1230,6 @@ const railroadContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -1346,7 +1241,6 @@ const railroadContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -1374,7 +1268,6 @@ const railroadContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📚</span>
                 프로젝트를 통한 성장
             </h3>
             <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid var(--accent-primary);">
@@ -1393,13 +1286,11 @@ const railroadContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/26d0e0a40f96442f8f922961e34f6359?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -1419,7 +1310,6 @@ const imtsoft_gwangmyeong_posContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -1429,7 +1319,6 @@ const imtsoft_gwangmyeong_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -1464,7 +1353,6 @@ const imtsoft_gwangmyeong_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -1475,7 +1363,6 @@ const imtsoft_gwangmyeong_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -1515,7 +1402,6 @@ const imtsoft_subway_posContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -1525,7 +1411,6 @@ const imtsoft_subway_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -1560,7 +1445,6 @@ const imtsoft_subway_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -1571,7 +1455,6 @@ const imtsoft_subway_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -1621,7 +1504,6 @@ const imtsoft_callisco_posContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -1631,7 +1513,6 @@ const imtsoft_callisco_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -1672,7 +1553,6 @@ const imtsoft_callisco_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -1684,7 +1564,6 @@ const imtsoft_callisco_posContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -1722,7 +1601,6 @@ const imtsoft_package_systemContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -1732,7 +1610,6 @@ const imtsoft_package_systemContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -1779,7 +1656,6 @@ const imtsoft_package_systemContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -1790,7 +1666,6 @@ const imtsoft_package_systemContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -1838,7 +1713,6 @@ const imtsoft_ourhome_mealContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -1848,7 +1722,6 @@ const imtsoft_ourhome_mealContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -1893,7 +1766,6 @@ const imtsoft_ourhome_mealContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -1905,7 +1777,6 @@ const imtsoft_ourhome_mealContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -1952,7 +1823,6 @@ const tenacities_toanyContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🖼️</span>
                 프로젝트 이미지
             </h3>
             <div class="media-gallery">
@@ -1970,7 +1840,6 @@ const tenacities_toanyContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -1982,14 +1851,13 @@ const tenacities_toanyContent = {
                 Flutter와의 연계로 모바일 기기에 상관없이 플레이 가능합니다.
             </p>
             <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:8px;border-left:3px solid var(--accent-primary);">
-                <strong style="color:var(--text-primary);">📱 출시 현황</strong><br>
+                <strong style="color:var(--text-primary);">출시 현황</strong><br>
                 <span style="color:var(--text-secondary);">Alpha 버전 - Google Play Store, App Store 출시</span>
             </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -2038,37 +1906,30 @@ const tenacities_toanyContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">📱</div>
                     <div class="feature-title">라이브 렌더링</div>
                     <div class="feature-description">모바일 카메라로 머리, 손 조작</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎭</div>
                     <div class="feature-title">Anygora</div>
                     <div class="feature-description">로컬 채팅 룸 개설 및 음성/텍스트 채팅</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🔄</div>
                     <div class="feature-title">Flutter 연동</div>
                     <div class="feature-description">크로스 플랫폼 지원</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">👔</div>
                     <div class="feature-title">커스터마이징</div>
                     <div class="feature-description">캐릭터 꾸미기 기능</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🗣️</div>
                     <div class="feature-title">음성 채팅</div>
                     <div class="feature-description">Agora 기반 실시간 음성</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">😊</div>
                     <div class="feature-title">감정 표현</div>
                     <div class="feature-description">이모지 및 감정 애니메이션</div>
                 </div>
@@ -2077,7 +1938,6 @@ const tenacities_toanyContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -2102,7 +1962,6 @@ const tenacities_toanyContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -2142,7 +2001,6 @@ const tenacities_toanyContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📚</span>
                 실패를 통해 배운 점
             </h3>
             <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid #ef4444;">
@@ -2157,13 +2015,11 @@ const tenacities_toanyContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/ToAny-213561d55f0a4a028db73e3bd9e80198?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -2182,7 +2038,6 @@ const tenacities_duettaeboContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🖼️</span>
                 프로젝트 이미지
             </h3>
             <div class="media-gallery">
@@ -2197,7 +2052,6 @@ const tenacities_duettaeboContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -2209,14 +2063,13 @@ const tenacities_duettaeboContent = {
                 개발 중인 프로젝트에 투입되어 한 명이 빠진 후 혼자서 이어서 개발한 프로젝트입니다.
             </p>
             <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:8px;border-left:3px solid var(--accent-primary);">
-                <strong style="color:var(--text-primary);">📱 출시 현황</strong><br>
+                <strong style="color:var(--text-primary);">출시 현황</strong><br>
                 <span style="color:var(--text-secondary);">Beta 버전 - Oculus Store 출시</span>
             </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -2250,37 +2103,30 @@ const tenacities_duettaeboContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">🎵</div>
                     <div class="feature-title">리듬 게임</div>
                     <div class="feature-description">리듬에 맞춰 노드 타격</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">👾</div>
                     <div class="feature-title">보스전</div>
                     <div class="feature-description">보스에게 대미지 입히기</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🏛️</div>
                     <div class="feature-title">NFT 로비</div>
                     <div class="feature-description">디지털 트윈 로비 맵</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">👥</div>
                     <div class="feature-title">멀티플레이</div>
                     <div class="feature-description">Photon 기반 협동 플레이</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">💬</div>
                     <div class="feature-title">소셜 기능</div>
                     <div class="feature-description">Steam 채팅 & 음성채팅</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📋</div>
                     <div class="feature-title">음악 리스트</div>
                     <div class="feature-description">최적화된 대용량 리스트</div>
                 </div>
@@ -2289,7 +2135,6 @@ const tenacities_duettaeboContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -2308,7 +2153,6 @@ const tenacities_duettaeboContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -2336,7 +2180,6 @@ const tenacities_duettaeboContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📚</span>
                 프로젝트 결과
             </h3>
             <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid #ef4444;">
@@ -2350,13 +2193,11 @@ const tenacities_duettaeboContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/DuetTaebo-ef46aeb29dce4daeb4fc7ae3e8b30db0?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -2375,7 +2216,6 @@ const tenacities_cryptobuddiesContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🖼️</span>
                 프로젝트 이미지
             </h3>
             <div class="media-gallery">
@@ -2390,7 +2230,6 @@ const tenacities_cryptobuddiesContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 회사 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -2402,14 +2241,13 @@ const tenacities_cryptobuddiesContent = {
                 유저들이 펫을 키우며 자연스럽게 Narae House 사용법 튜토리얼을 익힐 수 있도록 설계되었습니다.
             </p>
             <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:8px;border-left:3px solid var(--accent-primary);">
-                <strong style="color:var(--text-primary);">📱 출시 현황</strong><br>
+                <strong style="color:var(--text-primary);">출시 현황</strong><br>
                 <span style="color:var(--text-secondary);">Beta 버전 - Oculus Store 출시</span>
             </div>
         </div>
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -2442,37 +2280,30 @@ const tenacities_cryptobuddiesContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">🐾</div>
                     <div class="feature-title">펫 육성</div>
                     <div class="feature-description">애완동물 육성 시뮬레이션</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🤝</div>
                     <div class="feature-title">펫 상호작용</div>
                     <div class="feature-description">펫과의 다양한 인터랙션</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">😊</div>
                     <div class="feature-title">펫 상태 관리</div>
                     <div class="feature-description">기분 및 상태 시스템</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📚</div>
                     <div class="feature-title">튜토리얼</div>
                     <div class="feature-description">Narae House 사용법 학습</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📊</div>
                     <div class="feature-title">유저 분석</div>
                     <div class="feature-description">Unity Analytics 기반 통계</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🥽</div>
                     <div class="feature-title">VR 최적화</div>
                     <div class="feature-description">오큘러스 퀘스트 전용</div>
                 </div>
@@ -2481,7 +2312,6 @@ const tenacities_cryptobuddiesContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -2498,7 +2328,6 @@ const tenacities_cryptobuddiesContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">💡</span>
                 기술적 도전과 해결
             </h3>
             <div class="challenge-item">
@@ -2517,7 +2346,6 @@ const tenacities_cryptobuddiesContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📚</span>
                 프로젝트 결과
             </h3>
             <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid #ef4444;">
@@ -2530,13 +2358,11 @@ const tenacities_cryptobuddiesContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/Cryto-Buddies-7d59e43d9fb44fbc91d70c2c5a07e081?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -2555,7 +2381,6 @@ const tenacities_19rouletteContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🖼️</span>
                 프로젝트 이미지
             </h3>
             <div class="media-gallery">
@@ -2570,7 +2395,6 @@ const tenacities_19rouletteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🏢</span>
                 외주 프로젝트
             </h3>
             <p style="color: var(--text-secondary); line-height: 1.8;">
@@ -2581,7 +2405,7 @@ const tenacities_19rouletteContent = {
                 회사에서 외주를 받아 진행한 프로젝트로, 단 5일 만에 완성했습니다.
             </p>
             <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:8px;border-left:3px solid var(--accent-primary);">
-                <strong style="color:var(--text-primary);">📱 출시 현황</strong><br>
+                <strong style="color:var(--text-primary);">출시 현황</strong><br>
                 <span style="color:var(--text-secondary);">CBT (Closed Beta Test) - Google Play Store<br>
                 특정 사용자들만 접근 가능한 제한된 버전</span>
             </div>
@@ -2589,7 +2413,6 @@ const tenacities_19rouletteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 담당 업무 및 기여
             </h3>
             <div class="responsibility-list">
@@ -2622,37 +2445,30 @@ const tenacities_19rouletteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">🎡</div>
                     <div class="feature-title">룰렛 시스템</div>
                     <div class="feature-description">행동과 옵션 랜덤 추첨</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🍺</div>
                     <div class="feature-title">술 게임</div>
                     <div class="feature-description">벌칙 및 미션 수행</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📊</div>
                     <div class="feature-title">데이터 관리</div>
                     <div class="feature-description">AWS DynamoDB 연동</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">📺</div>
                     <div class="feature-title">광고</div>
                     <div class="feature-description">Google AdMob</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">💰</div>
                     <div class="feature-title">결제</div>
                     <div class="feature-description">IAP 광고 제거</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🔐</div>
                     <div class="feature-title">제한 접근</div>
                     <div class="feature-description">특정 사용자 전용</div>
                 </div>
@@ -2661,7 +2477,6 @@ const tenacities_19rouletteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -2677,7 +2492,6 @@ const tenacities_19rouletteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⚡</span>
                 빠른 개발
             </h3>
             <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid var(--accent-primary);">
@@ -2693,7 +2507,6 @@ const tenacities_19rouletteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📚</span>
                 프로젝트 결과
             </h3>
             <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:12px;border-left:3px solid var(--accent-success);">
@@ -2707,13 +2520,11 @@ const tenacities_19rouletteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <a href="https://spiny-curve-75f.notion.site/19-Roulette-925216e68ba34a20a92cab05a3714bda?source=copy_link" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 페이지
-                    <span>→</span>
                 </a>
             </div>
         </div>
@@ -2733,7 +2544,6 @@ const sceneNoteContent = {
     html: `
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🖼️</span>
                 미디어
             </h3>
             <div class="media-gallery">
@@ -2745,7 +2555,6 @@ const sceneNoteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">📖</span>
                 프로젝트 개요
             </h3>
             <div class="overview-content">
@@ -2761,7 +2570,6 @@ const sceneNoteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">👨‍💻</span>
                 핵심 개발 로직 및 해결
             </h3>
             <div class="responsibility-list">
@@ -2794,37 +2602,30 @@ const sceneNoteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">⭐</span>
                 주요 기능
             </h3>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">📝</div>
                     <div class="feature-title">씬 노트 렌더링</div>
                     <div class="feature-description">오브젝트 없이 씬 뷰 내 텍스트/마커 렌더링</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">💾</div>
                     <div class="feature-title">데이터 격리</div>
                     <div class="feature-description">씬이 아닌 외부 SO 자산에 데이터 보관</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🚀</div>
                     <div class="feature-title">프루스텀 컬링</div>
                     <div class="feature-description">보이지 않는 노트는 렌더링 패스 제외</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🛠️</div>
                     <div class="feature-title">전용 수정 윈도우</div>
                     <div class="feature-description">에디터 윈도우를 통한 직관적 수정 및 Undo 지원</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">⚙️</div>
                     <div class="feature-title">전용 로거 & 오버레이</div>
                     <div class="feature-description">SceneView 오버레이를 통해 기능 온/오프 및 로깅 제어</div>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🎨</div>
                     <div class="feature-title">커스텀 핸들 로직</div>
                     <div class="feature-description">마우스 피킹, 노트 삭제 기능 등 GUI/Handle 처리</div>
                 </div>
@@ -2833,7 +2634,6 @@ const sceneNoteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔧</span>
                 기술 스택
             </h3>
             <div class="tech-stack-list">
@@ -2848,14 +2648,12 @@ const sceneNoteContent = {
 
         <div class="modal-section">
             <h3 class="modal-section-title">
-                <span class="section-icon">🔗</span>
                 링크
             </h3>
             <div class="modal-links">
                 <!-- 이미지/영상이 있는 경우 여기에 추가해주세요 -->
                 <a href="https://spiny-curve-75f.notion.site/3-Tool-Scene-Note-33b135ce59d3808f8417e349c55aa872" class="modal-btn modal-btn-primary" target="_blank" onclick="event.stopPropagation();">
                     Notion 상세 페이지
-                    <span>→</span>
                 </a>
             </div>
         </div>
